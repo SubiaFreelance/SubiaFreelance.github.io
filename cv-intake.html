@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Build Your CV — Beacon</title>
-<meta name="description" content="No resume? No problem. Answer a few questions and Beacon will build a professional CV for you from scratch.">
+<meta name="description" content="No resume? No problem. Answer a few questions and Beacon will build you a professional CV based on your answers.">
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="canonical" href="https://subiafreelance.github.io/cv-intake.html">
 <meta property="og:title" content="Build Your CV — Beacon">
-<meta property="og:description" content="No resume? No problem. Answer guided questions about your career and Beacon will build a professional CV for you from scratch.">
+<meta property="og:description" content="No resume? No problem. Answer guided questions about your career and Beacon will build you a professional CV based on your answers.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://subiafreelance.github.io/cv-intake.html">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Build Your CV — Beacon">
-<meta name="twitter:description" content="No resume? No problem. Answer guided questions about your career and Beacon will build a professional CV for you from scratch.">
+<meta name="twitter:description" content="No resume? No problem. Answer guided questions about your career and Beacon will build you a professional CV based on your answers.">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -320,7 +320,7 @@
 
 <header>
   <h1>No resume? No problem.</h1>
-  <p class="hero-sub">Answer a few questions about your career and I'll build a polished, professional CV for you from scratch.</p>
+  <p class="hero-sub">Answer a few questions about your career and I'll build you a sharp, ready-to-send CV based on what you tell me here.</p>
 </header>
 
 <div class="progress-bar">
@@ -433,7 +433,7 @@
   <div class="pricing-note">
     <h3>CV Build from Scratch</h3>
     <div class="price">$350</div>
-    <p>I'll take everything you've provided and build you a polished, professional CV — properly structured, clearly written, and ready to send to employers.</p>
+    <p>I'll take everything you've provided and build you a CV that's well-structured, clearly written, and ready to send.</p>
     <div class="upsell">Want it as a live website too? Add a CV Website for just $150 more (normally $200).</div>
   </div>
   <div id="review-content"></div>
@@ -457,12 +457,12 @@
 <footer>
   <div class="page">
     <div class="footer-brand">BEACON</div>
-    Showing the Way Forward · <a href="mailto:AJSubia@gmail.com">AJSubia@gmail.com</a><br>
+    Showing the Way Forward · <a href="/cdn-cgi/l/email-protection#a8e9e2fbddcac1c9e8cfc5c9c1c486cbc7c5"><span class="__cf_email__" data-cfemail="56171c0523343f3716313b373f3a7835393b">[email&#160;protected]</span></a><br>
     &copy; 2026 Beacon CV Services
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 let currentStep = 1;
 let jobCount = 1;
 
@@ -558,7 +558,4 @@ function submitForm() {
   });
   let body = `Beacon CV Build Request\n\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone}\nLocation: ${data.location}\nLinkedIn: ${data.linkedin}\n\nCurrent Title: ${data.currentTitle}\nIndustry: ${data.industry}\nExperience: ${data.experience}\n\nSummary:\n${data.summary}\n\n--- WORK HISTORY ---\n`;
   data.jobs.forEach((j, i) => { body += `\nPosition ${i+1}: ${j.title}\nCompany: ${j.org}\nDates: ${j.start} – ${j.end}\nDuties:\n${j.duties}\n`; });
-  body += `\n--- SKILLS & EXTRAS ---\nSkills: ${data.skills}\nEducation: ${data.education}\nCertifications: ${data.certifications}\n\nAdditional Notes:\n${data.extras}`;
-  const mailto = `mailto:AJSubia@gmail.com?subject=${encodeURIComponent('Beacon CV Build — ' + data.name)}&body=${encodeURIComponent(body)}`;
-  window.open(mailto, '_blank');
-  document.getEleme
+  body += `\n--- SKILLS & EXTRAS ---\nSkills: ${data.skills}\nEducation: ${data.education}\nCertifications: ${data.certificatio
