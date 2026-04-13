@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Send Your CV — Beacon</title>
+<meta name="description" content="Send your resume to Beacon for a strategic review and professional web presence.">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="canonical" href="https://subiafreelance.github.io/contact.html">
+<meta property="og:title" content="Send Your CV — Beacon">
+<meta property="og:description" content="Send your resume to Beacon for a strategic review and professional web presence. Built by someone who's made hiring decisions for a 60,000-employee organization.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://subiafreelance.github.io/contact.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Send Your CV — Beacon">
+<meta name="twitter:description" content="Send your resume to Beacon for a strategic review and professional web presence. Built by someone who's made hiring decisions for a 60,000-employee organization.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #faf9f7;
+    --accent: #2c4a3e;
+    --warm: #c4713b;
+    --warm-hover: #a85d2f;
+    --muted: #6b6b6b;
+    --rule: #d4d0ca;
+    --card: #ffffff;
+    --highlight: #f0ece6;
+    --error: #b44;
+    --shadow-soft: 0 2px 20px rgba(44, 74, 62, 0.06);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Sans 3', Georgia, serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(44,74,62,0.03) 1px, transparent 0);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page { max-width: 620px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal { opacity: 0; animation: fadeUp 0.6s ease-out forwards; }
+  .d1 { animation-delay: 0.1s; }
+  .d2 { animation-delay: 0.2s; }
+  .d3 { animation-delay: 0.3s; }
+
+  /* ── Nav ── */
+  .nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 0; border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-brand { display: flex; align-items: baseline; gap: 12px; }
+
+  .nav-brand-name {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.1rem; color: var(--accent);
+    letter-spacing: 0.16em; text-decoration: none;
+  }
+
+  .nav-brand-tag { font-size: 0.7rem; color: var(--warm); letter-spacing: 0.04em; }
+
+  .nav-back {
+    font-size: 0.82rem; color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-back:hover { color: var(--accent); }
+
+  /* ── Header ── */
+  header {
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 36px;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2rem; font-weight: 400; line-height: 1.2;
+  }
+
+  .hero-sub {
+    font-size: 0.95rem; font-weight: 300; color: var(--muted);
+    margin-top: 10px; line-height: 1.7;
+  }
+
+  /* ── Form ── */
+  .field { margin-bottom: 22px; }
+
+  label {
+    display: block; font-weight: 600; font-size: 0.87rem; margin-bottom: 6px;
+  }
+
+  label .optional { font-weight: 400; color: var(--muted); font-size: 0.8rem; }
+
+  input[type="text"], input[type="email"], input[type="tel"], textarea, select {
+    width: 100%; padding: 12px 14px;
+    font-family: 'Source Sans 3', sans-serif; font-size: 0.9rem;
+    color: var(--ink); background: var(--card);
+    border: 1px solid var(--rule); outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(44, 74, 62, 0.08);
+  }
+
+  textarea { min-height: 100px; resize: vertical; line-height: 1.6; }
+
+  .hint { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+  .hint a { color: var(--accent); }
+
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  select { -webkit-appearance: none; cursor: pointer; }
+
+  .btn-submit {
+    display: block; width: 100%; padding: 14px;
+    background: var(--accent); color: #fff;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.92rem; font-weight: 600;
+    letter-spacing: 0.03em; border: none;
+    cursor: pointer; transition: all 0.25s;
+    margin-top: 10px;
+  }
+
+  .btn-submit:hover {
+    background: #1e3a2e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(44, 74, 62, 0.2);
+  }
+
+  .guarantee {
+    text-align: center; margin-top: 18px;
+    font-size: 0.82rem; color: var(--muted);
+  }
+
+  .guarantee strong { color: var(--accent); }
+
+  /* ── Success ── */
+  .success { text-align: center; padding: 60px 0; }
+
+  .success-check {
+    width: 64px; height: 64px; background: var(--accent);
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; margin: 0 auto 24px;
+    color: #fff; font-size: 1.8rem;
+  }
+
+  .success h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.5rem; margin-bottom: 12px;
+  }
+
+  .success p { font-size: 1rem; color: var(--muted); max-width: 400px; margin: 0 auto; }
+
+  .hidden { display: none; }
+
+  footer {
+    padding: 40px 0 30px; font-size: 0.76rem; color: var(--muted); text-align: center;
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+
+  .footer-brand {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 0.85rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 4px;
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 0 18px; }
+    h1 { font-size: 1.6rem; }
+    .field-row { grid-template-columns: 1fr; }
+    .nav-brand-tag { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<nav class="nav">
+  <div class="nav-brand">
+    <a href="services.html" class="nav-brand-name">BEACON</a>
+    <span class="nav-brand-tag">Showing the Way Forward</span>
+  </div>
+  <a href="services.html" class="nav-back">← Back to services</a>
+</nav>
+
+<header>
+  <h1 class="reveal d1">Send me your resume.</h1>
+  <p class="hero-sub reveal d2">I'll review it with a hiring manager's eye, tell you what's working and what isn't, and build you a professional web presence around it.</p>
+</header>
+
+<div id="form-section" class="reveal d3">
+
+  <div class="field-row">
+    <div class="field">
+      <label>Your name</label>
+      <input type="text" id="name" placeholder="e.g. Maria Santos">
+    </div>
+    <div class="field">
+      <label>Email</label>
+      <input type="email" id="email" placeholder="you@email.com">
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Phone <span class="optional">(optional)</span></label>
+    <input type="tel" id="phone" placeholder="(555) 123-4567">
+  </div>
+
+  <div class="field">
+    <label>Which package are you interested in?</label>
+    <select id="package">
+      <option value="">Select one</option>
+      <option value="review">Web Presence Only — $200</option>
+      <option value="bundle">CV Rewrite + Web Presence — $500 (best value)</option>
+      <option value="not-sure">Not sure yet — just want to talk</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label>What are you hoping to improve? <span class="optional">(optional)</span></label>
+    <textarea id="goals" placeholder="For example: I'm applying for management roles and my resume still reads entry-level. Or: I want a web presence for consulting work. Whatever's on your mind."></textarea>
+  </div>
+
+  <div class="field">
+    <label>What role or opportunity are you targeting? <span class="optional">(optional)</span></label>
+    <input type="text" id="target" placeholder="e.g. IT Manager, consulting clients, federal positions">
+  </div>
+
+  <div class="field">
+    <label>Your current resume</label>
+    <div class="hint">Email your resume (PDF or Word) to <a href="/cdn-cgi/l/email-protection#f2b3b8a187909b93b2959f939b9edc919d9f"><span class="__cf_email__" data-cfemail="e7a6adb492858e86a7808a868e8bc984888a">[email&#160;protected]</span></a> after submitting this form. Or <a href="cv-intake.html">use the questionnaire</a> if you don't have one.</div>
+  </div>
+
+  <button class="btn-submit" onclick="submitInquiry()">Submit →</button>
+  <div class="guarantee"><strong>Full refund guarantee.</strong> Not happy after revisions? You pay nothing.</div>
+
+</div>
+
+<div id="success-section" class="hidden">
+  <div class="success">
+    <div class="success-check">✓</div>
+    <h2>Got it. I'll be in touch within 24 hours.</h2>
+    <p>I'll review what you've sent and follow up at the email you provided with next steps and a timeline. Don't forget to email your resume to <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1f5e554c6a7d767e5f78727e7673317c7072">[email&#160;protected]</a>.</p>
+  </div>
+</div>
+
+</div>
+
+<footer>
+  <div class="page">
+    <div class="footer-brand">BEACON</div>
+    Showing the Way Forward · <a href="/cdn-cgi/l/email-protection#f3b2b9a086919a92b3949e929a9fdd909c9e"><span class="__cf_email__" data-cfemail="4908031a3c2b2028092e24282025672a2624">[email&#160;protected]</span></a><br>
+    &copy; 2026 Beacon CV Services
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function submitInquiry() {
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+  const pkg = document.getElementById('package').value;
+  const goals = document.getElementById('goals').value;
+  const target = document.getElementById('target').value;
+
+  let body = `CV Review Inquiry\n\nNa

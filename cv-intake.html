@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Your CV — Beacon</title>
+<meta name="description" content="No resume? No problem. Answer a few questions and Beacon will build a professional CV for you from scratch.">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="canonical" href="https://subiafreelance.github.io/cv-intake.html">
+<meta property="og:title" content="Build Your CV — Beacon">
+<meta property="og:description" content="No resume? No problem. Answer guided questions about your career and Beacon will build a professional CV for you from scratch.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://subiafreelance.github.io/cv-intake.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Build Your CV — Beacon">
+<meta name="twitter:description" content="No resume? No problem. Answer guided questions about your career and Beacon will build a professional CV for you from scratch.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #faf9f7;
+    --accent: #2c4a3e;
+    --warm: #c4713b;
+    --warm-hover: #a85d2f;
+    --muted: #6b6b6b;
+    --rule: #d4d0ca;
+    --card: #ffffff;
+    --highlight: #f0ece6;
+    --shadow-soft: 0 2px 20px rgba(44, 74, 62, 0.06);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Sans 3', Georgia, serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(44,74,62,0.03) 1px, transparent 0);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page { max-width: 650px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .step { animation: fadeUp 0.4s ease-out; }
+
+  /* ── Nav ── */
+  .nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 0; border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-brand { display: flex; align-items: baseline; gap: 12px; }
+
+  .nav-brand-name {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.1rem; color: var(--accent);
+    letter-spacing: 0.16em; text-decoration: none;
+  }
+
+  .nav-brand-tag { font-size: 0.7rem; color: var(--warm); letter-spacing: 0.04em; }
+
+  .nav-back {
+    font-size: 0.82rem; color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-back:hover { color: var(--accent); }
+
+  /* ── Header ── */
+  header {
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 32px;
+  }
+
+  header h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2rem; font-weight: 400; line-height: 1.2;
+  }
+
+  header .hero-sub {
+    font-size: 0.95rem; font-weight: 300; color: var(--muted);
+    margin-top: 10px; max-width: 500px;
+  }
+
+  /* ── Progress ── */
+  .progress-bar {
+    display: flex; gap: 6px; margin-bottom: 36px;
+  }
+
+  .progress-step {
+    flex: 1; height: 3px; background: var(--rule);
+    transition: background 0.4s ease, transform 0.3s ease;
+  }
+
+  .progress-step.active { background: var(--accent); transform: scaleY(1.5); }
+  .progress-step.done { background: var(--accent); }
+
+  .step-label {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--warm); margin-bottom: 8px;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.5rem; font-weight: 400; margin-bottom: 6px;
+  }
+
+  .step-desc {
+    font-size: 0.88rem; color: var(--muted); margin-bottom: 28px;
+  }
+
+  /* ── Form Elements ── */
+  .field { margin-bottom: 22px; }
+
+  label {
+    display: block; font-weight: 600; font-size: 0.87rem; margin-bottom: 6px;
+  }
+
+  label .optional { font-weight: 400; color: var(--muted); font-size: 0.8rem; }
+
+  input[type="text"], input[type="email"], input[type="tel"], input[type="url"], textarea, select {
+    width: 100%; padding: 12px 14px;
+    font-family: 'Source Sans 3', sans-serif; font-size: 0.9rem;
+    color: var(--ink); background: var(--card);
+    border: 1px solid var(--rule); outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(44, 74, 62, 0.08);
+  }
+
+  textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
+  select { -webkit-appearance: none; cursor: pointer; }
+
+  .hint { font-size: 0.78rem; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* ── Job Entry ── */
+  .job-entry {
+    background: var(--card); border: 1px solid var(--rule);
+    padding: 24px; margin-bottom: 16px;
+    transition: box-shadow 0.3s;
+  }
+
+  .job-entry:hover { box-shadow: var(--shadow-soft); }
+
+  .job-entry h3 {
+    font-weight: 600; font-size: 0.88rem; color: var(--accent); margin-bottom: 16px;
+  }
+
+  .add-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 20px; background: transparent;
+    border: 1px dashed var(--rule); color: var(--accent);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.86rem; font-weight: 600;
+    cursor: pointer; transition: all 0.25s;
+  }
+
+  .add-btn:hover { border-color: var(--accent); background: var(--highlight); }
+
+  .remove-btn {
+    float: right; background: none; border: none;
+    color: var(--muted); font-size: 0.8rem; cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: color 0.2s;
+  }
+
+  .remove-btn:hover { color: var(--warm); }
+
+  /* ── Navigation ── */
+  .nav-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 40px; padding: 30px 0 60px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .btn-back {
+    padding: 12px 28px; background: transparent;
+    border: 1px solid var(--rule); color: var(--muted);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.86rem; font-weight: 600;
+    cursor: pointer; transition: all 0.25s;
+  }
+
+  .btn-back:hover { border-color: var(--ink); color: var(--ink); }
+
+  .btn-next {
+    padding: 12px 32px; background: var(--accent);
+    border: none; color: #fff;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.86rem; font-weight: 600;
+    cursor: pointer; transition: all 0.25s;
+  }
+
+  .btn-next:hover {
+    background: #1e3a2e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(44, 74, 62, 0.2);
+  }
+
+  /* ── Review ── */
+  .review-section {
+    margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--rule);
+  }
+
+  .review-section:last-child { border-bottom: none; }
+
+  .review-section h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.05rem; color: var(--accent); margin-bottom: 12px;
+  }
+
+  .review-field { margin-bottom: 6px; font-size: 0.88rem; }
+  .review-label { font-weight: 600; }
+  .review-value { color: var(--muted); margin-left: 4px; }
+
+  .review-job {
+    background: var(--card); border: 1px solid var(--rule);
+    padding: 16px; margin-bottom: 10px;
+  }
+
+  .review-job-title { font-weight: 600; font-size: 0.88rem; }
+  .review-job-org { font-size: 0.82rem; color: var(--muted); }
+  .review-job-duties { font-size: 0.82rem; color: var(--muted); margin-top: 6px; white-space: pre-line; }
+
+  /* ── Pricing Note ── */
+  .pricing-note {
+    background: var(--card); border: 1px solid var(--rule);
+    padding: 28px; margin-bottom: 28px;
+    border-left: 3px solid var(--accent);
+  }
+
+  .pricing-note h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.05rem; margin-bottom: 8px;
+  }
+
+  .pricing-note p { font-size: 0.86rem; color: var(--muted); line-height: 1.6; }
+
+  .pricing-note .price {
+    font-size: 1.8rem; font-weight: 700; color: var(--accent); margin: 8px 0;
+  }
+
+  .pricing-note .upsell {
+    margin-top: 14px; padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    font-size: 0.84rem; color: var(--warm); font-weight: 600;
+  }
+
+  /* ── Success ── */
+  .success { text-align: center; padding: 60px 0; }
+
+  .success-check {
+    width: 64px; height: 64px; background: var(--accent);
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; margin: 0 auto 24px;
+    color: #fff; font-size: 1.8rem;
+  }
+
+  .success h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.5rem; margin-bottom: 12px;
+  }
+
+  .success p { font-size: 1rem; color: var(--muted); max-width: 420px; margin: 0 auto; }
+
+  .hidden { display: none; }
+
+  footer {
+    padding: 40px 0 30px; font-size: 0.76rem; color: var(--muted); text-align: center;
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+
+  .footer-brand {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 0.85rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 4px;
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 0 18px; }
+    header h1 { font-size: 1.6rem; }
+    .field-row { grid-template-columns: 1fr; }
+    .nav-brand-tag { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<nav class="nav">
+  <div class="nav-brand">
+    <a href="services.html" class="nav-brand-name">BEACON</a>
+    <span class="nav-brand-tag">Showing the Way Forward</span>
+  </div>
+  <a href="services.html" class="nav-back">← Back to services</a>
+</nav>
+
+<header>
+  <h1>No resume? No problem.</h1>
+  <p class="hero-sub">Answer a few questions about your career and I'll build a polished, professional CV for you from scratch.</p>
+</header>
+
+<div class="progress-bar">
+  <div class="progress-step active" id="prog-1"></div>
+  <div class="progress-step" id="prog-2"></div>
+  <div class="progress-step" id="prog-3"></div>
+  <div class="progress-step" id="prog-4"></div>
+  <div class="progress-step" id="prog-5"></div>
+</div>
+
+<!-- STEP 1 -->
+<div id="step-1" class="step">
+  <div class="step-label">Step 1 of 5</div>
+  <h2>The basics.</h2>
+  <p class="step-desc">Let's start with who you are and how to reach you.</p>
+  <div class="field">
+    <label>Full name</label>
+    <input type="text" id="fullName" placeholder="e.g. Maria Santos">
+  </div>
+  <div class="field-row">
+    <div class="field"><label>Email</label><input type="email" id="email" placeholder="you@email.com"></div>
+    <div class="field"><label>Phone <span class="optional">(optional)</span></label><input type="tel" id="phone" placeholder="(555) 123-4567"></div>
+  </div>
+  <div class="field"><label>City &amp; State</label><input type="text" id="location" placeholder="e.g. Sacramento, CA"></div>
+  <div class="field"><label>LinkedIn URL <span class="optional">(optional)</span></label><input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourname"></div>
+  <div class="nav-row"><div></div><button class="btn-next" onclick="goTo(2)">Continue →</button></div>
+</div>
+
+<!-- STEP 2 -->
+<div id="step-2" class="step hidden">
+  <div class="step-label">Step 2 of 5</div>
+  <h2>Your career in a nutshell.</h2>
+  <p class="step-desc">Don't worry about polish — just tell me what you do. I'll handle the wording.</p>
+  <div class="field"><label>What's your current (or most recent) job title?</label><input type="text" id="currentTitle" placeholder="e.g. Operations Manager"></div>
+  <div class="field"><label>What industry do you work in?</label><input type="text" id="industry" placeholder="e.g. Healthcare, Government, Tech, Retail"></div>
+  <div class="field">
+    <label>How many years of professional experience do you have?</label>
+    <select id="experience">
+      <option value="">Select one</option>
+      <option>Less than 2 years</option>
+      <option>2–5 years</option>
+      <option>5–10 years</option>
+      <option>10–15 years</option>
+      <option>15+ years</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>In 2–3 sentences, what do you do?</label>
+    <textarea id="summary" placeholder="Just talk naturally. For example: 'I manage a team of 8 people at a hospital. We handle patient scheduling and make sure everything runs on time. Before this I worked at a clinic doing the same kind of thing but smaller.'"></textarea>
+    <div class="hint">Don't overthink it. Write like you'd explain it to a friend.</div>
+  </div>
+  <div class="nav-row">
+    <button class="btn-back" onclick="goTo(1)">← Back</button>
+    <button class="btn-next" onclick="goTo(3)">Continue →</button>
+  </div>
+</div>
+
+<!-- STEP 3 -->
+<div id="step-3" class="step hidden">
+  <div class="step-label">Step 3 of 5</div>
+  <h2>Your work history.</h2>
+  <p class="step-desc">List your jobs starting with the most recent. Include as many as you'd like.</p>
+  <div id="jobs-container">
+    <div class="job-entry" data-job="1">
+      <h3>Position 1</h3>
+      <div class="field"><label>Job title</label><input type="text" class="job-title-input" placeholder="e.g. Senior Analyst"></div>
+      <div class="field"><label>Company / Organization</label><input type="text" class="job-org-input" placeholder="e.g. Kaiser Permanente"></div>
+      <div class="field-row">
+        <div class="field"><label>Start date</label><input type="text" class="job-start-input" placeholder="e.g. June 2019"></div>
+        <div class="field"><label>End date</label><input type="text" class="job-end-input" placeholder="e.g. Present"></div>
+      </div>
+      <div class="field">
+        <label>What did you do in this role?</label>
+        <textarea class="job-duties-input" placeholder="Just list the main things. For example:&#10;- Managed a team of 5&#10;- Oversaw daily operations&#10;- Trained new hires"></textarea>
+        <div class="hint">Bullet points or plain sentences — either works.</div>
+      </div>
+    </div>
+  </div>
+  <button class="add-btn" onclick="addJob()">+ Add another position</button>
+  <div class="nav-row">
+    <button class="btn-back" onclick="goTo(2)">← Back</button>
+    <button class="btn-next" onclick="goTo(4)">Continue →</button>
+  </div>
+</div>
+
+<!-- STEP 4 -->
+<div id="step-4" class="step hidden">
+  <div class="step-label">Step 4 of 5</div>
+  <h2>Skills &amp; extras.</h2>
+  <p class="step-desc">These round out your CV. Skip anything that doesn't apply.</p>
+  <div class="field">
+    <label>Key skills</label>
+    <textarea id="skills" placeholder="List your main skills, separated by commas. For example:&#10;Project management, Microsoft Office, budgeting, team leadership, data analysis, Spanish (fluent)"></textarea>
+    <div class="hint">Include both technical skills and soft skills. Languages too.</div>
+  </div>
+  <div class="field"><label>Education <span class="optional">(optional)</span></label><textarea id="education" placeholder="e.g.&#10;BA in Business Administration, Sacramento State, 2015&#10;AA in Liberal Arts, Sacramento City College, 2012" style="min-height: 80px;"></textarea></div>
+  <div class="field"><label>Certifications or licenses <span class="optional">(optional)</span></label><textarea id="certifications" placeholder="e.g.&#10;PMP Certified&#10;Licensed Notary Public" style="min-height: 80px;"></textarea></div>
+  <div class="field"><label>Anything else you'd like me to know?</label><textarea id="extras" placeholder="Awards, volunteer work, publications, side projects — anything you think might be relevant. Or tell me what kind of job you're targeting so I can tailor the CV." style="min-height: 100px;"></textarea></div>
+  <div class="nav-row">
+    <button class="btn-back" onclick="goTo(3)">← Back</button>
+    <button class="btn-next" onclick="goTo(5)">Review →</button>
+  </div>
+</div>
+
+<!-- STEP 5 -->
+<div id="step-5" class="step hidden">
+  <div class="step-label">Step 5 of 5</div>
+  <h2>Review &amp; submit.</h2>
+  <p class="step-desc">Make sure everything looks right. I'll reach out within 24 hours to confirm details.</p>
+  <div class="pricing-note">
+    <h3>CV Build from Scratch</h3>
+    <div class="price">$350</div>
+    <p>I'll take everything you've provided and build you a polished, professional CV — properly structured, clearly written, and ready to send to employers.</p>
+    <div class="upsell">Want it as a live website too? Add a CV Website for just $150 more (normally $200).</div>
+  </div>
+  <div id="review-content"></div>
+  <div class="nav-row">
+    <button class="btn-back" onclick="goTo(4)">← Back</button>
+    <button class="btn-next" onclick="submitForm()">Submit →</button>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div id="step-success" class="step hidden">
+  <div class="success">
+    <div class="success-check">✓</div>
+    <h2>You're all set.</h2>
+    <p>I've received your information and will be in touch within 24 hours at the email you provided. Thanks for choosing Beacon.</p>
+  </div>
+</div>
+
+</div>
+
+<footer>
+  <div class="page">
+    <div class="footer-brand">BEACON</div>
+    Showing the Way Forward · <a href="/cdn-cgi/l/email-protection#87c6cdd4f2e5eee6c7e0eae6eeeba9e4e8ea"><span class="__cf_email__" data-cfemail="b9f8f3eaccdbd0d8f9ded4d8d0d597dad6d4">[email&#160;protected]</span></a><br>
+    &copy; 2026 Beacon CV Services
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+let currentStep = 1;
+let jobCount = 1;
+
+function goTo(step) {
+  document.getElementById(`step-${currentStep}`).classList.add('hidden');
+  document.getElementById(`step-${step}`).classList.remove('hidden');
+  for (let i = 1; i <= 5; i++) {
+    const bar = document.getElementById(`prog-${i}`);
+    bar.classList.remove('active', 'done');
+    if (i < step) bar.classList.add('done');
+    if (i === step) bar.classList.add('active');
+  }
+  if (step === 5) buildReview();
+  currentStep = step;
+  window.scrollTo(0, 0);
+}
+
+function addJob() {
+  jobCount++;
+  const container = document.getElementById('jobs-container');
+  const entry = document.createElement('div');
+  entry.className = 'job-entry';
+  entry.dataset.job = jobCount;
+  entry.innerHTML = `
+    <h3>Position ${jobCount} <button class="remove-btn" onclick="removeJob(this)">Remove</button></h3>
+    <div class="field"><label>Job title</label><input type="text" class="job-title-input" placeholder="e.g. Senior Analyst"></div>
+    <div class="field"><label>Company / Organization</label><input type="text" class="job-org-input" placeholder="e.g. Kaiser Permanente"></div>
+    <div class="field-row">
+      <div class="field"><label>Start date</label><input type="text" class="job-start-input" placeholder="e.g. June 2019"></div>
+      <div class="field"><label>End date</label><input type="text" class="job-end-input" placeholder="e.g. Present"></div>
+    </div>
+    <div class="field"><label>What did you do in this role?</label><textarea class="job-duties-input" placeholder="Just list the main things."></textarea></div>`;
+  container.appendChild(entry);
+}
+
+function removeJob(btn) { btn.closest('.job-entry').remove(); }
+
+function buildReview() {
+  const r = document.getElementById('review-content');
+  let html = '';
+  html += `<div class="review-section"><h3>Contact</h3>`;
+  html += rf('Name', 'fullName') + rf('Email', 'email') + rf('Phone', 'phone') + rf('Location', 'location') + rf('LinkedIn', 'linkedin');
+  html += `</div><div class="review-section"><h3>Career</h3>`;
+  html += rf('Title', 'currentTitle') + rf('Industry', 'industry') + rf('Experience', 'experience') + rf('Summary', 'summary');
+  html += `</div><div class="review-section"><h3>Work History</h3>`;
+  document.querySelectorAll('.job-entry').forEach((job) => {
+    const t = job.querySelector('.job-title-input')?.value || '';
+    const o = job.querySelector('.job-org-input')?.value || '';
+    const s = job.querySelector('.job-start-input')?.value || '';
+    const e = job.querySelector('.job-end-input')?.value || '';
+    const d = job.querySelector('.job-duties-input')?.value || '';
+    if (t || o) html += `<div class="review-job"><div class="review-job-title">${esc(t)}</div><div class="review-job-org">${esc(o)} · ${esc(s)} – ${esc(e)}</div>${d ? `<div class="review-job-duties">${esc(d)}</div>` : ''}</div>`;
+  });
+  html += `</div><div class="review-section"><h3>Skills &amp; Extras</h3>`;
+  html += rf('Skills', 'skills') + rf('Education', 'education') + rf('Certifications', 'certifications') + rf('Notes', 'extras');
+  html += `</div>`;
+  r.innerHTML = html;
+}
+
+function rf(label, id) {
+  const el = document.getElementById(id);
+  const val = el ? (el.value || '—') : '—';
+  return `<div class="review-field"><span class="review-label">${label}:</span><span class="review-value">${esc(val)}</span></div>`;
+}
+
+function esc(str) { const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+
+function submitForm() {
+  const data = {
+    name: document.getElementById('fullName').value,
+    email: document.getElementById('email').value,
+    phone: document.getElementById('phone').value,
+    location: document.getElementById('location').value,
+    linkedin: document.getElementById('linkedin').value,
+    currentTitle: document.getElementById('currentTitle').value,
+    industry: document.getElementById('industry').value,
+    experience: document.getElementById('experience').value,
+    summary: document.getElementById('summary').value,
+    skills: document.getElementById('skills').value,
+    education: document.getElementById('education').value,
+    certifications: document.getElementById('certifications').value,
+    extras: document.getElementById('extras').value,
+    jobs: []
+  };
+  document.querySelectorAll('.job-entry').forEach((job) => {
+    data.jobs.push({
+      title: job.querySelector('.job-title-input')?.value || '',
+      org: job.querySelector('.job-org-input')?.value || '',
+      start: job.querySelector('.job-start-input')?.value || '',
+      end: job.querySelector('.job-end-input')?.value || '',
+      duties: job.querySelector('.job-duties-input')?.value || ''
+    });
+  });
+  let body = `Beacon CV Build Request\n\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone}\nLocation: ${data.location}\nLinkedIn: ${data.linkedin}\n\nCurrent Title: ${data.currentTitle}\nIndustry: ${data.industry}\nExperience: ${data.experience}\n\nSummary:\n${data.summary}\n\n--- WORK HISTORY ---\n`;
+  data.jobs.forEach((j, i) => { body += `\nPosition ${i+1}: ${j.title}\nCompany: ${j.org}\nDates: ${j.start} – ${j.end}\nDuties:\n${j.duties}\n`; });
+  body += `\n--- SKILLS & EXTRAS ---\nSkills: ${data.skills}\nEducation: ${data.education}\nCertifications: ${data.certifications}\n\nAdditional Notes:\n${data.extras}`;
+  const mailto = `mailto:AJSubia@gmail.com?subject=${encodeURIComponent('Beacon CV Build — ' + data.name)}&body=${encodeURIComponent(body)}`;
+  window.open(mailto, '_blank');
+  document.getEleme
