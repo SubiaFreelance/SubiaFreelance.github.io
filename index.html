@@ -62,21 +62,34 @@
     margin-bottom: 18px; padding-bottom: 6px; border-bottom: 1px solid var(--rule);
   }
 
+  .summary { font-size: 0.95rem; line-height: 1.8; color: var(--ink); max-width: 680px; }
+
   .competencies { font-size: 0.9rem; color: var(--muted); line-height: 1.9; }
 
-  .job { margin-bottom: 30px; }
-  .job-title { font-weight: 600; font-size: 1rem; }
-  .job-org { font-size: 0.9rem; color: var(--muted); margin-top: 2px; }
-  .job-date { font-size: 0.82rem; font-weight: 500; color: var(--accent); margin-top: 2px; }
+  .job { margin-bottom: 28px; }
+  .job-title { font-weight: 600; font-size: 1rem; line-height: 1.35; }
+
+  .job-meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: 4px; margin-top: 2px;
+  }
+
+  .job-org { font-size: 0.88rem; color: var(--muted); }
+  .job-date { font-size: 0.82rem; font-weight: 500; color: var(--accent); white-space: nowrap; }
 
   .job ul { margin-top: 8px; padding-left: 18px; list-style: none; }
-  .job li { position: relative; padding-left: 14px; margin-bottom: 5px; font-size: 0.9rem; }
+  .job li { position: relative; padding-left: 14px; margin-bottom: 5px; font-size: 0.9rem; line-height: 1.6; }
   .job li::before {
     content: ''; position: absolute; left: 0; top: 10px;
     width: 4px; height: 4px; background: var(--accent); border-radius: 50%;
   }
 
-  .certs { font-size: 0.9rem; line-height: 1.9; }
+  .ec-role { margin-bottom: 16px; }
+  .ec-role .job-title { font-size: 0.95rem; }
+  .ec-role .job-org { font-size: 0.85rem; }
+  .ec-role .job-date { font-size: 0.8rem; }
+  .ec-desc { font-size: 0.88rem; color: var(--muted); margin-top: 4px; line-height: 1.6; }
+
   .refs { font-size: 0.88rem; font-style: italic; color: var(--muted); }
 
   footer {
@@ -95,6 +108,7 @@
     h1 { font-size: 2rem; }
     .contact .sep { display: none; }
     .contact span { display: block; }
+    .job-meta { flex-direction: column; }
   }
 </style>
 </head>
@@ -106,7 +120,7 @@
   <div class="subtitle">Strategic Public Sector IT Leader &amp; Operations Executive</div>
   <div class="contact">
     <span>West Sacramento, CA</span><span class="sep">·</span>
-    <span><a href="mailto:AJSubia@gmail.com">AJSubia@gmail.com</a></span><span class="sep">·</span>
+    <span><a href="/cdn-cgi/l/email-protection#4b0a01183e29222a0b2c262a222765282426"><span class="__cf_email__" data-cfemail="4203081137202b2302252f232b2e6c212d2f">[email&#160;protected]</span></a></span><span class="sep">·</span>
     <span>(916) 337-4159</span><span class="sep">·</span>
     <span><a href="https://linkedin.com/in/tony-subia" target="_blank">LinkedIn</a></span>
   </div>
@@ -117,9 +131,14 @@
 </header>
 
 <section>
+  <h2>Professional Summary</h2>
+  <p class="summary">Public sector leader with 16+ years at the California Department of Corrections and Rehabilitation, known for walking into disorganized or nonexistent programs and building the systems that make them work. Designed and stood up CDCR's Office of Public Records from scratch — authoring the implementation proposal, writing every operational procedure, and creating the oversight framework now governing 7,000+ annual public records requests and functioning as the Department's liaison to Legal Affairs and the Governor's Office through processes he designed. Previously restructured CDCR's recruitment operation from a fragmented three-region model into a coordinated statewide pipeline with local teams at every prison, and reorganized a 20-person training division from an undifferentiated staff pool into a structured operation with distinct functional areas. Career defined by building institutional infrastructure where none existed — at scale, under constraint, and across a 60,000-employee department.</p>
+</section>
+
+<section>
   <h2>Core Competencies</h2>
   <div class="competencies">
-    IT Governance &amp; Compliance · Public Records Act (PRA) Administration · eDiscovery · Enterprise Systems Administration · Project &amp; Program Management · Business Analysis · Instructional Design &amp; LMS Administration · Strategic Procurement · Contract Negotiation · Workforce &amp; Succession Planning · Cross-Functional Leadership · Policy &amp; Process Documentation · Stakeholder Engagement
+    Program Design &amp; Implementation · Organizational Restructuring · IT Governance &amp; Compliance · Public Records Act Administration · eDiscovery · Enterprise Systems Administration · Business Process Reengineering · Project &amp; Program Management · Strategic Procurement · Contract Negotiation · Workforce &amp; Succession Planning · Cross-Functional Leadership · Policy &amp; Process Architecture · Stakeholder Engagement · Instructional Design &amp; LMS Administration
   </div>
 </section>
 
@@ -128,110 +147,101 @@
 
   <div class="job">
     <div class="job-title">Information Technology Specialist I — Office of Public Records</div>
-    <div class="job-org">California Department of Corrections &amp; Rehabilitation (CDCR) · Sacramento, CA</div>
-    <div class="job-date">March 2023 – Present</div>
+    <div class="job-meta">
+      <div class="job-org">California Department of Corrections &amp; Rehabilitation (CDCR) · Sacramento, CA</div>
+      <div class="job-date">March 2023 – Present</div>
+    </div>
     <ul>
-      <li>Serve as primary system administrator for the Department's Public Records Portal (GovQA/Granicus); provision accounts and manage system enhancements.</li>
-      <li>Conduct eDiscovery coordination and California Public Records Act (PRA) compliance work; monitor and facilitate enterprise PRA responses.</li>
-      <li>Author issue papers, workload analyses, and policy justifications for executive review.</li>
-      <li>Lead the creation of cross-functional process maps and operational procedures governing the Department's PRA process statewide.</li>
-      <li>Evaluated NextRequest software against existing GovQA system; produced structured transition risk analysis recommending against rushed migration.</li>
+      <li>Authored the implementation proposal that established OPR as a centralized office — defining the mission, organizational structure, implementation strategy, and operational model adopted by executive leadership.</li>
+      <li>Designed every operational procedure, process flow, and swimlane diagram from scratch for an office that had no predecessor — creating the statewide framework now governing how 7,000+ PRA requests per year are received, assigned, reviewed, and released.</li>
+      <li>Built and implemented a mandatory pre-release Quality Assurance process for all PRA responses leaving the Department, routinely preventing the inappropriate disclosure of sensitive and confidential information and mitigating litigation risk.</li>
+      <li>Created the processes and relationships that established OPR as the official liaison between departmental programs and the Office of Legal Affairs, and between the Department and the Governor's Office on public records matters.</li>
+      <li>Serve as primary system administrator for CDCR's Public Records Portal (GovQA/Granicus), managing provisioning, system enhancements, and platform reliability for statewide PRA operations.</li>
+      <li>Conducted a structured risk evaluation of NextRequest against the existing GovQA platform, producing an analysis that prevented a premature migration and preserved operational continuity.</li>
     </ul>
   </div>
 
   <div class="job">
-    <div class="job-title">Section Chief — Instructional Design (Staff Services Manager II, Supervisory)</div>
-    <div class="job-org">California Department of Corrections &amp; Rehabilitation (CDCR) · Sacramento, CA</div>
-    <div class="job-date">October 2020 – March 2023</div>
+    <div class="job-title">Section Chief — Instructional Design &amp; Training Technology (SSM II, Supervisory)</div>
+    <div class="job-meta">
+      <div class="job-org">California Department of Corrections &amp; Rehabilitation (CDCR) · Sacramento, CA</div>
+      <div class="job-date">June 2020 – March 2023</div>
+    </div>
     <ul>
-      <li>Provided direct supervision to 3 SSM Is and indirect supervision to 16 analysts delivering statewide training programs.</li>
-      <li>Managed curriculum generation and revision projects including New Employee Orientation, Basic Correctional Officer Academy, and Off-Post Training.</li>
-      <li>Conducted business process reengineering sessions to streamline instructional design workflow and accelerate delivery.</li>
-      <li>Reviewed and approved lesson plans, instructor guides, PowerPoints, e-learning modules, and assessments before distribution.</li>
-    </ul>
-  </div>
-
-  <div class="job">
-    <div class="job-title">Section Chief — Training Technology &amp; Employee Development (SSM II, Supervisory)</div>
-    <div class="job-org">California Department of Corrections &amp; Rehabilitation (CDCR) · Sacramento, CA</div>
-    <div class="job-date">June 2020 – October 2020</div>
-    <ul>
-      <li>Oversaw LMS administration, workforce planning, Upward Mobility Program, Succession Management Program, and Career Development Advisory Committee for 60,000+ employees.</li>
-      <li>Managed a 17-person team including 5 direct reports; coordinated executive steering committees and responded to control agency audits.</li>
-      <li>Negotiated contracts for services with private vendors and other state entities.</li>
+      <li>Inherited an unstructured office where all staff shared all duties with no functional differentiation — reorganized the entire operation into distinct Operational and Administrative divisions, with Ops handling training delivery and instructional design, and Admin handling scheduling, reporting, contract management, and training center maintenance.</li>
+      <li>Provided executive oversight for two major statewide program areas — instructional design operations and training technology/employee development — leading up to 20 staff including 5 direct reports.</li>
+      <li>Oversaw the Learning Management System, workforce planning, Upward Mobility Program, Succession Management Program, and Career Development Advisory Committee serving 60,000+ employees.</li>
+      <li>Accelerated curriculum delivery for high-stakes programs — New Employee Orientation, Basic Correctional Officer Academy, and Off-Post Training — by conducting business process reengineering that eliminated workflow bottlenecks.</li>
+      <li>Coordinated executive steering committees and maintained compliance through control agency audit responses across all training and workforce development functions.</li>
     </ul>
   </div>
 
   <div class="job">
     <div class="job-title">Staff Services Manager II — Office of Training &amp; Professional Development</div>
-    <div class="job-org">California Department of Corrections &amp; Rehabilitation (CDCR) · Sacramento, CA</div>
-    <div class="job-date">November 2017 – June 2020</div>
+    <div class="job-meta">
+      <div class="job-org">California Department of Corrections &amp; Rehabilitation (CDCR) · Sacramento, CA</div>
+      <div class="job-date">November 2017 – June 2020</div>
+    </div>
     <ul>
-      <li>Led enterprise procurement and statewide rollout of Qualtrics for 60,000+ users; negotiated five-year licensing agreement.</li>
-      <li>Directed the Succession Management Program, Upward Mobility Program, and workforce planning across 450+ classifications.</li>
-      <li>Removed CDCR from the State Auditor's High-Risk List through systemic HR program improvements.</li>
-      <li>Oversaw administration of the Department's Learning Center in Sacramento.</li>
+      <li>Led the enterprise procurement and statewide rollout of Qualtrics for 60,000+ users, negotiating a five-year licensing agreement that became the Department's primary survey and feedback platform.</li>
+      <li>Directed workforce planning across 450+ classifications and managed the Succession Management and Upward Mobility programs, building the pipeline infrastructure for leadership development department-wide.</li>
+      <li>Drove the systemic HR program improvements that resulted in CDCR's removal from the State Auditor's High-Risk List — ending a designation the Department had carried for years.</li>
+      <li>Oversaw the Department's Learning Center in Sacramento, managing facility operations and program scheduling.</li>
     </ul>
   </div>
 
   <div class="job">
     <div class="job-title">Staff Services Manager I — Recruitment &amp; Data Unit, OPOS</div>
-    <div class="job-org">California Department of Corrections &amp; Rehabilitation (CDCR) · Sacramento, CA</div>
-    <div class="job-date">July 2015 – November 2017</div>
+    <div class="job-meta">
+      <div class="job-org">California Department of Corrections &amp; Rehabilitation (CDCR) · Sacramento, CA</div>
+      <div class="job-date">July 2015 – November 2017</div>
+    </div>
     <ul>
-      <li>Managed $1M budget and led statewide data-driven recruitment strategy, reducing officer selection cycle from 24+ to 18 months.</li>
-      <li>Organized nationwide marketing efforts (print, radio, TV, digital) generating 4,000+ applications per month toward a goal of 7,000 new hires.</li>
-      <li>Developed MOU between OPOS and Division of Adult Institutions re-establishing institutional recruitment teams statewide.</li>
+      <li>Inherited a fragmented recruitment operation split across three regional teams (Sacramento, Fresno, Rancho Cucamonga) with no local institutional presence — restructured the entire model by negotiating an interdivisional MOU that established local recruitment teams at every prison statewide.</li>
+      <li>Designed a tiered recruitment architecture: local teams handled event attendance using professionally designed, standardized materials; regional teams managed advertising and marketing contracts; headquarters ran statewide strategy — creating a coordinated pipeline where none existed.</li>
+      <li>Managed a $1M budget and built the data-driven recruitment strategy that cut the peace officer selection cycle from 24+ months to 18 months, putting officers on the ground faster across California's prison system.</li>
+      <li>Launched nationwide marketing campaigns across print, radio, TV, and digital channels, generating 4,000+ applications per month toward a hiring goal of 7,000 new officers.</li>
     </ul>
   </div>
+</section>
 
-  <div class="job">
+<section>
+  <h2>Earlier Career</h2>
+
+  <div class="ec-role">
     <div class="job-title">Associate Governmental Program Analyst — Office of Peace Officer Selection</div>
-    <div class="job-org">California Department of Corrections &amp; Rehabilitation (CDCR) · Sacramento, CA</div>
-    <div class="job-date">April 2014 – June 2015</div>
-    <ul>
-      <li>Provided program support for all OPOS testing, background investigation, and recruitment units statewide.</li>
-      <li>Developed and ran database queries to analyze selection component data for statistical reporting.</li>
-    </ul>
+    <div class="job-meta">
+      <div class="job-org">CDCR · Sacramento, CA</div>
+      <div class="job-date">April 2014 – June 2015</div>
+    </div>
+    <div class="ec-desc">Program support for statewide testing, background investigations, and recruitment operations. Built database queries and statistical reporting systems for selection component analysis.</div>
   </div>
 
-  <div class="job">
+  <div class="ec-role">
     <div class="job-title">Associate Governmental Program Analyst — BACS Project</div>
-    <div class="job-org">California Department of Corrections &amp; Rehabilitation (CDCR) · Rancho Cordova, CA</div>
-    <div class="job-date">July 2013 – April 2014</div>
-    <ul>
-      <li>Served as lead analyst on the Biometric Access Control System (BACS) project; maintained the project plan and mitigated risks and issues.</li>
-      <li>Acted as secondary contact for Headquarters, Enterprise Information Services (EIS), and all field operations on BACS-related matters.</li>
-    </ul>
+    <div class="job-meta">
+      <div class="job-org">CDCR · Rancho Cordova, CA</div>
+      <div class="job-date">July 2013 – April 2014</div>
+    </div>
+    <div class="ec-desc">Lead analyst on the Biometric Access Control System project — maintained the project plan, mitigated risks, and served as secondary point of contact for Headquarters and Enterprise Information Services on all BACS matters.</div>
   </div>
 
-  <div class="job">
+  <div class="ec-role">
     <div class="job-title">Staff Services Analyst — Office of Personnel Services</div>
-    <div class="job-org">California Department of Corrections &amp; Rehabilitation (CDCR) · Sacramento, CA</div>
-    <div class="job-date">October 2012 – January 2013</div>
-    <ul>
-      <li>Served as special assistant to the Chief of OPS; performed complex analytical support and facilitated departmental reorganization.</li>
-    </ul>
+    <div class="job-meta">
+      <div class="job-org">CDCR · Sacramento, CA</div>
+      <div class="job-date">October 2012 – January 2013</div>
+    </div>
+    <div class="ec-desc">Special assistant to the Chief of OPS. Complex analytical support and departmental reorganization.</div>
   </div>
 
-  <div class="job">
-    <div class="job-title">Staff Services Analyst — CA Sex Offender Management Board</div>
-    <div class="job-org">California Department of Corrections &amp; Rehabilitation (CDCR) · Sacramento, CA</div>
-    <div class="job-date">July 2011 – September 2012</div>
-    <ul>
-      <li>Performed complex technical and policy analysis; developed and processed contracts for statewide training.</li>
-      <li>Analyzed sex offender legislation and policy to identify conflicts with existing practices; generated policy concept papers.</li>
-      <li>Created and maintained fiscal databases; monitored unit budget.</li>
-    </ul>
-  </div>
-
-  <div class="job">
-    <div class="job-title">Office Technician (Typing) — CA Sex Offender Management Board</div>
-    <div class="job-org">California Department of Corrections &amp; Rehabilitation (CDCR) · Sacramento, CA</div>
-    <div class="job-date">April 2010 – June 2011</div>
-    <ul>
-      <li>Performed clerical and analytical work including database creation, contract processing, supply management, and editing of legislative and policy reports.</li>
-    </ul>
+  <div class="ec-role">
+    <div class="job-title">Staff Services Analyst / Office Technician — CA Sex Offender Management Board</div>
+    <div class="job-meta">
+      <div class="job-org">CDCR · Sacramento, CA</div>
+      <div class="job-date">April 2010 – September 2012</div>
+    </div>
+    <div class="ec-desc">Technical policy analysis, contract development for statewide training, legislative analysis, and fiscal database management. Progressed from clerical support to complex analytical work in two years.</div>
   </div>
 </section>
 
@@ -240,38 +250,29 @@
 
   <div class="job">
     <div class="job-title">Co-Owner &amp; Operations Lead — Más Bueno Boutique</div>
-    <div class="job-org">West Sacramento &amp; Midtown Sacramento, CA</div>
-    <div class="job-date">March 2020 – Present</div>
+    <div class="job-meta">
+      <div class="job-org">West Sacramento &amp; Midtown Sacramento, CA</div>
+      <div class="job-date">March 2020 – Present</div>
+    </div>
     <ul>
-      <li>Develop and execute strategic plan; oversee day-to-day operations of boutique and online store.</li>
-      <li>Researched, purchased, and implemented POS (Shopify), payroll (Gusto), VOIP (Spectrum), and scheduling (WhenIWork) platforms.</li>
-      <li>Manage HR, hiring, lease negotiations, insurance, legal compliance, and vendor relationships.</li>
+      <li>Co-founded and scaled a multi-location retail boutique and e-commerce business from zero — overseeing strategy, daily operations, and every business function from launch through expansion to a second location.</li>
+      <li>Built the entire operational infrastructure from scratch: selected and implemented POS (Shopify), payroll (Gusto), VOIP (Spectrum), and scheduling (WhenIWork) systems.</li>
+      <li>Manage HR, hiring, lease negotiations, insurance, legal compliance, vendor relationships, and marketing across two physical locations and an online storefront.</li>
     </ul>
   </div>
 
   <div class="job">
     <div class="job-title">Publisher &amp; Writer — Reason &amp; Resolve</div>
-    <div class="job-org">Substack · 2023 – Present</div>
+    <div class="job-meta">
+      <div class="job-org">Substack</div>
+      <div class="job-date">2023 – Present</div>
+    </div>
     <ul>
       <li>Publishes essays on leadership, public sector ethics, and organizational systems thinking.</li>
-      <li>Author of <em>Principled Systems Leadership</em>, a ~50,000-word manuscript for mid-career public sector professionals.</li>
+      <li>Author of <em>Principled Systems Leadership</em>, a ~50,000-word manuscript on institutional leadership for mid-career public sector professionals.</li>
     </ul>
   </div>
 </section>
 
 <section>
-  <h2>Certifications</h2>
-  <div class="certs">
-    Enterprise Architecture Foundations · Develop Critical-Thinking, Decision-Making &amp; Problem-Solving Skills
-  </div>
-</section>
-
-<section>
-  <div class="refs">References available upon request.</div>
-</section>
-
-<footer>&copy; 2026 Tony Subia</footer>
-
-</div>
-</body>
-</html>
+  <div
