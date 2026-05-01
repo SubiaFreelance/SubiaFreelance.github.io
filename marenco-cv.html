@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Marenco — Healthcare IT Platform Leader</title>
+<meta name="description" content="Daniel Marenco — Healthcare IT Platform Leader with 25+ years at UC Davis Health. Enterprise ServiceNow management, Epic systems integration, and IT operations leadership.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="canonical" href="https://beaconcv.net/marenco-cv.html">
+<meta property="og:title" content="Daniel Marenco — Healthcare IT Platform Leader">
+<meta property="og:description" content="25+ years building and scaling IT operations at UC Davis Health.">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://beaconcv.net/marenco-cv.html">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #fdfcfa;
+    --accent: #1a6b6a;
+    --accent-light: #e6f2f2;
+    --warm: #c07d3e;
+    --muted: #6b6b6b;
+    --rule: #ddd8d0;
+    --card: #ffffff;
+    --glow: rgba(192,125,62,0.13);
+    --glow-border: rgba(192,125,62,0.45);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html{font-size:16px;scroll-behavior:smooth}
+  body{font-family:'Lato',sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased}
+  body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;
+    background-image:radial-gradient(circle at 1px 1px,rgba(26,107,106,0.025) 1px,transparent 0);
+    background-size:28px 28px;pointer-events:none;z-index:0}
+  .page{max-width:780px;margin:0 auto;padding:60px 28px 80px;position:relative;z-index:1}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  .reveal{opacity:0;animation:fadeUp 0.6s ease-out forwards}
+  .d1{animation-delay:0.05s}.d2{animation-delay:0.15s}.d3{animation-delay:0.25s}
+  .d4{animation-delay:0.35s}.d5{animation-delay:0.45s}.d6{animation-delay:0.55s}
+
+  /* Header with accent top bar */
+  .top-accent{height:4px;background:linear-gradient(90deg,var(--accent),var(--warm));margin-bottom:40px}
+  header{padding-bottom:24px;margin-bottom:36px;border-bottom:1px solid var(--rule)}
+  h1{font-family:'Playfair Display',Georgia,serif;font-size:2.8rem;font-weight:400;letter-spacing:-0.02em;line-height:1.1;color:var(--ink)}
+  .subtitle{font-family:'Playfair Display',Georgia,serif;font-size:1.05rem;font-weight:400;font-style:italic;color:var(--accent);margin-top:8px}
+  .contact{margin-top:14px;font-size:0.86rem;color:var(--muted);line-height:1.8}
+  .contact a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:all 0.25s}
+  .contact a:hover{border-color:var(--warm);color:var(--warm)}
+  .contact .sep{margin:0 10px;opacity:0.35;font-weight:300}
+
+  .dl-bar{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:10px 22px;background:var(--accent);color:#fff;font-size:0.82rem;font-weight:600;letter-spacing:0.04em;text-decoration:none;transition:all 0.25s;border-radius:2px}
+  .dl-bar:hover{background:#145554;transform:translateY(-2px);box-shadow:0 4px 16px rgba(26,107,106,0.25)}
+  .dl-bar svg{width:14px;height:14px;fill:#fff}
+
+  section{margin-bottom:40px}
+  h2{font-family:'Playfair Display',Georgia,serif;font-size:1.2rem;font-weight:400;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:18px;padding-bottom:8px;border-bottom:1px solid var(--rule)}
+
+  .summary{font-size:0.95rem;line-height:1.85;color:var(--ink);max-width:680px;font-weight:300}
+
+  /* Key stats bar */
+  .stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:36px;padding:20px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .stat{text-align:center}
+  .stat-num{font-family:'Playfair Display',Georgia,serif;font-size:2rem;color:var(--accent);line-height:1}
+  .stat-label{font-size:0.74rem;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:0.08em}
+
+  .competencies{display:flex;flex-wrap:wrap;gap:8px}
+  .comp-tag{font-size:0.8rem;color:var(--muted);padding:6px 16px;border:1px solid var(--rule);background:var(--card);cursor:pointer;transition:all 0.25s;user-select:none;border-radius:2px}
+  .comp-tag:hover{border-color:var(--accent);color:var(--accent)}
+  .comp-tag.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .comp-meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;min-height:20px}
+  .comp-hint{font-size:0.74rem;color:var(--muted);font-style:italic;transition:opacity 0.3s}
+  .comp-counter{font-size:0.74rem;font-weight:600;color:var(--warm);opacity:0;transition:opacity 0.3s}
+  .comp-counter.visible{opacity:1}
+
+  .hl{transition:all 0.35s ease;border-radius:2px;padding:1px 0}
+  body.filtering .hl{opacity:0.3}
+  body.filtering .hl.lit{opacity:1;background:var(--glow);box-shadow:-3px 0 0 var(--glow),3px 0 0 var(--glow);border-bottom:2px solid var(--glow-border)}
+  body.filtering .dim{opacity:0.2;transition:opacity 0.35s}
+
+  .job{margin-bottom:28px;padding-left:0;border-left:2px solid transparent;transition:all 0.3s}
+  .job:hover{border-left-color:var(--accent);padding-left:14px}
+  .job-title{font-weight:700;font-size:1rem;line-height:1.35}
+  .job-meta{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px;margin-top:2px}
+  .job-org{font-size:0.86rem;color:var(--muted)}
+  .job-date{font-size:0.82rem;font-weight:600;color:var(--accent);white-space:nowrap}
+  .job ul{margin-top:8px;padding-left:18px;list-style:none}
+  .job li{position:relative;padding-left:14px;margin-bottom:5px;font-size:0.88rem;line-height:1.65;font-weight:300;transition:opacity 0.35s}
+  .job li::before{content:'';position:absolute;left:0;top:10px;width:5px;height:1px;background:var(--accent)}
+
+  .ec-role{margin-bottom:16px;padding-left:0;border-left:2px solid transparent;transition:all 0.3s}
+  .ec-role:hover{border-left-color:rgba(26,107,106,0.3);padding-left:12px}
+  .ec-role .job-title{font-size:0.95rem}
+  .ec-desc{font-size:0.86rem;color:var(--muted);margin-top:4px;line-height:1.65;transition:opacity 0.35s}
+
+  .edu{font-size:0.88rem;color:var(--muted);line-height:1.7}
+  .edu strong{color:var(--ink);font-weight:700}
+  .refs{font-size:0.86rem;font-style:italic;color:var(--muted)}
+  footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--rule);font-size:0.76rem;color:var(--muted);text-align:center}
+  footer a{color:var(--accent);text-decoration:none}
+
+  @media print{
+    body::before,.top-accent{display:none}.page{padding:0}.dl-bar,.comp-hint,.comp-counter,.stats-bar{display:none}
+    body{background:#fff;font-size:11pt}
+    .comp-tag{border:none;padding:0;background:none;cursor:default;display:inline}
+    .comp-tag::after{content:' · '}.comp-tag:last-child::after{content:''}
+    .competencies{display:block}
+    .hl{background:none!important;border:none!important;box-shadow:none!important;opacity:1!important}
+    .job,.ec-role{border-left:none!important;padding-left:0!important}
+    .reveal{opacity:1;animation:none}.dim{opacity:1!important}
+  }
+  @media(max-width:600px){
+    .page{padding:36px 18px 50px}h1{font-size:2rem}
+    .contact .sep{display:none}.contact span{display:block}
+    .job-meta{flex-direction:column}.comp-tag{font-size:0.76rem;padding:4px 10px}
+    .stats-bar{grid-template-columns:1fr;gap:12px}
+  }
+</style>
+</head>
+<body>
+
+<div class="top-accent"></div>
+
+<div class="page">
+
+<header class="reveal d1">
+  <h1>Daniel Marenco</h1>
+  <div class="subtitle">Healthcare IT Platform Leader</div>
+  <div class="contact">
+    <span>Sacramento, CA</span><span class="sep">|</span>
+    <span><a href="mailto:demarenco@ucdavis.edu">demarenco@ucdavis.edu</a></span><span class="sep">|</span>
+    <span>(916) 869-7677</span><span class="sep">|</span>
+    <span><a href="https://www.linkedin.com/in/daniel-marenco/" target="_blank">LinkedIn</a></span>
+  </div>
+  <a class="dl-bar" href="marenco-cv.pdf" download>
+    <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/></svg>
+    Download PDF
+  </a>
+</header>
+
+<div class="stats-bar reveal d2">
+  <div class="stat"><div class="stat-num">25+</div><div class="stat-label">Years at UC Davis Health</div></div>
+  <div class="stat"><div class="stat-num">4</div><div class="stat-label">Epic Go-Lives Supported</div></div>
+  <div class="stat"><div class="stat-num">7</div><div class="stat-label">Progressive Roles</div></div>
+</div>
+
+<section class="reveal d2">
+  <h2>Professional Summary</h2>
+  <p class="summary">Healthcare IT leader with 25+ years at UC Davis Health who has built a career turning operational complexity into structured, scalable systems across one of California's premier academic medical centers. Currently directs the ServiceNow platform for UC Davis Health, managing a cross-functional team of analysts, developers, contractors, and vendors through enterprise-wide implementations including CMDB buildout. Previously led systems integration operations overseeing every interface connecting Epic to clinical, hospital, and business systems — and chaired the cross-functional committee that governed integration priorities. Earlier career included standing up IT service management processes from scratch, supervising a 24/7 operations center, and providing real-time support through multiple Epic go-lives that transformed how the medical center delivers care. Career defined by progressive growth from data center operations to enterprise platform leadership within a single institution — the kind of deep institutional knowledge that cannot be replicated.</p>
+</section>
+
+<section class="reveal d3">
+  <h2>Core Competencies</h2>
+  <div class="competencies" id="compGrid">
+    <span class="comp-tag" data-comp="platform" onclick="toggleComp(this)">Enterprise Platform Management</span>
+    <span class="comp-tag" data-comp="healthit" onclick="toggleComp(this)">Healthcare IT Operations</span>
+    <span class="comp-tag" data-comp="integration" onclick="toggleComp(this)">Systems Integration</span>
+    <span class="comp-tag" data-comp="itsm" onclick="toggleComp(this)">IT Service Management</span>
+    <span class="comp-tag" data-comp="leadership" onclick="toggleComp(this)">Team Leadership &amp; Staff Development</span>
+    <span class="comp-tag" data-comp="project" onclick="toggleComp(this)">Project &amp; Portfolio Management</span>
+    <span class="comp-tag" data-comp="vendor" onclick="toggleComp(this)">Vendor &amp; Contractor Management</span>
+    <span class="comp-tag" data-comp="epic" onclick="toggleComp(this)">Clinical Systems (Epic)</span>
+    <span class="comp-tag" data-comp="process" onclick="toggleComp(this)">Process Design &amp; Improvement</span>
+    <span class="comp-tag" data-comp="stakeholder" onclick="toggleComp(this)">Stakeholder Engagement</span>
+  </div>
+  <div class="comp-meta">
+    <span class="comp-hint" id="compHint">Click any competency to see where it appears.</span>
+    <span class="comp-counter" id="compCounter"></span>
+  </div>
+</section>
+
+<section class="reveal d4">
+  <h2>Professional Experience</h2>
+
+  <div class="job">
+    <div class="job-title">ServiceNow Platform Manager — Service Technology Unit</div>
+    <div class="job-meta">
+      <div class="job-org">UC Davis Health &middot; Sacramento, CA</div>
+      <div class="job-date">2022 &ndash; Present</div>
+    </div>
+    <ul>
+      <li><span class="hl" data-comp="platform">Directs the ServiceNow platform for UC Davis Health</span>, <span class="hl" data-comp="vendor">managing a cross-functional team of business analysts, developers, contractors, and vendors</span> responsible for enterprise-wide service delivery.</li>
+      <li><span class="hl" data-comp="project">Serves as demand and resource manager for all ServiceNow module implementation requests</span>, evaluating intake, prioritizing work, and allocating resources across concurrent projects.</li>
+      <li>Led end-to-end implementation of <span class="hl" data-comp="platform">large-scale platform initiatives — including CMDB buildout — from RFP development through vendor onboarding, project kickoff, and delivery oversight</span>, <span class="hl" data-comp="vendor">including managing implementation partners, project timelines, costs, and scope changes.</span></li>
+      <li><span class="hl" data-comp="project">Manages financial planning and cash flow for platform operations</span>, aligning spending with institutional priorities and project timelines.</li>
+      <li><span class="hl" data-comp="stakeholder">Represents UC Davis Health in the UC ServiceNow User Group (UC SNUG)</span>, collaborating across the University of California system on platform strategy and shared knowledge.</li>
+      <li><span class="hl" data-comp="leadership">Conducts routine staff performance development plans and discussions</span>, building a culture of growth and accountability across the platform team.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-title">Implementation &amp; Operations Supervisor/Manager — Systems Integration</div>
+    <div class="job-meta">
+      <div class="job-org">UC Davis Health &middot; Sacramento, CA</div>
+      <div class="job-date">2015 &ndash; 2022</div>
+    </div>
+    <ul>
+      <li><span class="hl" data-comp="integration">Managed the systems integration team responsible for all interfaces connecting Epic to clinical, hospital, and business systems</span> across UC Davis Health.</li>
+      <li><span class="hl" data-comp="project">Served as portfolio and intake manager for new integration projects and enhancement requests</span>, controlling the pipeline from initial request through resource allocation and delivery.</li>
+      <li><span class="hl" data-comp="stakeholder">Chaired the Interface Oversight Committee</span> — a cross-functional body of <span class="hl" data-comp="healthit">clinical, hospital, business, and IT leadership</span> that governed integration priorities and decisions.</li>
+      <li>Acted as the organization's <span class="hl" data-comp="platform">ServiceNow subject matter expert across intake, demand management, resource management, knowledge management, PPM, and all ITSM/ITIL processes</span>.</li>
+      <li><span class="hl" data-comp="process">Created a quarterly newsletter highlighting integration project successes</span>, bringing visibility to a critical but underrecognized function within the Epic platform ecosystem.</li>
+      <li><span class="hl" data-comp="leadership">Provided direct management of operational and project analysts</span>, including performance development, resource planning, and workload distribution across multiple concurrent projects.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-title">Analyst VI — Systems Integration</div>
+    <div class="job-meta">
+      <div class="job-org">UC Davis Health &middot; Sacramento, CA</div>
+      <div class="job-date">2012 &ndash; 2015</div>
+    </div>
+    <ul>
+      <li><span class="hl" data-comp="integration">Led the integration component of a major ADT/Scheduling conversion</span> — <span class="hl" data-comp="project">managing functional testing, integrated testing, issue resolution, and workload distribution</span> across analysts and contractors.</li>
+      <li>Managed the <span class="hl" data-comp="integration">technical integration for replacing a legacy fetal monitoring system</span> with a modern platform capable of <span class="hl" data-comp="epic">direct data transfer of patient vitals</span> — improving real-time clinical data availability.</li>
+      <li>Led a <span class="hl" data-comp="healthit">federally mandated project ensuring scheduled medications (III–V) were ordered and processed in compliance with federal regulations.</span></li>
+      <li>Oversaw <span class="hl" data-comp="integration">nStream and non-radiological integrations</span>, working with PACS to improve communications between <span class="hl" data-comp="epic">Epic and clinical imaging devices</span> including bronchoscopy and ultrasound.</li>
+      <li><span class="hl" data-comp="stakeholder">Met with physician champion groups to present findings on analysis requested</span>, translating technical integration work into language clinical leadership could act on.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-title">Programmer V/VI-Supervisor — Technology Operations Center</div>
+    <div class="job-meta">
+      <div class="job-org">UC Davis Health &middot; Sacramento, CA</div>
+      <div class="job-date">2005 &ndash; 2012</div>
+    </div>
+    <ul>
+      <li><span class="hl" data-comp="leadership">Supervised the Level 1 support team for UC Davis Health's IT operations center</span>, <span class="hl" data-comp="healthit">maintaining first-call resolution rates between 65–80%.</span></li>
+      <li><span class="hl" data-comp="itsm">Built IT service management processes from the ground up — incident management, problem management, change management, and communication standards</span> that became the IT department's operational baseline.</li>
+      <li>Led the <span class="hl" data-comp="process">evaluation and implementation of multiple ticketing platforms</span>, including migration from a Domino-based system through iET Incident Management review to the <span class="hl" data-comp="platform">HP Service Manager suite.</span></li>
+      <li><span class="hl" data-comp="process">Developed communication process standards and templates for all of IT</span> — establishing how the department communicated outages, changes, and incidents to the medical center.</li>
+      <li><span class="hl" data-comp="leadership">Implemented team-building programs and an incentive award system</span>, and <span class="hl" data-comp="stakeholder">facilitated cross-team collaboration between Level 1 and Level 2/3 teams</span> to improve escalation processes and resolution times.</li>
+      <li><span class="hl" data-comp="itsm">Led failure analysis meetings with management teams</span>, ensuring root causes were identified and long-term solutions developed for all reported incidents.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="reveal d5">
+  <h2>Earlier Career</h2>
+  <div class="ec-role">
+    <div class="job-title">Programmer III — Technology Operations Center</div>
+    <div class="job-meta">
+      <div class="job-org">UC Davis Health &middot; Sacramento, CA</div>
+      <div class="job-date">2003 &ndash; 2005</div>
+    </div>
+    <div class="ec-desc">Frontline technical support for the medical center and surrounding clinics. <span class="hl" data-comp="epic">Participated in multiple Epic go-lives — base EMR, Ambulatory, Clinical Order Entry, and Physician Order Entry</span> — providing real-time support during some of the most critical system transitions in the institution's history.</div>
+  </div>
+  <div class="ec-role">
+    <div class="job-title">Sr. Computer Operator — IT Data Center</div>
+    <div class="job-meta">
+      <div class="job-org">UC Davis Health &middot; Sacramento, CA</div>
+      <div class="job-date">1999 &ndash; 2003</div>
+    </div>
+    <div class="ec-desc"><span class="hl" data-comp="healthit">Monitored mainframe server operations</span>, managed monthly IPLs and system maintenance, and provided helpdesk support in a high-volume environment. Entry point into a 25-year career at UC Davis Health.</div>
+  </div>
+</section>
+
+<section class="reveal d6">
+  <h2>Leadership &amp; Community</h2>
+  <div class="job">
+    <div class="job-title">Chair &mdash; Latinx Staff and Faculty Association (LSFA)</div>
+    <div class="job-meta">
+      <div class="job-org">UC Davis Health</div>
+      <div class="job-date">Current</div>
+    </div>
+    <ul>
+      <li><span class="hl" data-comp="stakeholder">Leads UC Davis Health's Latinx employee resource group</span>, fostering cultural engagement, professional development, and community-building across the medical center.</li>
+      <li><span class="hl" data-comp="leadership">Directs a six-member executive board</span> &mdash; vice-chair, treasurer, secretary, and outreach coordinators &mdash; organizing quarterly institution-wide meetings and advocacy initiatives.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="reveal d6">
+  <h2>Education &amp; Certifications</h2>
+  <div class="edu">
+    <strong>Bachelor of Science, Criminal Justice</strong> &mdash; California State University, Sacramento<br>
+    <strong>Epic Bridges</strong> &mdash; Certified<br>
+    <strong>Administrative Officers for the Future</strong> &mdash; Graduate<br>
+    <strong>Epic User Group Meeting (UGM)</strong> &mdash; 2022 Attendee<br>
+    <span style="color:var(--muted)">Additional: EpicCare Inpatient Fundamentals &middot; Clinical Administration &middot; Staff Administration &middot; Project Management Boot Camp &middot; Business Requirements Training</span>
+  </div>
+</section>
+
+<section>
+  <div class="refs">References available upon request.</div>
+</section>
+
+<footer>&copy; 2026 Daniel Marenco &middot; Built by <a href="https://beaconcv.net/">Beacon</a></footer>
+
+</div>
+
+<script>
+let activeComp=null;
+function toggleComp(tag){const comp=tag.dataset.comp;const counter=document.getElementById('compCounter');const hint=document.getElementById('compHint');if(activeComp===comp){clearAll();return}clearAll();activeComp=comp;tag.classList.add('active');document.body.classList.add('filtering');const matches=document.querySelectorAll(`.hl[data-comp="${comp}"]`);matches.forEach(el=>el.classList.add('lit'));document.querySelectorAll('.job li').forEach(li=>{if(!li.querySelector('.hl.lit'))li.classList.add('dim')});document.querySelectorAll('.ec-desc').forEach(desc=>{if(!desc.querySelector('.hl.lit'))desc.classList.add('dim')});const roles=new Set();matches.forEach(el=>{const job=el.closest('.job')||el.closest('.ec-role');if(job)roles.add(job)});counter.textContent=`${matches.length} instance${matches.length!==1?'s':''} across ${roles.size} role${roles.size!==1?'s':''}`;counter.classList.add('visible');hint.style.opacity='0';if(matches.length>0){const first=matches[0];const rect=first.getBoundingClientRect();if(rect.top<0||rect.top>window.innerHeight*0.6)first.scrollIntoView({behavior:'smooth',block:'center'})}}
+function clearAll(){activeComp=null;document.body.classList.remove('filtering');document.querySelectorAll('.comp-tag.active').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.hl.lit').forEach(el=>el.classList.remove('lit'));document.querySelectorAll('.dim').forEach(el=>el.classList.remove('dim'));document.getElementById('compCounter').classList.remove('visible');document.getElementById('compHint').style.opacity='1'}
+document.addEventListener('click',function(e){if(!e.target.closest('.comp-tag')&&!e.target.closest('.hl')&&activeComp)clearAll()});
+</script>
+</body>
+</html>

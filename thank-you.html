@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thanks — Beacon</title>
+<meta name="description" content="Your submission has been received. Tony will review and reply within 24 hours.">
+
+<!-- Don't index this page — it's a destination from form submissions, not a discoverable URL -->
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="canonical" href="https://beaconcv.net/thank-you.html">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #faf9f7;
+    --accent: #2c4a3e;
+    --warm: #c4713b;
+    --warm-hover: #a85d2f;
+    --muted: #6b6b6b;
+    --rule: #d4d0ca;
+    --card: #ffffff;
+    --highlight: #f0ece6;
+    --shadow-soft: 0 2px 20px rgba(44, 74, 62, 0.06);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Sans 3', Georgia, serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(44,74,62,0.03) 1px, transparent 0);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page { max-width: 620px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; width: 100%; flex: 1; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes drawCheck {
+    from { stroke-dashoffset: 50; }
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes pulseRing {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: scale(1.4); opacity: 0; }
+  }
+
+  .reveal { opacity: 0; animation: fadeUp 0.6s ease-out forwards; }
+  .d1 { animation-delay: 0.1s; }
+  .d2 { animation-delay: 0.3s; }
+  .d3 { animation-delay: 0.5s; }
+  .d4 { animation-delay: 0.7s; }
+
+  /* Nav */
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-brand { display: flex; flex-direction: column; gap: 2px; }
+
+  .nav-brand-name {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.1rem;
+    color: var(--accent);
+    letter-spacing: 0.16em;
+    text-decoration: none;
+  }
+
+  .nav-brand-tag {
+    font-size: 0.7rem;
+    color: var(--warm);
+    letter-spacing: 0.04em;
+  }
+
+  .nav-back {
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-back:hover { color: var(--accent); }
+
+  /* Confirmation hero */
+  .confirm-hero {
+    padding: 64px 0 40px;
+    text-align: center;
+  }
+
+  .check-wrapper {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 28px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .check-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    animation: pulseRing 1.6s ease-out 0.4s 1;
+  }
+
+  .check-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(44, 74, 62, 0.18);
+  }
+
+  .check-circle svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .check-circle path {
+    stroke: #fff;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: drawCheck 0.5s ease-out 0.6s forwards;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2.6rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .hero-sub a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: border-color 0.2s;
+  }
+
+  .hero-sub a:hover { border-color: var(--warm); }
+
+  /* What happens next */
+  .next-steps {
+    padding: 32px 36px;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    margin-bottom: 40px;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .next-steps:hover { box-shadow: var(--shadow-soft); }
+
+  .next-steps h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--accent);
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .next-steps ol {
+    list-style: none;
+    counter-reset: step;
+    padding: 0;
+  }
+
+  .next-steps li {
+    counter-increment: step;
+    padding: 10px 0 10px 36px;
+    position: relative;
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .next-steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 24px;
+    height: 24px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.74rem;
+    font-weight: 700;
+  }
+
+  /* Have a CV reminder */
+  .cv-reminder {
+    padding: 22px 28px;
+    background: var(--highlight);
+    border-left: 3px solid var(--warm);
+    margin-bottom: 48px;
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .cv-reminder strong {
+    color: var(--accent);
+  }
+
+  .cv-reminder a {
+    color: var(--warm);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .cv-reminder a:hover { border-color: var(--warm); }
+
+  /* Examples while you wait */
+  .examples-section {
+    padding: 16px 0 56px;
+  }
+
+  .examples-section h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .examples-intro {
+    font-size: 0.94rem;
+    color: var(--muted);
+    margin-bottom: 24px;
+    line-height: 1.7;
+  }
+
+  .examples-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .example-card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    padding: 24px 22px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .example-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .example-card:hover::after { transform: scaleX(1); }
+
+  .example-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .example-name {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.1rem;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .example-role {
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+
+  .example-link {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--warm);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* Footer */
+  footer {
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+    font-size: 0.76rem;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.8;
+    margin-top: 40px;
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+
+  .footer-brand {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 0.88rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    margin-bottom: 4px;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    h1 { font-size: 2rem; }
+    .confirm-hero { padding: 44px 0 28px; }
+    .next-steps { padding: 24px 22px; }
+    .cv-reminder { padding: 18px 20px; }
+    .examples-grid { grid-template-columns: 1fr; }
+    .page { padding: 0 18px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; animation: none; }
+    .check-ring { animation: none; opacity: 0; }
+    .check-circle path { animation: none; stroke-dashoffset: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-brand">
+    <a href="/" class="nav-brand-name">BEACON</a>
+    <span class="nav-brand-tag">Showing the Way Forward</span>
+  </div>
+  <a href="/" class="nav-back">← Back to home</a>
+</nav>
+
+<!-- Confirmation hero -->
+<section class="confirm-hero">
+
+  <div class="check-wrapper reveal d1">
+    <div class="check-ring"></div>
+    <div class="check-circle">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 12.5l4 4L19 7"/>
+      </svg>
+    </div>
+  </div>
+
+  <h1 class="reveal d2">Got it. Thanks.</h1>
+
+  <p class="hero-sub reveal d2">
+    Your submission is in. I'll review it and reply within 24 hours from <a href="mailto:tony@beaconcv.net">tony@beaconcv.net</a> with next steps.
+  </p>
+
+</section>
+
+<!-- What happens next -->
+<div class="next-steps reveal d3">
+  <h2>What happens next.</h2>
+  <ol>
+    <li>I review what you've sent and reply within 24 hours.</li>
+    <li>You receive an engagement letter and a PayPal invoice.</li>
+    <li>Once payment clears, work begins. Drafts in 3–5 business days.</li>
+  </ol>
+</div>
+
+<!-- Reminder to send CV -->
+<div class="cv-reminder reveal d3">
+  <strong>Have a resume already?</strong> Email it as a PDF or Word file to <a href="mailto:info@beaconcv.net">info@beaconcv.net</a> so I have it before I reach out. No need if you're starting from scratch — I'll send the questionnaire link in my reply.
+</div>
+
+<!-- While you wait -->
+<section class="examples-section reveal d4">
+  <h2>While you're waiting.</h2>
+  <p class="examples-intro">Take a look at what a finished Beacon CV looks like. Both of these are real, live, and exactly the kind of work I'd do for you.</p>
+  <div class="examples-grid">
+    <a href="marenco-cv.html" class="example-card">
+      <div class="example-name">Daniel Marenco</div>
+      <div class="example-role">Healthcare IT Platform Leader · 25+ years at UC Davis Health building enterprise platforms and Epic systems integration.</div>
+      <div class="example-link">View CV →</div>
+    </a>
+    <a href="rjsubia-cv.html" class="example-card">
+      <div class="example-name">Richard J. Subia</div>
+      <div class="example-role">Corrections Executive &amp; Expert Witness · 100+ court appearances. Director of Adult Operations — 33 prisons, $9B budget.</div>
+      <div class="example-link">View CV →</div>
+    </a>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="page">
+    <div class="footer-brand">BEACON</div>
+    Showing the Way Forward · <a href="mailto:info@beaconcv.net">info@beaconcv.net</a><br>
+    &copy; 2026 Beacon CV Services · West Sacramento, CA
+  </div>
+</footer>
+
+</body>
+</html>
