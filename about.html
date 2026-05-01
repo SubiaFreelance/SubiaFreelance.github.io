@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Tony Subia — Beacon</title>
+<meta name="description" content="The person behind Beacon. 16 years at CDCR running statewide career development programs for 60,000 employees. Now I do that work for individuals.">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="canonical" href="https://beaconcv.net/about.html">
+<meta property="og:title" content="About Tony Subia — Beacon">
+<meta property="og:description" content="The person behind Beacon. Two decades in the public sector running statewide career development programs for 60,000 employees. Now I do that work for individuals.">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://beaconcv.net/about.html">
+<meta property="og:image" content="https://beaconcv.net/tony-headshot.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About Tony Subia — Beacon">
+<meta name="twitter:description" content="The person behind Beacon. 16 years running statewide career development programs for 60,000 employees.">
+<meta name="twitter:image" content="https://beaconcv.net/tony-headshot.webp">
+
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Tony Subia",
+  "jobTitle": "Founder, Beacon",
+  "url": "https://beaconcv.net/about.html",
+  "image": "https://beaconcv.net/tony-headshot.webp",
+  "email": "tony@beaconcv.net",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "West Sacramento",
+    "addressRegion": "CA",
+    "addressCountry": "US"
+  },
+  "sameAs": ["https://linkedin.com/in/tony-subia"],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Beacon CV Services",
+    "url": "https://beaconcv.net/"
+  }
+}</script>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #faf9f7;
+    --accent: #2c4a3e;
+    --warm: #c4713b;
+    --warm-hover: #a85d2f;
+    --muted: #6b6b6b;
+    --rule: #d4d0ca;
+    --card: #ffffff;
+    --highlight: #f0ece6;
+    --shadow-soft: 0 2px 20px rgba(44, 74, 62, 0.06);
+    --shadow-lift: 0 8px 30px rgba(44, 74, 62, 0.1);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Sans 3', Georgia, serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(44,74,62,0.03) 1px, transparent 0);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page { max-width: 720px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; width: 100%; flex: 1; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal { opacity: 0; animation: fadeUp 0.7s ease-out forwards; }
+  .d1 { animation-delay: 0.1s; }
+  .d2 { animation-delay: 0.25s; }
+  .d3 { animation-delay: 0.4s; }
+  .d4 { animation-delay: 0.55s; }
+  .d5 { animation-delay: 0.7s; }
+
+  /* Nav */
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-brand { display: flex; flex-direction: column; gap: 2px; }
+
+  .nav-brand-name {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.1rem;
+    color: var(--accent);
+    letter-spacing: 0.16em;
+    text-decoration: none;
+  }
+
+  .nav-brand-tag {
+    font-size: 0.7rem;
+    color: var(--warm);
+    letter-spacing: 0.04em;
+  }
+
+  .nav-cta {
+    padding: 8px 20px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .nav-cta:hover {
+    background: var(--warm);
+    transform: translateY(-1px);
+  }
+
+  /* Hero */
+  .hero {
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 36px;
+    align-items: center;
+  }
+
+  .hero-photo {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    background: var(--highlight);
+    box-shadow: var(--shadow-lift);
+    position: relative;
+  }
+
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .hero-content h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2.6rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .hero-tag {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--warm);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 16px;
+  }
+
+  .hero-line {
+    font-size: 1.08rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* Sections */
+  section.content {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  section.content:last-of-type {
+    border-bottom: none;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    margin-bottom: 24px;
+    color: var(--ink);
+  }
+
+  .content p {
+    font-size: 1.02rem;
+    line-height: 1.85;
+    margin-bottom: 18px;
+    color: var(--ink);
+  }
+
+  .content p:last-child { margin-bottom: 0; }
+
+  .pullquote {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.32rem;
+    line-height: 1.55;
+    color: var(--accent);
+    border-left: 3px solid var(--warm);
+    padding: 18px 0 18px 26px;
+    margin: 32px 0;
+    background: linear-gradient(90deg, rgba(196,113,59,0.04), transparent 60%);
+  }
+
+  /* Beyond list */
+  .beyond-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 8px;
+  }
+
+  .beyond-item {
+    padding: 22px 24px;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+  }
+
+  .beyond-item:hover {
+    border-left-color: var(--accent);
+    transform: translateX(2px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .beyond-name {
+    font-weight: 600;
+    font-size: 0.96rem;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .beyond-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .beyond-desc a {
+    color: var(--warm);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .beyond-desc a:hover { border-color: var(--warm); }
+
+  /* CV link block */
+  .cv-link-block {
+    margin-top: 24px;
+    padding: 24px 28px;
+    background: var(--highlight);
+    border-left: 3px solid var(--accent);
+    font-size: 0.94rem;
+    line-height: 1.7;
+  }
+
+  .cv-link-block a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: border-color 0.2s;
+  }
+
+  .cv-link-block a:hover { border-color: var(--warm); }
+
+  /* CTA */
+  .final-cta {
+    padding: 72px 0;
+    text-align: center;
+  }
+
+  .final-cta h2 {
+    margin-bottom: 14px;
+  }
+
+  .final-cta p {
+    font-size: 1.02rem;
+    color: var(--muted);
+    margin-bottom: 32px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 14px 36px;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .btn-primary:hover {
+    background: #1e3a2e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(44, 74, 62, 0.2);
+  }
+
+  /* Footer */
+  footer {
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+    font-size: 0.76rem;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.8;
+    margin-top: 40px;
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  footer a:hover { border-color: var(--accent); }
+
+  .footer-brand {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 0.88rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    margin-bottom: 4px;
+  }
+
+  .footer-links {
+    margin-top: 10px;
+    font-size: 0.74rem;
+  }
+
+  .footer-links a {
+    margin: 0 8px;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 40px 0 32px;
+      text-align: center;
+    }
+    .hero-photo {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto;
+    }
+    .hero-content h1 { font-size: 2rem; }
+    section.content { padding: 40px 0; }
+    h2 { font-size: 1.4rem; }
+    .pullquote { font-size: 1.1rem; padding-left: 18px; }
+    .beyond-list { grid-template-columns: 1fr; }
+    .final-cta { padding: 48px 0; }
+    .page { padding: 0 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-brand">
+    <a href="/" class="nav-brand-name">BEACON</a>
+    <span class="nav-brand-tag">Showing the Way Forward</span>
+  </div>
+  <a href="contact.html" class="nav-cta">Get Started</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero reveal d1">
+  <div class="hero-photo">
+    <img src="tony-headshot.webp" alt="Tony Subia" width="200" height="200">
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">Founder · Beacon</div>
+    <h1>Tony Subia</h1>
+    <p class="hero-line">Two decades building career advancement programs for a 60,000-employee state department. Now I do that work for people who don't have those programs.</p>
+  </div>
+</section>
+
+<!-- The Story -->
+<section class="content reveal d2">
+  <h2>Why Beacon exists.</h2>
+
+  <p>If you've watched someone get promoted ahead of you and known you'd done more than they had, you already know what Beacon is for.</p>
+
+  <p>I've spent the last two decades leading in the public sector. Most of that time, I was running programs designed to help people advance: Upward Mobility Programs, Succession Management Programs, and a recruitment pipeline that processed 120,000 applications. They were all built around the same problem. How do you get the right people moved up?</p>
+
+  <p>Here's what I learned. The people who got promoted weren't always the people who'd done the most work. They were the people whose work was framed in a way that decision-makers could recognize.</p>
+
+  <div class="pullquote">Hiring managers can't read minds. They read resumes. The people who get promoted are the ones whose resumes do the work for them.</div>
+
+  <p>This isn't about hiring managers being lazy. It's how attention works under deadline pressure with a stack of applications. The people I watched get passed over weren't less qualified than the ones who got picked. They just hadn't been told what was missing from their CVs. Nobody had ever sat them down and explained what a hiring panel actually reads for.</p>
+
+  <p>Beacon is that conversation.</p>
+</section>
+
+<!-- How I Think -->
+<section class="content reveal d3">
+  <h2>How I read a CV.</h2>
+
+  <p>The first thing I'm looking for isn't what you did. It's what you're claiming to be.</p>
+
+  <p>The strongest CVs make a single argument. Most CVs make ten weak ones. Bullet points listing tasks instead of outcomes. Job descriptions that read like job descriptions instead of like the work you actually did. Skills sections crammed with everything you've ever touched. And career histories that are really just a sequence of dates with no story attached.</p>
+
+  <p>My job is to find the argument in your career and rebuild the document around it. Usually, that means cutting more than I add. It means taking the things buried in bullet four under a job from 2019 and putting them where someone will actually see them. And it means rewriting your professional summary so it sounds like a person describing a career, not a robot reciting keywords.</p>
+
+  <p>Sometimes that's a CV from scratch. Sometimes it's restructuring what you have. The goal is the same either way. A hiring manager spends about six seconds on your resume. Those six seconds need to land on the right thing.</p>
+</section>
+
+<!-- See the work -->
+<section class="content reveal d4" style="text-align: center; padding: 48px 0;">
+  <p style="font-size: 1.04rem; color: var(--muted); margin-bottom: 18px; max-width: 520px; margin-left: auto; margin-right: auto;">Want to see what this looks like?</p>
+  <a href="tony-subia.html" style="display: inline-block; font-family: 'DM Serif Display', Georgia, serif; font-size: 1.4rem; color: var(--accent); text-decoration: none; border-bottom: 2px solid var(--warm); padding-bottom: 4px; transition: all 0.2s;">Read my CV →</a>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta reveal d4">
+  <h2>Find the argument hiding in your career.</h2>
+  <p>Send me your CV, or tell me you don't have one yet. Either way, I'll get back to you within 24 hours.</p>
+  <a href="contact.html" class="btn-primary">Start a Project →</a>
+</section>
+
+<!-- Beyond Beacon -->
+<section class="content reveal d5">
+  <h2>Beyond Beacon.</h2>
+
+  <p>Beacon isn't the only thing I'm working on. The work shows up in a few different places.</p>
+
+  <div class="beyond-list">
+    <div class="beyond-item">
+      <div class="beyond-name">Reason &amp; Resolve</div>
+      <div class="beyond-desc">A Substack on leadership, public sector ethics, and the systems that shape both. Mostly for mid-career professionals trying to lead well inside imperfect institutions.</div>
+    </div>
+    <div class="beyond-item">
+      <div class="beyond-name">Principled Systems Leadership</div>
+      <div class="beyond-desc">A book in progress on institutional leadership. For people who want to do real work without losing themselves to the politics of it.</div>
+    </div>
+    <div class="beyond-item">
+      <div class="beyond-name">Philosophy degree</div>
+      <div class="beyond-desc">In progress. Clarity of thought is its own kind of professional skill, and the questions worth thinking carefully about don't go out of style.</div>
+    </div>
+    <div class="beyond-item">
+      <div class="beyond-name">Más Bueno Boutique</div>
+      <div class="beyond-desc">Co-owner of a Sacramento-area retail and e-commerce business. Two locations. Different work, same instincts about how to build something that lasts.</div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="page">
+    <div class="footer-brand">BEACON</div>
+    Showing the Way Forward · <a href="mailto:info@beaconcv.net">info@beaconcv.net</a><br>
+    &copy; 2026 Beacon CV Services · West Sacramento, CA
+    <div class="footer-links">
+      <a href="/">Home</a> · <a href="about.html">About</a> · <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
