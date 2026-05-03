@@ -554,7 +554,7 @@
   <input type="hidden" name="package" id="packageField" value="">
 
   <!-- Honeypot -->
-  <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off">
+  <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
 
   <!-- Framing for full questionnaire (CV Writing or Bundle only) -->
   <div class="conditional-section" id="framingFull">
@@ -1006,7 +1006,7 @@ document.getElementById('intakeForm').addEventListener('submit', function() {
       btn.disabled = false;
       btn.textContent = 'Submit →';
     }
-  }, 8000);
+  }, 30000);
 });
 </script>
 
