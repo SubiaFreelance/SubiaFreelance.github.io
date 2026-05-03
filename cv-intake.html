@@ -3,18 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Build Your CV — Beacon</title>
-<meta name="description" content="No resume? No problem. Answer a few questions and Beacon will build you a professional CV based on your answers.">
+<title>Career Intake — Beacon</title>
+<meta name="description" content="The Beacon intake questionnaire. For clients building a CV from scratch — captures the raw material I need to write at Beacon's standard.">
+
+<meta name="robots" content="noindex, nofollow">
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="canonical" href="https://beaconcv.net/cv-intake.html">
-<meta property="og:title" content="Build Your CV — Beacon">
-<meta property="og:description" content="No resume? No problem. Answer guided questions about your career and Beacon will build you a professional CV based on your answers.">
+<meta property="og:title" content="Career Intake — Beacon">
+<meta property="og:description" content="The Beacon intake questionnaire for clients building a CV from scratch.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://beaconcv.net/cv-intake.html">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Build Your CV — Beacon">
-<meta name="twitter:description" content="No resume? No problem. Answer guided questions about your career and Beacon will build you a professional CV based on your answers.">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -28,6 +27,7 @@
     --card: #ffffff;
     --highlight: #f0ece6;
     --shadow-soft: 0 2px 20px rgba(44, 74, 62, 0.06);
+    --shadow-lift: 0 8px 30px rgba(44, 74, 62, 0.1);
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,6 +39,9 @@
     background: var(--paper);
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
   body::before {
@@ -51,258 +54,338 @@
     z-index: 0;
   }
 
-  .page { max-width: 650px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+  .page { max-width: 720px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; width: 100%; flex: 1; }
 
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .step { animation: fadeUp 0.4s ease-out; }
+  .reveal { opacity: 0; animation: fadeUp 0.6s ease-out forwards; }
+  .d1 { animation-delay: 0.1s; }
+  .d2 { animation-delay: 0.2s; }
+  .d3 { animation-delay: 0.3s; }
 
-  /* ── Nav ── */
+  /* Nav */
   .nav {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 24px 0; border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
   }
 
   .nav-brand { display: flex; flex-direction: column; gap: 2px; }
 
   .nav-brand-name {
     font-family: 'DM Serif Display', Georgia, serif;
-    font-size: 1.1rem; color: var(--accent);
-    letter-spacing: 0.16em; text-decoration: none;
+    font-size: 1.1rem;
+    color: var(--accent);
+    letter-spacing: 0.16em;
+    text-decoration: none;
   }
 
-  .nav-brand-tag { font-size: 0.7rem; color: var(--warm); letter-spacing: 0.04em; }
+  .nav-brand-tag {
+    font-size: 0.7rem;
+    color: var(--warm);
+    letter-spacing: 0.04em;
+  }
 
   .nav-back {
-    font-size: 0.82rem; color: var(--muted); text-decoration: none;
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-decoration: none;
     transition: color 0.2s;
   }
 
   .nav-back:hover { color: var(--accent); }
 
-  /* ── Header ── */
-  header {
-    padding: 48px 0 32px;
+  /* Hero */
+  .hero { padding: 56px 0 36px; }
+
+  h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .hero-sub {
+    font-size: 1.02rem;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+
+  .framing-note {
+    background: var(--highlight);
+    border-left: 3px solid var(--warm);
+    padding: 22px 26px;
+    margin-top: 24px;
+    font-size: 0.94rem;
+    line-height: 1.7;
+  }
+
+  .framing-note strong { color: var(--accent); }
+
+  /* Form */
+  form {
+    margin-bottom: 48px;
+  }
+
+  .form-section {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    padding: 36px 32px;
+    margin-bottom: 22px;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .form-section:hover { box-shadow: var(--shadow-soft); }
+
+  .section-header {
+    margin-bottom: 24px;
+    padding-bottom: 14px;
     border-bottom: 1px solid var(--rule);
-    margin-bottom: 32px;
   }
 
-  header h1 {
+  .section-num {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--warm);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .section-title {
     font-family: 'DM Serif Display', Georgia, serif;
-    font-size: 2rem; font-weight: 400; line-height: 1.2;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--ink);
   }
 
-  header .hero-sub {
-    font-size: 0.95rem; font-weight: 300; color: var(--muted);
-    margin-top: 10px; max-width: 500px;
+  .section-intro {
+    font-size: 0.92rem;
+    color: var(--muted);
+    margin-top: 8px;
+    line-height: 1.65;
   }
 
-  /* ── Progress ── */
-  .progress-bar {
-    display: flex; gap: 6px; margin-bottom: 36px;
+  .form-group { margin-bottom: 22px; }
+
+  .form-group:last-child { margin-bottom: 0; }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
-
-  .progress-step {
-    flex: 1; height: 3px; background: var(--rule);
-    transition: background 0.4s ease, transform 0.3s ease;
-  }
-
-  .progress-step.active { background: var(--accent); transform: scaleY(1.5); }
-  .progress-step.done { background: var(--accent); }
-
-  .step-label {
-    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--warm); margin-bottom: 8px;
-  }
-
-  h2 {
-    font-family: 'DM Serif Display', Georgia, serif;
-    font-size: 1.5rem; font-weight: 400; margin-bottom: 6px;
-  }
-
-  .step-desc {
-    font-size: 0.88rem; color: var(--muted); margin-bottom: 28px;
-  }
-
-  /* ── Form Elements ── */
-  .field { margin-bottom: 22px; }
 
   label {
-    display: block; font-weight: 600; font-size: 0.87rem; margin-bottom: 6px;
+    display: block;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+    letter-spacing: 0.01em;
   }
 
-  label .optional { font-weight: 400; color: var(--muted); font-size: 0.8rem; }
+  label .req { color: var(--warm); margin-left: 2px; }
 
-  input[type="text"], input[type="email"], input[type="tel"], input[type="url"], textarea, select {
-    width: 100%; padding: 12px 14px;
-    font-family: 'Source Sans 3', sans-serif; font-size: 0.9rem;
-    color: var(--ink); background: var(--card);
-    border: 1px solid var(--rule); outline: none;
-    transition: border-color 0.25s, box-shadow 0.25s;
+  label .helper {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.5;
   }
 
-  input:focus, textarea:focus, select:focus {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="url"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 11px 14px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    transition: all 0.2s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.6;
+    font-family: 'Source Sans 3', Georgia, serif;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
     border-color: var(--accent);
+    background: #fff;
     box-shadow: 0 0 0 3px rgba(44, 74, 62, 0.08);
   }
 
-  textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
-  select { -webkit-appearance: none; cursor: pointer; }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b6b6b' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
 
-  .hint { font-size: 0.78rem; color: var(--muted); margin-top: 4px; line-height: 1.5; }
-
-  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-  /* ── Job Entry ── */
+  /* Job entry blocks */
   .job-entry {
-    background: var(--card); border: 1px solid var(--rule);
-    padding: 24px; margin-bottom: 16px;
-    transition: box-shadow 0.3s;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 24px 22px;
+    margin-bottom: 16px;
   }
 
-  .job-entry:hover { box-shadow: var(--shadow-soft); }
-
-  .job-entry h3 {
-    font-weight: 600; font-size: 0.88rem; color: var(--accent); margin-bottom: 16px;
+  .job-entry-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
   }
 
-  .add-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 10px 20px; background: transparent;
-    border: 1px dashed var(--rule); color: var(--accent);
+  .job-entry .form-group { margin-bottom: 14px; }
+
+  .job-entry .form-row { gap: 12px; }
+
+  .job-overflow-note {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* Checkbox / consent */
+  .consent-block {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 18px 20px;
+    background: var(--highlight);
+    border-left: 3px solid var(--accent);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .consent-block input[type="checkbox"] {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+
+  .consent-block label {
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-bottom: 0;
+    cursor: pointer;
+    color: var(--ink);
+  }
+
+  /* Honeypot */
+  .honeypot {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  /* Submit */
+  .submit-block {
+    text-align: center;
+    padding: 32px 0 16px;
+  }
+
+  .btn-submit {
+    display: inline-block;
+    padding: 16px 48px;
+    background: var(--accent);
+    color: #fff;
     font-family: 'Source Sans 3', sans-serif;
-    font-size: 0.86rem; font-weight: 600;
-    cursor: pointer; transition: all 0.25s;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
   }
 
-  .add-btn:hover { border-color: var(--accent); background: var(--highlight); }
-
-  .remove-btn {
-    float: right; background: none; border: none;
-    color: var(--muted); font-size: 0.8rem; cursor: pointer;
-    font-family: 'Source Sans 3', sans-serif;
-    transition: color 0.2s;
-  }
-
-  .remove-btn:hover { color: var(--warm); }
-
-  /* ── Navigation ── */
-  .nav-row {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-top: 40px; padding: 30px 0 60px;
-    border-top: 1px solid var(--rule);
-  }
-
-  .btn-back {
-    padding: 12px 28px; background: transparent;
-    border: 1px solid var(--rule); color: var(--muted);
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 0.86rem; font-weight: 600;
-    cursor: pointer; transition: all 0.25s;
-  }
-
-  .btn-back:hover { border-color: var(--ink); color: var(--ink); }
-
-  .btn-next {
-    padding: 12px 32px; background: var(--accent);
-    border: none; color: #fff;
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 0.86rem; font-weight: 600;
-    cursor: pointer; transition: all 0.25s;
-  }
-
-  .btn-next:hover {
+  .btn-submit:hover {
     background: #1e3a2e;
     transform: translateY(-2px);
     box-shadow: 0 4px 16px rgba(44, 74, 62, 0.2);
   }
 
-  /* ── Review ── */
-  .review-section {
-    margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--rule);
+  .btn-submit:disabled {
+    background: var(--muted);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
   }
 
-  .review-section:last-child { border-bottom: none; }
-
-  .review-section h3 {
-    font-family: 'DM Serif Display', Georgia, serif;
-    font-size: 1.05rem; color: var(--accent); margin-bottom: 12px;
+  .submit-note {
+    margin-top: 16px;
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.6;
   }
 
-  .review-field { margin-bottom: 6px; font-size: 0.88rem; }
-  .review-label { font-weight: 600; }
-  .review-value { color: var(--muted); margin-left: 4px; }
-
-  .review-job {
-    background: var(--card); border: 1px solid var(--rule);
-    padding: 16px; margin-bottom: 10px;
-  }
-
-  .review-job-title { font-weight: 600; font-size: 0.88rem; }
-  .review-job-org { font-size: 0.82rem; color: var(--muted); }
-  .review-job-duties { font-size: 0.82rem; color: var(--muted); margin-top: 6px; white-space: pre-line; }
-
-  /* ── Pricing Note ── */
-  .pricing-note {
-    background: var(--card); border: 1px solid var(--rule);
-    padding: 28px; margin-bottom: 28px;
-    border-left: 3px solid var(--accent);
-  }
-
-  .pricing-note h3 {
-    font-family: 'DM Serif Display', Georgia, serif;
-    font-size: 1.05rem; margin-bottom: 8px;
-  }
-
-  .pricing-note p { font-size: 0.86rem; color: var(--muted); line-height: 1.6; }
-
-  .pricing-note .price {
-    font-size: 1.8rem; font-weight: 700; color: var(--accent); margin: 8px 0;
-  }
-
-  .pricing-note .upsell {
-    margin-top: 14px; padding-top: 14px;
-    border-top: 1px solid var(--rule);
-    font-size: 0.84rem; color: var(--warm); font-weight: 600;
-  }
-
-  /* ── Success ── */
-  .success { text-align: center; padding: 60px 0; }
-
-  .success-check {
-    width: 64px; height: 64px; background: var(--accent);
-    border-radius: 50%; display: flex; align-items: center;
-    justify-content: center; margin: 0 auto 24px;
-    color: #fff; font-size: 1.8rem;
-  }
-
-  .success h2 {
-    font-family: 'DM Serif Display', Georgia, serif;
-    font-size: 1.5rem; margin-bottom: 12px;
-  }
-
-  .success p { font-size: 1rem; color: var(--muted); max-width: 420px; margin: 0 auto; }
-
-  .hidden { display: none; }
-
+  /* Footer */
   footer {
-    padding: 40px 0 30px; font-size: 0.76rem; color: var(--muted); text-align: center;
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+    font-size: 0.76rem;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.8;
+    margin-top: 40px;
   }
 
   footer a { color: var(--accent); text-decoration: none; }
 
   .footer-brand {
     font-family: 'DM Serif Display', Georgia, serif;
-    font-size: 0.85rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 4px;
+    font-size: 0.88rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    margin-bottom: 4px;
   }
 
-  @media (max-width: 600px) {
+  /* Responsive */
+  @media (max-width: 640px) {
+    h1 { font-size: 1.8rem; }
+    .hero { padding: 36px 0 24px; }
+    .form-section { padding: 26px 22px; }
+    .form-row { grid-template-columns: 1fr; }
+    .job-entry { padding: 18px 16px; }
     .page { padding: 0 18px; }
-    header h1 { font-size: 1.6rem; }
-    .field-row { grid-template-columns: 1fr; }
+    .section-title { font-size: 1.2rem; }
   }
 </style>
 </head>
@@ -310,252 +393,534 @@
 
 <div class="page">
 
+<!-- Nav -->
 <nav class="nav">
   <div class="nav-brand">
-    <a href="index.html" class="nav-brand-name">BEACON</a>
+    <a href="/" class="nav-brand-name">BEACON</a>
     <span class="nav-brand-tag">Showing the Way Forward</span>
   </div>
-  <a href="index.html" class="nav-back">← Back to services</a>
+  <a href="/" class="nav-back">← Back to home</a>
 </nav>
 
-<header>
-  <h1>No resume? No problem.</h1>
-  <p class="hero-sub">Answer a few questions about your career and I'll build you a sharp, ready-to-send CV based on what you tell me here.</p>
-</header>
+<!-- Hero -->
+<section class="hero reveal d1">
+  <h1>Career intake.</h1>
+  <p class="hero-sub">This is the long version of the contact form. It's for clients who don't have an existing resume — or who have one that doesn't represent their work anymore. The answers below are the raw material I'll use to build your CV.</p>
 
-<div class="progress-bar">
-  <div class="progress-step active" id="prog-1"></div>
-  <div class="progress-step" id="prog-2"></div>
-  <div class="progress-step" id="prog-3"></div>
-  <div class="progress-step" id="prog-4"></div>
-  <div class="progress-step" id="prog-5"></div>
-</div>
+  <div class="framing-note">
+    <strong>Before you start.</strong> This form takes longer than most. Plan on 30–45 minutes. Don't worry about polished writing — this is raw material for me to shape, not the final product. Typos, fragments, parentheticals, half-finished thoughts — all fine. The depth of what you put in is the depth of what I have to work with.
+  </div>
+</section>
 
-<!-- STEP 1 -->
-<div id="step-1" class="step">
-  <div class="step-label">Step 1 of 5</div>
-  <h2>The basics.</h2>
-  <p class="step-desc">Let's start with who you are and how to reach you.</p>
-  <div class="field">
-    <label>Full name</label>
-    <input type="text" id="fullName" placeholder="e.g. Maria Santos">
-  </div>
-  <div class="field-row">
-    <div class="field"><label>Email</label><input type="email" id="email" placeholder="you@email.com"></div>
-    <div class="field"><label>Phone <span class="optional">(optional)</span></label><input type="tel" id="phone" placeholder="(555) 123-4567"></div>
-  </div>
-  <div class="field"><label>City &amp; State</label><input type="text" id="location" placeholder="e.g. Sacramento, CA"></div>
-  <div class="field"><label>LinkedIn URL <span class="optional">(optional)</span></label><input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourname"></div>
-  <div class="nav-row"><div></div><button class="btn-next" onclick="goTo(2)">Continue →</button></div>
-</div>
+<!-- Form -->
+<form class="reveal d2" action="https://api.web3forms.com/submit" method="POST" id="intakeForm">
 
-<!-- STEP 2 -->
-<div id="step-2" class="step hidden">
-  <div class="step-label">Step 2 of 5</div>
-  <h2>Your career in a nutshell.</h2>
-  <p class="step-desc">Don't worry about polish — just tell me what you do. I'll handle the wording.</p>
-  <div class="field"><label>What's your current (or most recent) job title?</label><input type="text" id="currentTitle" placeholder="e.g. Operations Manager"></div>
-  <div class="field"><label>What industry do you work in?</label><input type="text" id="industry" placeholder="e.g. Healthcare, Government, Tech, Retail"></div>
-  <div class="field">
-    <label>How many years of professional experience do you have?</label>
-    <select id="experience">
-      <option value="">Select one</option>
-      <option>Less than 2 years</option>
-      <option>2–5 years</option>
-      <option>5–10 years</option>
-      <option>10–15 years</option>
-      <option>15+ years</option>
-    </select>
-  </div>
-  <div class="field">
-    <label>In 2–3 sentences, what do you do?</label>
-    <textarea id="summary" placeholder="Just talk naturally. For example: 'I manage a team of 8 people at a hospital. We handle patient scheduling and make sure everything runs on time. Before this I worked at a clinic doing the same kind of thing but smaller.'"></textarea>
-    <div class="hint">Don't overthink it. Write like you'd explain it to a friend.</div>
-  </div>
-  <div class="nav-row">
-    <button class="btn-back" onclick="goTo(1)">← Back</button>
-    <button class="btn-next" onclick="goTo(3)">Continue →</button>
-  </div>
-</div>
+  <!-- Web3Forms hidden config -->
+  <input type="hidden" name="access_key" value="f095e097-44a7-4b53-9405-9ae71f8a04ac">
+  <input type="hidden" name="subject" value="New Beacon Inquiry — Intake Questionnaire">
+  <input type="hidden" name="from_name" value="Beacon Intake Form">
+  <input type="hidden" name="redirect" value="https://beaconcv.net/thank-you.html">
 
-<!-- STEP 3 -->
-<div id="step-3" class="step hidden">
-  <div class="step-label">Step 3 of 5</div>
-  <h2>Your work history.</h2>
-  <p class="step-desc">List your jobs starting with the most recent. Include as many as you'd like.</p>
-  <div id="jobs-container">
-    <div class="job-entry" data-job="1">
-      <h3>Position 1</h3>
-      <div class="field"><label>Job title</label><input type="text" class="job-title-input" placeholder="e.g. Senior Analyst"></div>
-      <div class="field"><label>Company / Organization</label><input type="text" class="job-org-input" placeholder="e.g. Kaiser Permanente"></div>
-      <div class="field-row">
-        <div class="field"><label>Start date</label><input type="text" class="job-start-input" placeholder="e.g. June 2019"></div>
-        <div class="field"><label>End date</label><input type="text" class="job-end-input" placeholder="e.g. Present"></div>
+  <!-- Honeypot -->
+  <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off">
+
+  <!-- ─── Section 1: About you ─── -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-num">Section 1</div>
+      <div class="section-title">About you</div>
+      <div class="section-intro">The basics. Identity and contact info.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Full name<span class="req">*</span></label>
+      <input type="text" id="name" name="name" required autocomplete="name">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="email">Email<span class="req">*</span></label>
+        <input type="email" id="email" name="email" required autocomplete="email">
       </div>
-      <div class="field">
-        <label>What did you do in this role?</label>
-        <textarea class="job-duties-input" placeholder="Just list the main things. For example:&#10;- Managed a team of 5&#10;- Oversaw daily operations&#10;- Trained new hires"></textarea>
-        <div class="hint">Bullet points or plain sentences — either works.</div>
+      <div class="form-group">
+        <label for="phone">Phone<span class="helper">Optional. Won't be displayed publicly unless you specifically ask.</span></label>
+        <input type="tel" id="phone" name="phone" autocomplete="tel">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="location">Location<span class="req">*</span><span class="helper">City and state, e.g. "Sacramento, CA"</span></label>
+        <input type="text" id="location" name="location" required>
+      </div>
+      <div class="form-group">
+        <label for="linkedin">LinkedIn URL<span class="helper">Optional but useful if you have one.</span></label>
+        <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/...">
       </div>
     </div>
   </div>
-  <button class="add-btn" onclick="addJob()">+ Add another position</button>
-  <div class="nav-row">
-    <button class="btn-back" onclick="goTo(2)">← Back</button>
-    <button class="btn-next" onclick="goTo(4)">Continue →</button>
-  </div>
-</div>
 
-<!-- STEP 4 -->
-<div id="step-4" class="step hidden">
-  <div class="step-label">Step 4 of 5</div>
-  <h2>Skills &amp; extras.</h2>
-  <p class="step-desc">These round out your CV. Skip anything that doesn't apply.</p>
-  <div class="field">
-    <label>Key skills</label>
-    <textarea id="skills" placeholder="List your main skills, separated by commas. For example:&#10;Project management, Microsoft Office, budgeting, team leadership, data analysis, Spanish (fluent)"></textarea>
-    <div class="hint">Include both technical skills and soft skills. Languages too.</div>
-  </div>
-  <div class="field"><label>Education <span class="optional">(optional)</span></label><textarea id="education" placeholder="e.g.&#10;BA in Business Administration, Sacramento State, 2015&#10;AA in Liberal Arts, Sacramento City College, 2012" style="min-height: 80px;"></textarea></div>
-  <div class="field"><label>Certifications or licenses <span class="optional">(optional)</span></label><textarea id="certifications" placeholder="e.g.&#10;PMP Certified&#10;Licensed Notary Public" style="min-height: 80px;"></textarea></div>
-  <div class="field"><label>Anything else you'd like me to know?</label><textarea id="extras" placeholder="Awards, volunteer work, publications, side projects — anything you think might be relevant. Or tell me what kind of job you're targeting so I can tailor the CV." style="min-height: 100px;"></textarea></div>
-  <div class="nav-row">
-    <button class="btn-back" onclick="goTo(3)">← Back</button>
-    <button class="btn-next" onclick="goTo(5)">Review →</button>
-  </div>
-</div>
+  <!-- ─── Section 2: Where you're headed ─── -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-num">Section 2</div>
+      <div class="section-title">Where you're headed</div>
+      <div class="section-intro">The strategic context. What you're trying to land, and what the audience for your CV cares about.</div>
+    </div>
 
-<!-- STEP 5 -->
-<div id="step-5" class="step hidden">
-  <div class="step-label">Step 5 of 5</div>
-  <h2>Review &amp; submit.</h2>
-  <p class="step-desc">Make sure everything looks right. I'll reach out within 24 hours to confirm details.</p>
-  <div class="pricing-note">
-    <h3>CV Build from Scratch</h3>
-    <div class="price">$350</div>
-    <p>I'll take everything you've provided and build you a CV that's well-structured, clearly written, and ready to send.</p>
-    <div class="upsell">Want it as a live website too? Add a CV Website for just $150 more (normally $200).</div>
-  </div>
-  <div id="review-content"></div>
-  <div class="nav-row">
-    <button class="btn-back" onclick="goTo(4)">← Back</button>
-    <button class="btn-next" onclick="submitForm()">Submit →</button>
-  </div>
-</div>
+    <div class="form-group">
+      <label for="target_role">Target role or career direction<span class="req">*</span><span class="helper">Be as specific as you can. "I'm not sure yet, but somewhere in this direction" is fine.</span></label>
+      <textarea id="target_role" name="target_role" required rows="3"></textarea>
+    </div>
 
-<!-- SUCCESS -->
-<div id="step-success" class="step hidden">
-  <div class="success">
-    <div class="success-check">✓</div>
-    <h2>You're all set.</h2>
-    <p>I've received your information and will be in touch within 24 hours at the email you provided. Thanks for choosing Beacon.</p>
+    <div class="form-group">
+      <label for="industry">Industry or field<span class="req">*</span></label>
+      <input type="text" id="industry" name="industry" required>
+    </div>
+
+    <div class="form-group">
+      <label for="audience">Who reads CVs in your field?<span class="req">*</span><span class="helper">HR generalists? Hiring managers in your discipline? Executive recruiters? Civil service panels? What kind of reader is going to see this?</span></label>
+      <textarea id="audience" name="audience" required rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="market_needs" >What does the market you're targeting need that you can offer?<span class="req">*</span><span class="helper">What problems do hiring managers in this space need solved? What signals do you think work in your favor?</span></label>
+      <textarea id="market_needs" name="market_needs" required rows="4"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="concerns">What are you worried about how to present?<span class="helper">Optional but valuable. Gaps, lateral moves, multiple short stints, career changes, anything you've thought about how to frame. Naming it lets me handle it deliberately.</span></label>
+      <textarea id="concerns" name="concerns" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="package">Which package?<span class="req">*</span></label>
+      <select id="package" name="package" required>
+        <option value="">Select a package…</option>
+        <option value="CV + Web Presence — $500">CV + Web Presence — $500</option>
+        <option value="CV Writing — $350">CV Writing — $350</option>
+      </select>
+    </div>
   </div>
-</div>
+
+  <!-- ─── Section 3: Career history ─── -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-num">Section 3</div>
+      <div class="section-title">Career history</div>
+      <div class="section-intro">Your roles, structured the way professional CV writers think about them. Use as many of the five slots as apply, starting with most recent. Older roles can be combined in the "Anything else" section at the bottom.</div>
+    </div>
+
+    <!-- Job 1 -->
+    <div class="job-entry">
+      <div class="job-entry-label">Role 1 — Most Recent</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="job1_title">Job title</label>
+          <input type="text" id="job1_title" name="job1_title">
+        </div>
+        <div class="form-group">
+          <label for="job1_org">Organization</label>
+          <input type="text" id="job1_org" name="job1_org">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="job1_location">Location</label>
+          <input type="text" id="job1_location" name="job1_location">
+        </div>
+        <div class="form-group">
+          <label for="job1_dates">Dates<span class="helper">e.g. "March 2023 – Present"</span></label>
+          <input type="text" id="job1_dates" name="job1_dates">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="job1_mandate">Mandate — why were you hired into this role?<span class="helper">What were you brought in to do? What was the role expected to accomplish?</span></label>
+        <textarea id="job1_mandate" name="job1_mandate" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job1_challenges">Challenges — what were the biggest problems or situations you faced?<span class="helper">What was broken, missing, undefined, or hard about this role when you took it on?</span></label>
+        <textarea id="job1_challenges" name="job1_challenges" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job1_actions">Actions — what did you actually do?<span class="helper">Two or three things, not a comprehensive list. The work you'd want a reader to know about.</span></label>
+        <textarea id="job1_actions" name="job1_actions" rows="4"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job1_results">Results — what changed because of your work?<span class="helper">Outcomes, numbers, what was different when you left or what's still true. Even rough estimates beat nothing.</span></label>
+        <textarea id="job1_results" name="job1_results" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job1_scope">Scope<span class="helper">Budget, headcount supervised, geography, organizational level, duration — whatever's relevant.</span></label>
+        <textarea id="job1_scope" name="job1_scope" rows="2"></textarea>
+      </div>
+    </div>
+
+    <!-- Job 2 -->
+    <div class="job-entry">
+      <div class="job-entry-label">Role 2</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="job2_title">Job title</label>
+          <input type="text" id="job2_title" name="job2_title">
+        </div>
+        <div class="form-group">
+          <label for="job2_org">Organization</label>
+          <input type="text" id="job2_org" name="job2_org">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="job2_location">Location</label>
+          <input type="text" id="job2_location" name="job2_location">
+        </div>
+        <div class="form-group">
+          <label for="job2_dates">Dates</label>
+          <input type="text" id="job2_dates" name="job2_dates">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="job2_mandate">Mandate</label>
+        <textarea id="job2_mandate" name="job2_mandate" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job2_challenges">Challenges</label>
+        <textarea id="job2_challenges" name="job2_challenges" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job2_actions">Actions</label>
+        <textarea id="job2_actions" name="job2_actions" rows="4"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job2_results">Results</label>
+        <textarea id="job2_results" name="job2_results" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job2_scope">Scope</label>
+        <textarea id="job2_scope" name="job2_scope" rows="2"></textarea>
+      </div>
+    </div>
+
+    <!-- Job 3 -->
+    <div class="job-entry">
+      <div class="job-entry-label">Role 3</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="job3_title">Job title</label>
+          <input type="text" id="job3_title" name="job3_title">
+        </div>
+        <div class="form-group">
+          <label for="job3_org">Organization</label>
+          <input type="text" id="job3_org" name="job3_org">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="job3_location">Location</label>
+          <input type="text" id="job3_location" name="job3_location">
+        </div>
+        <div class="form-group">
+          <label for="job3_dates">Dates</label>
+          <input type="text" id="job3_dates" name="job3_dates">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="job3_mandate">Mandate</label>
+        <textarea id="job3_mandate" name="job3_mandate" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job3_challenges">Challenges</label>
+        <textarea id="job3_challenges" name="job3_challenges" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job3_actions">Actions</label>
+        <textarea id="job3_actions" name="job3_actions" rows="4"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job3_results">Results</label>
+        <textarea id="job3_results" name="job3_results" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job3_scope">Scope</label>
+        <textarea id="job3_scope" name="job3_scope" rows="2"></textarea>
+      </div>
+    </div>
+
+    <!-- Job 4 -->
+    <div class="job-entry">
+      <div class="job-entry-label">Role 4</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="job4_title">Job title</label>
+          <input type="text" id="job4_title" name="job4_title">
+        </div>
+        <div class="form-group">
+          <label for="job4_org">Organization</label>
+          <input type="text" id="job4_org" name="job4_org">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="job4_location">Location</label>
+          <input type="text" id="job4_location" name="job4_location">
+        </div>
+        <div class="form-group">
+          <label for="job4_dates">Dates</label>
+          <input type="text" id="job4_dates" name="job4_dates">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="job4_mandate">Mandate</label>
+        <textarea id="job4_mandate" name="job4_mandate" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job4_challenges">Challenges</label>
+        <textarea id="job4_challenges" name="job4_challenges" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job4_actions">Actions</label>
+        <textarea id="job4_actions" name="job4_actions" rows="4"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job4_results">Results</label>
+        <textarea id="job4_results" name="job4_results" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job4_scope">Scope</label>
+        <textarea id="job4_scope" name="job4_scope" rows="2"></textarea>
+      </div>
+    </div>
+
+    <!-- Job 5 -->
+    <div class="job-entry">
+      <div class="job-entry-label">Role 5</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="job5_title">Job title</label>
+          <input type="text" id="job5_title" name="job5_title">
+        </div>
+        <div class="form-group">
+          <label for="job5_org">Organization</label>
+          <input type="text" id="job5_org" name="job5_org">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="job5_location">Location</label>
+          <input type="text" id="job5_location" name="job5_location">
+        </div>
+        <div class="form-group">
+          <label for="job5_dates">Dates</label>
+          <input type="text" id="job5_dates" name="job5_dates">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="job5_mandate">Mandate</label>
+        <textarea id="job5_mandate" name="job5_mandate" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job5_challenges">Challenges</label>
+        <textarea id="job5_challenges" name="job5_challenges" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job5_actions">Actions</label>
+        <textarea id="job5_actions" name="job5_actions" rows="4"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job5_results">Results</label>
+        <textarea id="job5_results" name="job5_results" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="job5_scope">Scope</label>
+        <textarea id="job5_scope" name="job5_scope" rows="2"></textarea>
+      </div>
+    </div>
+
+    <p class="job-overflow-note">More than five roles? Combine the older ones into a brief paragraph in Section 7's "anything else" field — recent and relevant matters more than complete.</p>
+  </div>
+
+  <!-- ─── Section 4: Signature work ─── -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-num">Section 4</div>
+      <div class="section-title">Signature work</div>
+      <div class="section-intro">The two or three things across your career you're most proud of. These often cross multiple jobs and don't fit neatly into bullet points.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="signature_work">What are the two or three things in your career you're most proud of?<span class="req">*</span><span class="helper">Don't worry about which job they belong to or whether they'd seem too small or too large. The work that shaped how you think about your field. For each, briefly: what was it, what made it hard, and what came of it.</span></label>
+      <textarea id="signature_work" name="signature_work" required rows="8"></textarea>
+    </div>
+  </div>
+
+  <!-- ─── Section 5: Skills, education, credentials ─── -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-num">Section 5</div>
+      <div class="section-title">Skills, education, and credentials</div>
+      <div class="section-intro">The qualifications layer. Be inclusive — easier for me to cut than to invent.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="education">Education<span class="req">*</span><span class="helper">Degrees, programs, relevant coursework. Include in-progress degrees.</span></label>
+      <textarea id="education" name="education" required rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="certifications">Certifications, licenses, formal training</label>
+      <textarea id="certifications" name="certifications" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="skills">Technical skills and software you actually use<span class="helper">Things you actually use day-to-day — not "exposure to."</span></label>
+      <textarea id="skills" name="skills" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="languages">Languages<span class="helper">Optional. Include level if relevant (conversational, professional, native).</span></label>
+      <input type="text" id="languages" name="languages">
+    </div>
+
+    <div class="form-group">
+      <label for="other_credentials">Anything else credentialing-adjacent<span class="helper">Published work, speaking engagements, board service, volunteer leadership, awards, professional memberships.</span></label>
+      <textarea id="other_credentials" name="other_credentials" rows="3"></textarea>
+    </div>
+  </div>
+
+  <!-- ─── Section 6: Voice and value proposition ─── -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-num">Section 6</div>
+      <div class="section-title">Voice and value proposition</div>
+      <div class="section-intro">The part that turns a structurally correct CV into a Beacon-quality one. Your voice, your through-line, the things that aren't on any resume.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="hidden_strength">What's the most important thing about your career that wouldn't be obvious from a resume alone?<span class="req">*</span><span class="helper">The thing you'd say in an interview, not on paper.</span></label>
+      <textarea id="hidden_strength" name="hidden_strength" required rows="4"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="through_line">If you had to describe the through-line of your career in a sentence or two, what would it be?<span class="req">*</span><span class="helper">Your attempt at the thesis. Don't worry about getting it right — give me your best version.</span></label>
+      <textarea id="through_line" name="through_line" required rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="learned">What's something you've learned that most people in your field haven't?<span class="helper">Optional. Generates the kind of professional point-of-view material that shows up in summary paragraphs.</span></label>
+      <textarea id="learned" name="learned" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="unofficial_roles">What unofficial roles have you played?<span class="req">*</span><span class="helper">The team mediator, the institutional memory, the troubleshooter, the person new hires get sent to. What do people come to you for that isn't in your job description?</span></label>
+      <textarea id="unofficial_roles" name="unofficial_roles" required rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="takeaway">If a reader takes one thing away from your CV, what should it be?<span class="req">*</span></label>
+      <textarea id="takeaway" name="takeaway" required rows="3"></textarea>
+    </div>
+  </div>
+
+  <!-- ─── Section 7: Logistics ─── -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-num">Section 7</div>
+      <div class="section-title">Logistics and target material</div>
+      <div class="section-intro">Last section. Anything that didn't fit, plus material that helps me match the CV to the actual market.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="target_postings">If you have specific job postings you're targeting, paste them in or share links<span class="helper">Optional but valuable. Helps me match your CV to the language and skills the actual market is asking for. Don't worry about formatting — just dump the text.</span></label>
+      <textarea id="target_postings" name="target_postings" rows="5"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="anything_else">Anything else you want me to know?<span class="helper">Older roles you couldn't fit in Section 3, situational context, things you forgot about earlier, anything.</span></label>
+      <textarea id="anything_else" name="anything_else" rows="5"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="timeline">Preferred timeline<span class="helper">Optional. If you're targeting a specific deadline or hiring window.</span></label>
+      <input type="text" id="timeline" name="timeline">
+    </div>
+
+    <div class="consent-block">
+      <input type="checkbox" id="consent" name="consent" value="yes" required>
+      <label for="consent">I understand that submitting this form is the start of an engagement, not a binding commitment. Tony will review my submission and follow up within 24 hours with an engagement letter and invoice. Work begins after payment clears.</label>
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="submit-block">
+    <button type="submit" class="btn-submit" id="submitBtn">Submit Intake →</button>
+    </div>
+
+</form>
 
 </div>
 
 <footer>
   <div class="page">
     <div class="footer-brand">BEACON</div>
-    Showing the Way Forward · <a href="mailto:tony@beaconcv.net">tony@beaconcv.net</a><br>
-    &copy; 2026 Beacon CV Services
+    Showing the Way Forward · <a href="mailto:info@beaconcv.net">info@beaconcv.net</a><br>
+    &copy; 2026 Beacon CV Services · West Sacramento, CA
+    <div style="margin-top: 10px; font-size: 0.74rem;">
+      <a href="/" style="margin: 0 8px;">Home</a> · <a href="about.html" style="margin: 0 8px;">About</a> · <a href="contact.html" style="margin: 0 8px;">Contact</a>
+    </div>
   </div>
 </footer>
 
 <script>
-let currentStep = 1;
-let jobCount = 1;
+// Disable submit button while submitting to prevent double-submit
+// Re-enable after 8 seconds if something goes wrong
+document.getElementById('intakeForm').addEventListener('submit', function() {
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
 
-function goTo(step) {
-  document.getElementById(`step-${currentStep}`).classList.add('hidden');
-  document.getElementById(`step-${step}`).classList.remove('hidden');
-  for (let i = 1; i <= 5; i++) {
-    const bar = document.getElementById(`prog-${i}`);
-    bar.classList.remove('active', 'done');
-    if (i < step) bar.classList.add('done');
-    if (i === step) bar.classList.add('active');
-  }
-  if (step === 5) buildReview();
-  currentStep = step;
-  window.scrollTo(0, 0);
-}
+  setTimeout(function() {
+    if (btn.disabled) {
+      btn.disabled = false;
+      btn.textContent = 'Submit Intake →';
+    }
+  }, 8000);
+});
+</script>
 
-function addJob() {
-  jobCount++;
-  const container = document.getElementById('jobs-container');
-  const entry = document.createElement('div');
-  entry.className = 'job-entry';
-  entry.dataset.job = jobCount;
-  entry.innerHTML = `
-    <h3>Position ${jobCount} <button class="remove-btn" onclick="removeJob(this)">Remove</button></h3>
-    <div class="field"><label>Job title</label><input type="text" class="job-title-input" placeholder="e.g. Senior Analyst"></div>
-    <div class="field"><label>Company / Organization</label><input type="text" class="job-org-input" placeholder="e.g. Kaiser Permanente"></div>
-    <div class="field-row">
-      <div class="field"><label>Start date</label><input type="text" class="job-start-input" placeholder="e.g. June 2019"></div>
-      <div class="field"><label>End date</label><input type="text" class="job-end-input" placeholder="e.g. Present"></div>
-    </div>
-    <div class="field"><label>What did you do in this role?</label><textarea class="job-duties-input" placeholder="Just list the main things."></textarea></div>`;
-  container.appendChild(entry);
-}
-
-function removeJob(btn) { btn.closest('.job-entry').remove(); }
-
-function buildReview() {
-  const r = document.getElementById('review-content');
-  let html = '';
-  html += `<div class="review-section"><h3>Contact</h3>`;
-  html += rf('Name', 'fullName') + rf('Email', 'email') + rf('Phone', 'phone') + rf('Location', 'location') + rf('LinkedIn', 'linkedin');
-  html += `</div><div class="review-section"><h3>Career</h3>`;
-  html += rf('Title', 'currentTitle') + rf('Industry', 'industry') + rf('Experience', 'experience') + rf('Summary', 'summary');
-  html += `</div><div class="review-section"><h3>Work History</h3>`;
-  document.querySelectorAll('.job-entry').forEach((job) => {
-    const t = job.querySelector('.job-title-input')?.value || '';
-    const o = job.querySelector('.job-org-input')?.value || '';
-    const s = job.querySelector('.job-start-input')?.value || '';
-    const e = job.querySelector('.job-end-input')?.value || '';
-    const d = job.querySelector('.job-duties-input')?.value || '';
-    if (t || o) html += `<div class="review-job"><div class="review-job-title">${esc(t)}</div><div class="review-job-org">${esc(o)} · ${esc(s)} – ${esc(e)}</div>${d ? `<div class="review-job-duties">${esc(d)}</div>` : ''}</div>`;
-  });
-  html += `</div><div class="review-section"><h3>Skills &amp; Extras</h3>`;
-  html += rf('Skills', 'skills') + rf('Education', 'education') + rf('Certifications', 'certifications') + rf('Notes', 'extras');
-  html += `</div>`;
-  r.innerHTML = html;
-}
-
-function rf(label, id) {
-  const el = document.getElementById(id);
-  const val = el ? (el.value || '—') : '—';
-  return `<div class="review-field"><span class="review-label">${label}:</span><span class="review-value">${esc(val)}</span></div>`;
-}
-
-function esc(str) { const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
-
-function submitForm() {
-  const data = {
-    name: document.getElementById('fullName').value,
-    email: document.getElementById('email').value,
-    phone: document.getElementById('phone').value,
-    location: document.getElementById('location').value,
-    linkedin: document.getElementById('linkedin').value,
-    currentTitle: document.getElementById('currentTitle').value,
-    industry: document.getElementById('industry').value,
-    experience: document.getElementById('experience').value,
-    summary: document.getElementById('summary').value,
-    skills: document.getElementById('skills').value,
-    education: document.getElementById('education').value,
-    certifications: document.getElementById('certifications').value,
-    extras: document.getElementById('extras').value,
-    jobs: []
-  };
-  document.querySelectorAll('.job-entry').forEach((job) => {
-    data.jobs.push({
-      title: job.querySelector('.job-title-input')?.value || '',
-      org: job.querySelector('.job-org-input')?.value || '',
-      start: job.querySelector('.job-start-input')?.value || '',
-      end: job.querySelector('.job-end-input')?.value || '',
-      duties: job.querySelector('.job-duties-input')?.value || ''
-    });
-  });
-  let body = `Beacon CV Build Request\n\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone}\nLocation: ${data.location}\nLinkedIn: ${data.linkedin}\n\nCurrent Title: ${data.currentTitle}\nIndustry: ${data.industry}\nExperience: ${data.experience}\n\nSummary:\n${data.summary}\n\n--- WORK HISTORY ---\n`;
-  data.jobs.forEach((j, i) => { body += `\nPosition ${i+1}: ${j.title}\nCompany: ${j.org}\nDates: ${j.start} – ${j.end}\nDuties:\n${j.duties}\n`; });
-  body += `\n--- SKILLS & EXTRAS ---\nSkills: ${data.skills}\nEducation: ${data.education}\nCertifications: ${data.certificatio
+</body>
+</html>
