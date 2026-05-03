@@ -20,7 +20,7 @@ Deployment is automatic: pushing to the default branch publishes to GitHub Pages
 
 Pages fall into three groups, all at the repo root:
 
-- **Marketing pages** — `index.html` (landing), `about.html`, `contact.html`, `cv-intake.html`, `thank-you.html`.
+- **Marketing pages** — `index.html` (landing), `about.html`, `start.html` (combined intake/contact form), `thank-you.html`.
 - **Example/client CV pages** — `tony-subia.html`, `marenco-cv.html`, `rjsubia-cv.html`. Each has a paired downloadable PDF (`Tony_Subia_CV.pdf`, `marenco-cv.pdf`, `Richard_Subia_CV.pdf`) linked from the page's `.dl-bar` button.
 - **SEO/infra** — `sitemap.xml`, `robots.txt`, `CNAME`, `favicon.svg`.
 
@@ -49,10 +49,11 @@ When adding bullets, set `data-tags` to match the chips you want them to light u
 
 ## Forms
 
-- **`contact.html`** posts to **Web3Forms** (`https://api.web3forms.com/submit`) with a hidden `access_key`, hidden `redirect` to `thank-you.html`, and a hidden honeypot checkbox `name="botcheck"` (visually hidden via `.honeypot`). The submit button is disabled on submit and re-enabled after 8s as a fallback.
-- **Package pre-selection.** `contact.html` reads `?package=cv|bundle|review` from the URL and pre-selects the matching `<select>` option. Links from `index.html` packages section use `contact.html?package=bundle` / `?package=review`. Keep the map in the inline script in sync if package names/prices change.
-- **`cv-intake.html`** is the longer guided intake form (separate from the short contact form).
-- **`thank-you.html`** is intentionally `noindex` — it's a post-submit destination, not a discoverable URL. Don't add it to `sitemap.xml`.
+- **`start.html`** is the single intake/contact entry point (it replaced the old `contact.html` + `cv-intake.html` pair). It posts to **Web3Forms** (`https://api.web3forms.com/submit`) with a hidden `access_key`, redirect to `thank-you.html`, and a honeypot checkbox `name="botcheck"` (hidden via `.honeypot`).
+- **Package picker drives the form.** The page shows three package cards (`data-package="bundle|cv|review"`). Clicking one calls `selectPackage()`, which reveals different sections of the form depending on the package. The form is hidden until a package is chosen.
+- **Package pre-selection via URL.** `start.html?package=bundle|cv|review` auto-selects on load. The links in `index.html` use this (`start.html?package=bundle`, etc.) — keep the keys in sync if you rename packages.
+- **`start.html` is `noindex, nofollow`** — it's a CTA destination reached only via on-site buttons, not something search engines should rank. For the same reason, don't add it to `sitemap.xml`.
+- **`thank-you.html`** is also `noindex` (post-submit destination).
 
 ## Brand details (frequently referenced in copy)
 
