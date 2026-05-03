@@ -66,6 +66,7 @@
   .competencies{display:flex;flex-wrap:wrap;gap:8px}
   .comp-tag{font-size:0.8rem;color:var(--muted);padding:6px 16px;border:1px solid var(--rule);background:var(--card);cursor:pointer;transition:all 0.25s;user-select:none;border-radius:2px}
   .comp-tag:hover{border-color:var(--accent);color:var(--accent)}
+  .comp-tag:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .comp-tag.active{background:var(--accent);color:#fff;border-color:var(--accent)}
   .comp-meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;min-height:20px}
   .comp-hint{font-size:0.74rem;color:var(--muted);font-style:italic;transition:opacity 0.3s}
@@ -151,16 +152,16 @@
 <section class="reveal d3">
   <h2>Core Competencies</h2>
   <div class="competencies" id="compGrid">
-    <span class="comp-tag" data-comp="platform" onclick="toggleComp(this)">Enterprise Platform Management</span>
-    <span class="comp-tag" data-comp="healthit" onclick="toggleComp(this)">Healthcare IT Operations</span>
-    <span class="comp-tag" data-comp="integration" onclick="toggleComp(this)">Systems Integration</span>
-    <span class="comp-tag" data-comp="itsm" onclick="toggleComp(this)">IT Service Management</span>
-    <span class="comp-tag" data-comp="leadership" onclick="toggleComp(this)">Team Leadership &amp; Staff Development</span>
-    <span class="comp-tag" data-comp="project" onclick="toggleComp(this)">Project &amp; Portfolio Management</span>
-    <span class="comp-tag" data-comp="vendor" onclick="toggleComp(this)">Vendor &amp; Contractor Management</span>
-    <span class="comp-tag" data-comp="epic" onclick="toggleComp(this)">Clinical Systems (Epic)</span>
-    <span class="comp-tag" data-comp="process" onclick="toggleComp(this)">Process Design &amp; Improvement</span>
-    <span class="comp-tag" data-comp="stakeholder" onclick="toggleComp(this)">Stakeholder Engagement</span>
+    <span class="comp-tag" data-comp="platform" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">Enterprise Platform Management</span>
+    <span class="comp-tag" data-comp="healthit" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">Healthcare IT Operations</span>
+    <span class="comp-tag" data-comp="integration" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">Systems Integration</span>
+    <span class="comp-tag" data-comp="itsm" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">IT Service Management</span>
+    <span class="comp-tag" data-comp="leadership" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">Team Leadership &amp; Staff Development</span>
+    <span class="comp-tag" data-comp="project" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">Project &amp; Portfolio Management</span>
+    <span class="comp-tag" data-comp="vendor" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">Vendor &amp; Contractor Management</span>
+    <span class="comp-tag" data-comp="epic" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">Clinical Systems (Epic)</span>
+    <span class="comp-tag" data-comp="process" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">Process Design &amp; Improvement</span>
+    <span class="comp-tag" data-comp="stakeholder" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">Stakeholder Engagement</span>
   </div>
   <div class="comp-meta">
     <span class="comp-hint" id="compHint">Click any competency to see where it appears.</span>
