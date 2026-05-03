@@ -32,6 +32,8 @@
     --warm: #9b8a5e;
     --muted: #6b6b6b;
     --rule: #d4d0ca;
+    --glow: rgba(155, 138, 94, 0.18);
+    --glow-border: rgba(155, 138, 94, 0.55);
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -95,8 +97,22 @@
   .competencies { display: flex; flex-wrap: wrap; gap: 8px; }
   .comp-tag {
     font-size: 0.82rem; color: var(--muted); padding: 5px 14px;
-    border: 1px solid var(--rule); background: #fff; transition: all 0.25s; user-select: none;
+    border: 1px solid var(--rule); background: #fff;
+    cursor: pointer; transition: all 0.25s; user-select: none;
   }
+  .comp-tag:hover { border-color: var(--accent); color: var(--accent); }
+  .comp-tag:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .comp-tag.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  .comp-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; min-height: 20px; }
+  .comp-hint { font-size: 0.76rem; color: var(--muted); font-style: italic; transition: opacity 0.3s; }
+  .comp-counter { font-size: 0.76rem; font-weight: 600; color: var(--warm); opacity: 0; transition: opacity 0.3s; }
+  .comp-counter.visible { opacity: 1; }
+
+  .hl { transition: all 0.35s ease; border-radius: 2px; padding: 1px 0; }
+  body.filtering .hl { opacity: 0.3; }
+  body.filtering .hl.lit { opacity: 1; background: var(--glow); box-shadow: -3px 0 0 var(--glow), 3px 0 0 var(--glow); border-bottom: 2px solid var(--glow-border); }
+  body.filtering .dim { opacity: 0.2; transition: opacity 0.35s; }
 
   .jurisdiction-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; }
   .juris-label { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 4px; }
@@ -109,7 +125,7 @@
   .job-org { font-size: 0.88rem; color: var(--muted); }
   .job-date { font-size: 0.82rem; font-weight: 500; color: var(--accent); white-space: nowrap; }
   .job ul { margin-top: 8px; padding-left: 18px; list-style: none; }
-  .job li { position: relative; padding-left: 14px; margin-bottom: 5px; font-size: 0.9rem; line-height: 1.6; }
+  .job li { position: relative; padding-left: 14px; margin-bottom: 5px; font-size: 0.9rem; line-height: 1.6; transition: opacity 0.35s; }
   .job li::before { content: ''; position: absolute; left: 0; top: 10px; width: 4px; height: 4px; background: var(--accent); border-radius: 50%; }
 
   .ec-role { margin-bottom: 16px; padding-left: 0; border-left: 2px solid transparent; transition: all 0.3s; }
@@ -117,7 +133,7 @@
   .ec-role .job-title { font-size: 0.95rem; }
   .ec-role .job-org { font-size: 0.85rem; }
   .ec-role .job-date { font-size: 0.8rem; }
-  .ec-desc { font-size: 0.88rem; color: var(--muted); margin-top: 4px; line-height: 1.6; }
+  .ec-desc { font-size: 0.88rem; color: var(--muted); margin-top: 4px; line-height: 1.6; transition: opacity 0.35s; }
 
   .training-list { list-style: none; padding: 0; columns: 1; }
   .training-list li { font-size: 0.88rem; padding: 4px 0 4px 18px; position: relative; color: var(--muted); }
@@ -130,9 +146,12 @@
   @media print {
     body::before { display: none; } .page { padding: 0; } .dl-bar { display: none; }
     body { background: #fff; font-size: 11pt; }
-    .comp-tag { border: none; padding: 0; background: none; display: inline; }
+    .comp-tag { border: none; padding: 0; background: none; cursor: default; display: inline; }
     .comp-tag::after { content: ' · '; } .comp-tag:last-child::after { content: ''; }
     .competencies { display: block; }
+    .comp-meta { display: none; }
+    .hl { background: none !important; border: none !important; box-shadow: none !important; opacity: 1 !important; }
+    .dim { opacity: 1 !important; }
     .jurisdiction-grid { display: block; }
     .juris-group { display: inline; } .juris-group::after { content: '  |  '; }
     .juris-group:last-child::after { content: ''; }
@@ -173,16 +192,20 @@
 <section class="reveal d3">
   <h2>Areas of Expert Testimony</h2>
   <div class="competencies">
-    <span class="comp-tag">Offender Risk Assessment</span>
-    <span class="comp-tag">In-Custody Death</span>
-    <span class="comp-tag">Use of Force</span>
-    <span class="comp-tag">Gang Identification &amp; Management</span>
-    <span class="comp-tag">Correctional Operations &amp; Policy</span>
-    <span class="comp-tag">ADA Compliance</span>
-    <span class="comp-tag">Inmate Classification &amp; Housing</span>
-    <span class="comp-tag">Transgender Inmate Compliance</span>
-    <span class="comp-tag">Religious Accommodation</span>
-    <span class="comp-tag">Prison Overcrowding &amp; Population Management</span>
+    <span class="comp-tag" data-comp="risk" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">Offender Risk Assessment</span>
+    <span class="comp-tag" data-comp="incustody" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">In-Custody Death</span>
+    <span class="comp-tag" data-comp="force" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">Use of Force</span>
+    <span class="comp-tag" data-comp="gang" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">Gang Identification &amp; Management</span>
+    <span class="comp-tag" data-comp="ops" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">Correctional Operations &amp; Policy</span>
+    <span class="comp-tag" data-comp="ada" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">ADA Compliance</span>
+    <span class="comp-tag" data-comp="classification" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">Inmate Classification &amp; Housing</span>
+    <span class="comp-tag" data-comp="transgender" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">Transgender Inmate Compliance</span>
+    <span class="comp-tag" data-comp="religious" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">Religious Accommodation</span>
+    <span class="comp-tag" data-comp="overcrowding" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleComp(this);}">Prison Overcrowding &amp; Population Management</span>
+  </div>
+  <div class="comp-meta">
+    <span class="comp-hint" id="compHint">Click any area above to highlight where it appears in this CV.</span>
+    <span class="comp-counter" id="compCounter"></span>
   </div>
 </section>
 
@@ -220,12 +243,12 @@
     <div class="job-date">April 2012 – Present</div>
   </div>
   <ul>
-    <li>Over 100 appearances in state and federal courts. The majority of testimony concerns offender risk assessment — both in-custody and community-based. Other frequent case types include in-custody deaths, use of force, and correctional operations.</li>
-    <li>Additional testimony areas include ADA compliance, transgender inmate compliance, and religious accommodation.</li>
+    <li>Over 100 appearances in state and federal courts. The majority of testimony concerns <span class="hl" data-comp="risk">offender risk assessment — both in-custody and community-based</span>. Other frequent case types include <span class="hl" data-comp="incustody">in-custody deaths</span>, <span class="hl" data-comp="force">use of force</span>, and <span class="hl" data-comp="ops">correctional operations</span>.</li>
+    <li>Additional testimony areas include <span class="hl" data-comp="ada">ADA compliance</span>, <span class="hl" data-comp="transgender">transgender inmate compliance</span>, and <span class="hl" data-comp="religious">religious accommodation</span>.</li>
     <li>Testified in five death penalty cases as a mitigation expert in Arizona.</li>
-    <li>Submitted amicus briefs to the U.S. Supreme Court on two cases as an expert in corrections operations.</li>
-    <li>Contracted by the U.S. Department of Justice to assist with oversight of state prison operations.</li>
-    <li>Consulting practice also covers rehabilitative programming, construction oversight, community reentry, prison overcrowding, court compliance, and cell phone interdiction.</li>
+    <li>Submitted amicus briefs to the U.S. Supreme Court on two cases as an expert in <span class="hl" data-comp="ops">corrections operations</span>.</li>
+    <li>Contracted by the U.S. Department of Justice to assist with oversight of <span class="hl" data-comp="ops">state prison operations</span>.</li>
+    <li>Consulting practice also covers rehabilitative programming, construction oversight, community reentry, <span class="hl" data-comp="overcrowding">prison overcrowding</span>, court compliance, and cell phone interdiction.</li>
   </ul>
 </div>
 
@@ -253,13 +276,13 @@
     <div class="job-date">December 2007 – March 2012</div>
   </div>
   <ul>
-    <li>Cabinet-level leadership of one of the nation's largest prison systems: 33 state prisons, 38 camps, community-based facilities, and out-of-state contract facilities holding over 9,500 California offenders. Total population of approximately 165,000 inmates. 60,000 staff. $9 billion in annual expenditures.</li>
-    <li>Policy-level decision-making authority across the full scope of institutional operations: rule violations and discipline, inmate appeals, internal investigations, use of force review, in-custody deaths, access to health care services, safety and security protocols, escape prevention, access to religious services, gang management, inmate classification, and program and housing placements.</li>
-    <li>Executive assigned to oversee compliance with three federal consent decrees: <em>Armstrong</em> (disability placement and ADA), <em>Clark</em> (developmentally disabled), and <em>Coleman</em> (mental health delivery).</li>
-    <li>Wrote correctional policy on execution protocols, inmate classification processes, and population management. Testified before the California Legislature on correctional matters.</li>
-    <li>The Department's executive spokesperson on operational matters to media, Legislature, labor unions, and local, state, and federal government agencies.</li>
+    <li><span class="hl" data-comp="ops">Cabinet-level leadership of one of the nation's largest prison systems</span>: 33 state prisons, 38 camps, community-based facilities, and out-of-state contract facilities holding over 9,500 California offenders. Total population of approximately 165,000 inmates. 60,000 staff. $9 billion in annual expenditures.</li>
+    <li><span class="hl" data-comp="ops">Policy-level decision-making authority across the full scope of institutional operations</span>: rule violations and discipline, inmate appeals, internal investigations, <span class="hl" data-comp="force">use of force review</span>, <span class="hl" data-comp="incustody">in-custody deaths</span>, access to health care services, safety and security protocols, escape prevention, <span class="hl" data-comp="religious">access to religious services</span>, <span class="hl" data-comp="gang">gang management</span>, <span class="hl" data-comp="classification">inmate classification, and program and housing placements</span>.</li>
+    <li>Executive assigned to oversee compliance with three federal consent decrees: <em><span class="hl" data-comp="ada">Armstrong</span></em> <span class="hl" data-comp="ada">(disability placement and ADA)</span>, <em>Clark</em> (developmentally disabled), and <em>Coleman</em> (mental health delivery).</li>
+    <li>Wrote <span class="hl" data-comp="ops">correctional policy on execution protocols</span>, <span class="hl" data-comp="classification">inmate classification processes</span>, and <span class="hl" data-comp="overcrowding">population management</span>. Testified before the California Legislature on correctional matters.</li>
+    <li>The Department's <span class="hl" data-comp="ops">executive spokesperson on operational matters</span> to media, Legislature, labor unions, and local, state, and federal government agencies.</li>
     <li>Built CDCR's K-9 program from zero dogs to 29 by retirement. The program is still in operation.</li>
-    <li>Developed rehabilitative programs including Criminal and Gang Members Anonymous (CGA), which grew from a pilot at Mule Creek State Prison into an international program operating in both facilities and communities.</li>
+    <li>Developed rehabilitative programs including <span class="hl" data-comp="gang">Criminal and Gang Members Anonymous (CGA)</span>, which grew from a pilot at Mule Creek State Prison into an international program operating in both facilities and communities.</li>
   </ul>
 </div>
 
@@ -270,8 +293,8 @@
     <div class="job-date">December 2006 – December 2007</div>
   </div>
   <ul>
-    <li>Level III/IV institution, approximately 3,400 inmates. Full operational authority over custody, programming, medical and mental health services, parole readiness, and due process. Direct responsibility for use of force review, in-custody incident response, inmate discipline, and classification decisions at the facility level.</li>
-    <li>Large Sensitive Needs Yard population including gang dropouts and protective custody inmates — a housing challenge requiring ongoing risk assessment and classification management informed by a decade of gang investigation experience.</li>
+    <li>Level III/IV institution, approximately 3,400 inmates. Full operational authority over custody, programming, medical and mental health services, parole readiness, and due process. Direct responsibility for <span class="hl" data-comp="force">use of force review</span>, <span class="hl" data-comp="incustody">in-custody incident response</span>, inmate discipline, and <span class="hl" data-comp="classification">classification decisions at the facility level</span>.</li>
+    <li>Large Sensitive Needs Yard population including <span class="hl" data-comp="gang">gang dropouts</span> and protective custody inmates — a housing challenge requiring ongoing <span class="hl" data-comp="risk">risk assessment</span> and <span class="hl" data-comp="classification">classification management</span> informed by a decade of <span class="hl" data-comp="gang">gang investigation experience</span>.</li>
     <li>Led community engagement including work to resolve a city water contamination issue affecting the area around the prison.</li>
   </ul>
 </div>
@@ -291,7 +314,7 @@
     <div class="job-org">CDCR · Mule Creek State Prison</div>
     <div class="job-date">1998 – 2002</div>
   </div>
-  <div class="ec-desc">Piloted Criminal and Gang Members Anonymous (CGA) at Mule Creek with an inmate collaborator in 2002. As Captain, directly responsible for institutional security operations, use of force incidents, emergency response, and staff discipline.</div>
+  <div class="ec-desc">Piloted <span class="hl" data-comp="gang">Criminal and Gang Members Anonymous (CGA)</span> at Mule Creek with an inmate collaborator in 2002. As Captain, directly responsible for institutional security operations, <span class="hl" data-comp="force">use of force incidents</span>, emergency response, and staff discipline.</div>
 </div>
 
 <div class="ec-role">
@@ -300,7 +323,7 @@
     <div class="job-org">CDCR</div>
     <div class="job-date">1992 – 1998</div>
   </div>
-  <div class="ec-desc">Responsible for the gang validation process at a maximum-security prison — over 500 validations. Debriefed numerous gang members who disassociated. Active member of the California Gang Task Force and the Tri-County Gang Task Force. Coordinated with outside law enforcement on gang activity crossing prison-community boundaries. In 1991, assigned to the U.S. Attorney as a gang expert in the first RICO trial against a prison gang (Nuestra Familia) — the Black Widow Case, <em>People v. Arroyo</em>. Ten years heading Classification Committees evaluating inmate behavior, propensity for violence, and risk to determine housing and program placement — including inmates placed in segregated housing following serious rule violations. Over 11 years at an institution responsible for housing gang dropouts.</div>
+  <div class="ec-desc">Responsible for the <span class="hl" data-comp="gang">gang validation process at a maximum-security prison — over 500 validations</span>. <span class="hl" data-comp="gang">Debriefed numerous gang members who disassociated</span>. Active member of the <span class="hl" data-comp="gang">California Gang Task Force and the Tri-County Gang Task Force</span>. Coordinated with outside law enforcement on gang activity crossing prison-community boundaries. In 1991, assigned to the U.S. Attorney as a <span class="hl" data-comp="gang">gang expert in the first RICO trial against a prison gang (Nuestra Familia)</span> — the Black Widow Case, <em>People v. Arroyo</em>. <span class="hl" data-comp="classification">Ten years heading Classification Committees</span> <span class="hl" data-comp="risk">evaluating inmate behavior, propensity for violence, and risk</span> to determine housing and program placement — including inmates placed in segregated housing following serious rule violations. Over 11 years at an institution responsible for <span class="hl" data-comp="gang">housing gang dropouts</span>.</div>
 </div>
 
 <div class="ec-role">
@@ -309,7 +332,7 @@
     <div class="job-org">CDCR · Four California State Prisons</div>
     <div class="job-date">1986 – 1992</div>
   </div>
-  <div class="ec-desc">Entered CDCR as a Correctional Officer and rose through frontline supervisory ranks across four California institutions. Direct involvement in custody operations, inmate supervision, use of force situations, and institutional security at the line-staff and first-line supervisory levels.</div>
+  <div class="ec-desc">Entered CDCR as a Correctional Officer and rose through frontline supervisory ranks across four California institutions. Direct involvement in custody operations, inmate supervision, <span class="hl" data-comp="force">use of force situations</span>, and institutional security at the line-staff and first-line supervisory levels.</div>
 </div>
 
 </section>
@@ -363,5 +386,61 @@
 <footer>&copy; 2026 Richard J. Subia &middot; CV by <a href="https://beaconcv.net/">Beacon</a></footer>
 
 </div>
+
+<script>
+let activeComp = null;
+
+function toggleComp(tag) {
+  const comp = tag.dataset.comp;
+  if (activeComp === comp) { clearAll(); return; }
+  clearAll();
+  activeComp = comp;
+  tag.classList.add('active');
+  document.body.classList.add('filtering');
+
+  const matches = document.querySelectorAll('.hl[data-comp="' + comp + '"]');
+  matches.forEach(el => el.classList.add('lit'));
+
+  document.querySelectorAll('.job li').forEach(li => {
+    if (!li.querySelector('.hl.lit')) li.classList.add('dim');
+  });
+  document.querySelectorAll('.ec-desc').forEach(desc => {
+    if (!desc.querySelector('.hl.lit')) desc.classList.add('dim');
+  });
+
+  const roles = new Set();
+  matches.forEach(el => {
+    const job = el.closest('.job') || el.closest('.ec-role');
+    if (job) roles.add(job);
+  });
+
+  const counter = document.getElementById('compCounter');
+  counter.textContent = matches.length + ' instance' + (matches.length !== 1 ? 's' : '') + ' across ' + roles.size + ' role' + (roles.size !== 1 ? 's' : '');
+  counter.classList.add('visible');
+  document.getElementById('compHint').style.opacity = '0';
+
+  if (matches.length > 0) {
+    const first = matches[0];
+    const rect = first.getBoundingClientRect();
+    if (rect.top < 0 || rect.top > window.innerHeight * 0.6) {
+      first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+}
+
+function clearAll() {
+  activeComp = null;
+  document.body.classList.remove('filtering');
+  document.querySelectorAll('.comp-tag.active').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.hl.lit').forEach(el => el.classList.remove('lit'));
+  document.querySelectorAll('.dim').forEach(el => el.classList.remove('dim'));
+  document.getElementById('compCounter').classList.remove('visible');
+  document.getElementById('compHint').style.opacity = '1';
+}
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.comp-tag') && !e.target.closest('.hl') && activeComp) clearAll();
+});
+</script>
 </body>
 </html>
