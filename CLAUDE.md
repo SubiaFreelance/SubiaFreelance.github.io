@@ -39,8 +39,8 @@ These patterns recur across pages and are worth preserving when editing:
 
 Client CV pages implement a click-to-filter "competencies" feature that's easy to break if you don't know the contract:
 
-1. Competency chips are `<span class="comp-tag" data-comp="KEY" onclick="toggleComp(this)">…</span>`.
-2. Highlightable bullets/sentences in the experience section are wrapped in `<span class="hl" data-tags="key1 key2">…</span>` (space-separated keys matching `data-comp`).
+1. Competency chips are `<span class="comp-tag" data-comp="KEY" role="button" tabindex="0" onclick="toggleComp(this)" onkeydown="…">…</span>`.
+2. Highlightable bullets/sentences in the experience section are wrapped in `<span class="hl" data-comp="KEY">…</span>` — the `data-comp` attribute on the span matches the chip's `data-comp` value (single key per span; if a phrase needs to light up under multiple chips, wrap it in multiple `.hl` spans).
 3. Job blocks that should dim out when no bullets match get `class="job"` (the script adds/removes `dim` based on whether any descendant `.hl` matched).
 4. The shared CSS rules driving the visual state are `body.filtering .hl`, `body.filtering .hl.lit`, and `body.filtering .dim`. Toggling `body.filtering` is the master switch.
 5. Print stylesheet (`@media print`) intentionally neutralises the filter: chips render as inline " · "-separated text and `.hl`/`.dim` styling is reset so the printed CV looks clean regardless of filter state.
