@@ -159,6 +159,11 @@
     box-shadow: var(--shadow-soft);
   }
 
+  .picker-card:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+
   .picker-card.selected {
     border-color: var(--accent);
     background: var(--highlight);
@@ -507,17 +512,17 @@
   <div class="package-picker">
     <div class="picker-label">Which package fits?</div>
     <div class="picker-cards" id="packageCards">
-      <div class="picker-card" data-package="bundle" onclick="selectPackage('bundle')">
+      <div class="picker-card" role="button" tabindex="0" data-package="bundle" onclick="selectPackage('bundle')" onkeydown="pickerKeydown(event, 'bundle')">
         <div class="picker-card-name">CV + Web Presence</div>
         <div class="picker-card-price">$500</div>
         <div class="picker-card-desc">Full strategic CV plus a custom-built webpage to host it.</div>
       </div>
-      <div class="picker-card" data-package="cv" onclick="selectPackage('cv')">
+      <div class="picker-card" role="button" tabindex="0" data-package="cv" onclick="selectPackage('cv')" onkeydown="pickerKeydown(event, 'cv')">
         <div class="picker-card-name">CV Writing</div>
         <div class="picker-card-price">$350</div>
         <div class="picker-card-desc">Strategic CV from scratch, delivered as a polished PDF.</div>
       </div>
-      <div class="picker-card" data-package="review" onclick="selectPackage('review')">
+      <div class="picker-card" role="button" tabindex="0" data-package="review" onclick="selectPackage('review')" onkeydown="pickerKeydown(event, 'review')">
         <div class="picker-card-name">Web Presence Only</div>
         <div class="picker-card-price">$200</div>
         <div class="picker-card-desc">Custom webpage built around your existing CV.</div>
@@ -916,6 +921,13 @@ const PACKAGE_CONFIG = {
 };
 
 let currentPackage = null;
+
+function pickerKeydown(event, pkg) {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    selectPackage(pkg);
+  }
+}
 
 function selectPackage(pkg) {
   if (!PACKAGE_CONFIG[pkg]) return;
