@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>David L. Starnes — Correctional Law Enforcement Executive & Expert Witness</title>
+<meta name="description" content="David L. Starnes — 35+ years in law enforcement and correctional leadership. Expert witness in state and federal courts. Internal affairs, peace officer selection, and correctional operations.">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #fdfcf9;
+    --rule: #1a1a1a;
+    --soft-rule: #c8c4b8;
+    --muted: #555550;
+    --accent: #4a3520;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'EB Garamond', 'Adobe Garamond', Garamond, Georgia, serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern", "liga", "onum";
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 56px 96px;
+    position: relative;
+  }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .reveal { opacity: 0; animation: fadeIn 0.8s ease-out forwards; }
+  .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.20s; }
+  .d3 { animation-delay: 0.35s; } .d4 { animation-delay: 0.50s; }
+  .d5 { animation-delay: 0.65s; } .d6 { animation-delay: 0.80s; }
+
+  /* ── HEAD: letterhead-style ── */
+  header {
+    margin-bottom: 56px;
+    text-align: center;
+    padding-bottom: 28px;
+  }
+
+  h1 {
+    font-family: 'EB Garamond', Garamond, serif;
+    font-size: 2.6rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 14px;
+    font-variant: small-caps;
+  }
+
+  .head-rule {
+    width: 80px;
+    height: 1px;
+    background: var(--ink);
+    margin: 0 auto 14px;
+  }
+
+  .subtitle {
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 22px;
+    letter-spacing: 0.01em;
+  }
+
+  .contact {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.92rem;
+    color: var(--ink);
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+  }
+  .contact a { color: var(--ink); text-decoration: none; transition: color 0.2s; }
+  .contact a:hover { color: var(--accent); }
+  .contact .sep { margin: 0 12px; color: var(--soft-rule); }
+
+  /* ── SECTIONS ── */
+  section { margin-bottom: 38px; }
+
+  h2 {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--ink);
+    font-variant: small-caps;
+    letter-spacing: 0.14em;
+  }
+
+  /* ── SUMMARY ── */
+  .summary {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--ink);
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  /* ── COMPETENCIES: prose-style, not tags ── */
+  .competencies {
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--ink);
+  }
+  .comp-tag {
+    display: inline;
+    cursor: pointer;
+    transition: all 0.25s;
+    user-select: none;
+    color: var(--ink);
+    border-bottom: 1px dotted transparent;
+    padding-bottom: 1px;
+  }
+  .comp-tag:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .comp-tag.active { color: var(--accent); border-bottom-color: var(--accent); font-style: italic; }
+  .comp-tag::after { content: '\00B7'; margin: 0 8px; color: var(--soft-rule); pointer-events: none; }
+  .comp-tag:last-of-type::after { content: ''; }
+
+  .comp-meta { display: flex; justify-content: flex-end; align-items: center; margin-top: 14px; min-height: 18px; }
+  .comp-hint { font-family: 'EB Garamond', serif; font-size: 0.82rem; font-style: italic; color: var(--muted); transition: opacity 0.3s; flex: 1; }
+  .comp-counter { font-family: 'EB Garamond', serif; font-size: 0.82rem; font-style: italic; color: var(--accent); opacity: 0; transition: opacity 0.3s; }
+  .comp-counter.visible { opacity: 1; }
+
+  .hl { transition: opacity 0.35s ease; }
+  body.filtering .hl { opacity: 0.32; }
+  body.filtering .hl.lit { opacity: 1; font-style: italic; color: var(--accent); }
+  body.filtering .dim { opacity: 0.22; transition: opacity 0.35s; }
+
+  /* ── JOBS: traditional letterhead format ── */
+  .job { margin-bottom: 26px; }
+
+  .job-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 2px;
+  }
+  .job-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+    flex: 1;
+  }
+  .job-date {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.92rem;
+    font-style: italic;
+    color: var(--ink);
+    white-space: nowrap;
+    font-feature-settings: "onum";
+  }
+  .job-org {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .job ul { list-style: none; padding: 0; }
+  .job li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 4px;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    transition: opacity 0.35s;
+    color: var(--ink);
+  }
+  .job li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--ink);
+  }
+
+  /* ── EARLIER CAREER ── */
+  .ec-role { margin-bottom: 16px; }
+  .ec-desc { font-size: 0.98rem; line-height: 1.65; color: var(--ink); transition: opacity 0.35s; margin-top: 6px; }
+
+  /* ── CONSULTING NOTE ── */
+  .consult-note {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.92rem;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dotted var(--soft-rule);
+    line-height: 1.6;
+  }
+
+  /* ── MILITARY ── */
+  .mil {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .mil-line { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+  .mil-line strong { font-weight: 600; }
+  .mil-detail { font-style: italic; color: var(--muted); margin-top: 2px; font-feature-settings: "onum"; }
+
+  /* ── REFERENCES ── */
+  .refs {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--muted);
+    text-align: center;
+    padding-top: 8px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    margin-top: 64px;
+    padding-top: 18px;
+    border-top: 1px solid var(--soft-rule);
+    text-align: center;
+    font-family: 'EB Garamond', serif;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--muted);
+  }
+  footer a { color: var(--muted); text-decoration: none; border-bottom: 1px dotted var(--soft-rule); padding-bottom: 1px; }
+  footer a:hover { color: var(--accent); border-color: var(--accent); }
+
+  .design-label {
+    position: fixed; top: 16px; right: 16px;
+    background: var(--ink); color: var(--paper);
+    font-family: 'EB Garamond', serif;
+    font-size: 0.78rem; font-style: italic;
+    letter-spacing: 0.04em;
+    padding: 6px 12px; z-index: 10;
+  }
+
+  @media print {
+    .design-label { display: none; }
+    .page { padding: 0; max-width: 100%; }
+    body { background: #fff; font-size: 11pt; }
+    .reveal { opacity: 1; animation: none; }
+    .hl { opacity: 1 !important; font-style: normal !important; color: var(--ink) !important; }
+    .dim { opacity: 1 !important; }
+    .comp-hint, .comp-counter { display: none; }
+    .comp-tag { cursor: default; }
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 48px 24px 64px; }
+    h1 { font-size: 2rem; }
+    .contact .sep { display: none; }
+    .contact span { display: block; }
+    .job-line { flex-direction: column; gap: 2px; }
+    .job-date { font-size: 0.88rem; }
+    .mil-line { flex-direction: column; gap: 2px; }
+  }
+</style>
+</head>
+<body>
+<div class="design-label">Option C — Senior Counsel</div>
+<div class="page">
+
+<header class="reveal d1">
+  <h1>David L. Starnes</h1>
+  <div class="head-rule"></div>
+  <div class="subtitle">Correctional Law Enforcement Executive · Expert Witness · Consultant</div>
+  <div class="contact">
+    <span>Sacramento, California</span><span class="sep">·</span>
+    <span><a href="mailto:dstarnes14@comcast.net">dstarnes14@comcast.net</a></span><span class="sep">·</span>
+    <span>(916) 719-9334</span>
+  </div>
+</header>
+
+<section class="reveal d2">
+  <h2>Professional Summary</h2>
+  <p class="summary">Public safety executive with more than thirty-five years of law enforcement service and over twenty-five years of investigative leadership across correctional and forensic mental health environments. Has led large public safety organizations, directed statewide internal affairs operations, managed peace officer hiring programs, and implemented policy and operational reforms across complex government systems. Currently serves as Chief of CDCR's Allegation Investigation Unit and provides expert witness testimony in state and federal courts through Starnes Consulting.</p>
+</section>
+
+<section class="reveal d3">
+  <h2>Areas of Expertise</h2>
+  <div class="competencies" id="compGrid">
+    <span class="comp-tag" data-comp="ia" onclick="toggleComp(this)">Internal Affairs &amp; Investigations</span><span class="comp-tag" data-comp="ops" onclick="toggleComp(this)">Correctional Operations</span><span class="comp-tag" data-comp="expert" onclick="toggleComp(this)">Expert Witness Testimony</span><span class="comp-tag" data-comp="risk" onclick="toggleComp(this)">Risk Assessment</span><span class="comp-tag" data-comp="lead" onclick="toggleComp(this)">Law Enforcement Leadership</span><span class="comp-tag" data-comp="reform" onclick="toggleComp(this)">Policy &amp; Operational Reform</span><span class="comp-tag" data-comp="hiring" onclick="toggleComp(this)">Peace Officer Selection</span><span class="comp-tag" data-comp="coord" onclick="toggleComp(this)">Multi-Agency Coordination</span><span class="comp-tag" data-comp="forensic" onclick="toggleComp(this)">Forensic Mental Health</span><span class="comp-tag" data-comp="case" onclick="toggleComp(this)">Investigative Case Management</span>
+  </div>
+  <div class="comp-meta">
+    <span class="comp-hint" id="compHint">Click any expertise to see where it appears in practice.</span>
+    <span class="comp-counter" id="compCounter"></span>
+  </div>
+</section>
+
+<section class="reveal d4">
+  <h2>Consulting &amp; Expert Witness</h2>
+  <div class="job">
+    <div class="job-line">
+      <div class="job-title">CEO, Starnes Consulting</div>
+      <div class="job-date">April 2016 – Present</div>
+    </div>
+    <div class="job-org">Sacramento, California</div>
+    <ul>
+      <li><span class="hl" data-comp="expert">Provides expert witness testimony in criminal and civil cases in state and federal courts.</span></li>
+      <li><span class="hl" data-comp="ops">Consults on correctional operations, internal affairs investigations, community supervision, and risk assessment.</span></li>
+      <li><span class="hl" data-comp="risk">Engaged by attorneys and agencies seeking subject matter expertise in correctional and law enforcement practice.</span></li>
+    </ul>
+    <div class="consult-note">For testimony history, case types, and availability, please contact David directly.</div>
+  </div>
+</section>
+
+<section class="reveal d5">
+  <h2>Professional Experience</h2>
+
+  <div class="job">
+    <div class="job-line">
+      <div class="job-title">Chief, Allegation Investigation Unit</div>
+      <div class="job-date">June 2024 – Present</div>
+    </div>
+    <div class="job-org">Office of Internal Affairs, California Department of Corrections &amp; Rehabilitation</div>
+    <ul>
+      <li><span class="hl" data-comp="lead">Provides statewide executive leadership for the Allegation Investigation Unit responsible for administrative investigations involving allegations of staff misconduct toward incarcerated persons.</span></li>
+      <li><span class="hl" data-comp="ia">Directs regional investigative teams composed of associate wardens, captains, investigators, and analysts responsible for hundreds of active investigations.</span></li>
+      <li><span class="hl" data-comp="reform">Leads implementation of investigative reforms addressing backlog reduction while maintaining investigative integrity and statutory timelines.</span></li>
+      <li><span class="hl" data-comp="case">Developed structured case prioritization models</span> <span class="hl" data-comp="risk">aligning investigative resources with allegation severity and statute of limitations risk.</span></li>
+      <li><span class="hl" data-comp="reform">Designed the Central Intake Triage Team (CITT) concept to improve investigative intake screening, early video preservation, and case triage.</span></li>
+      <li><span class="hl" data-comp="coord">Coordinates investigative practices with the Office of the Inspector General, Hiring Authorities, and EAPT attorneys.</span></li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-line">
+      <div class="job-title">Chief of Law Enforcement / Deputy Director, Office of Protective Services</div>
+      <div class="job-date">November 2019 – January 2022</div>
+    </div>
+    <div class="job-org">California Department of State Hospitals</div>
+    <ul>
+      <li><span class="hl" data-comp="lead">Provided executive leadership for statewide law enforcement and fire service operations across multiple forensic mental health hospitals.</span></li>
+      <li><span class="hl" data-comp="ia">Directed confidential criminal and administrative investigations involving staff and patient incidents.</span></li>
+      <li><span class="hl" data-comp="forensic">Developed consistent law enforcement and fire service practices across multiple facilities.</span></li>
+      <li><span class="hl" data-comp="coord">Collaborated with executive leadership, control agencies, and local law enforcement partners on safety and policy matters.</span></li>
+      <li><span class="hl" data-comp="forensic">Implemented training and staff development programs supporting law enforcement and fire service personnel.</span></li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-line">
+      <div class="job-title">Chief, Office of Peace Officer Selection</div>
+      <div class="job-date">February 2015 – April 2016</div>
+    </div>
+    <div class="job-org">California Department of Corrections &amp; Rehabilitation</div>
+    <ul>
+      <li><span class="hl" data-comp="hiring">Provided statewide leadership for CDCR peace officer recruitment and selection operations.</span></li>
+      <li><span class="hl" data-comp="hiring">Oversaw examination, background investigations, medical and psychological screening, and hiring processes.</span></li>
+      <li><span class="hl" data-comp="ops">Directed operations responsible for processing more than 120,000 applicants through multiple phases of the selection process.</span></li>
+      <li><span class="hl" data-comp="reform">Advised institutional leadership and stakeholders on peace officer hiring policy and compliance with state personnel rules.</span></li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-line">
+      <div class="job-title">Senior Special Agent, Office of Internal Affairs</div>
+      <div class="job-date">November 2009 – February 2015</div>
+    </div>
+    <div class="job-org">California Department of Corrections &amp; Rehabilitation</div>
+    <ul>
+      <li><span class="hl" data-comp="ia">Conducted complex administrative and criminal investigations involving departmental staff.</span></li>
+      <li><span class="hl" data-comp="case">Provided investigative guidance</span> <span class="hl" data-comp="expert">and technical assistance to hiring authorities and investigators.</span></li>
+      <li><span class="hl" data-comp="case">Participated in Central Intake Panel</span> <span class="hl" data-comp="expert">reviewing thousands of requests for internal affairs investigations.</span></li>
+      <li><span class="hl" data-comp="coord">Worked with external law enforcement agencies on multi-jurisdictional investigative matters.</span></li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-line">
+      <div class="job-title">Special Agent, Office of Internal Affairs</div>
+      <div class="job-date">October 2006 – November 2009</div>
+    </div>
+    <div class="job-org">California Department of Corrections &amp; Rehabilitation</div>
+    <ul>
+      <li><span class="hl" data-comp="ia">Investigated criminal activity and staff misconduct cases within CDCR.</span></li>
+      <li><span class="hl" data-comp="ia">Conducted interviews, interrogations, intelligence gathering, and surveillance operations.</span></li>
+      <li><span class="hl" data-comp="coord">Coordinated enforcement actions with local and state law enforcement agencies.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Earlier Career</h2>
+  <div class="ec-role">
+    <div class="job-line">
+      <div class="job-title">Correctional Lieutenant, Sergeant, Officer</div>
+      <div class="job-date">September 1990 – October 2006</div>
+    </div>
+    <div class="job-org">California Department of Corrections &amp; Rehabilitation — Multiple Institutions</div>
+    <div class="ec-desc"><span class="hl" data-comp="ops">Sixteen years of progressive custody leadership across multiple institutions.</span> <span class="hl" data-comp="lead">As Lieutenant, supervised custody operations including disciplinary matters, investigations, healthcare access, safety and security, and classification committee decisions.</span> <span class="hl" data-comp="ia">As Sergeant, supervised the Investigative Services Unit</span> and correctional officers in varied assignments. As Officer, performed frontline custody duties at two institutions <span class="hl" data-comp="case">including Investigative Services Unit assignments.</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>Military Service</h2>
+  <div class="mil">
+    <div class="mil-line">
+      <strong>United States Marine Corps</strong>
+      <span style="font-style: italic;">Engineer Equipment Operator (MOS 1345)</span>
+    </div>
+    <div class="mil-detail">Active Duty 1984–1988 · Marine Corps Reserve 1996–2002</div>
+  </div>
+</section>
+
+<section>
+  <div class="refs">References and testimony history available upon request.</div>
+</section>
+
+<footer>&copy; 2026 David L. Starnes &nbsp;·&nbsp; CV by <a href="https://beaconcv.net">Beacon</a></footer>
+
+</div>
+
+<script>
+let activeComp = null;
+function toggleComp(tag) {
+  const comp = tag.dataset.comp;
+  const counter = document.getElementById('compCounter');
+  const hint = document.getElementById('compHint');
+  if (activeComp === comp) { clearAll(); return; }
+  clearAll();
+  activeComp = comp;
+  tag.classList.add('active');
+  document.body.classList.add('filtering');
+  const matches = document.querySelectorAll(`.hl[data-comp="${comp}"]`);
+  matches.forEach(el => el.classList.add('lit'));
+  document.querySelectorAll('.job li').forEach(li => { if (!li.querySelector('.hl.lit')) li.classList.add('dim'); });
+  document.querySelectorAll('.ec-desc').forEach(desc => { if (!desc.querySelector('.hl.lit')) desc.classList.add('dim'); });
+  const roles = new Set();
+  matches.forEach(el => { const j = el.closest('.job') || el.closest('.ec-role'); if (j) roles.add(j); });
+  counter.textContent = `${matches.length} instance${matches.length !== 1 ? 's' : ''} across ${roles.size} role${roles.size !== 1 ? 's' : ''}`;
+  counter.classList.add('visible');
+  hint.style.opacity = '0';
+  if (matches.length > 0) {
+    const first = matches[0];
+    const rect = first.getBoundingClientRect();
+    if (rect.top < 0 || rect.top > window.innerHeight * 0.6) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+function clearAll() {
+  activeComp = null;
+  document.body.classList.remove('filtering');
+  document.querySelectorAll('.comp-tag.active').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.hl.lit').forEach(el => el.classList.remove('lit'));
+  document.querySelectorAll('.dim').forEach(el => el.classList.remove('dim'));
+  const counter = document.getElementById('compCounter');
+  const hint = document.getElementById('compHint');
+  counter.classList.remove('visible');
+  hint.style.opacity = '1';
+}
+document.addEventListener('click', (e) => {
+  if (activeComp && !e.target.closest('.comp-tag')) clearAll();
+});
+</script>
+</body>
+</html>
