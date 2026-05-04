@@ -716,6 +716,153 @@
     font-size: 0.8rem;
   }
 
+  /* ── Before / After comparison slider ── */
+  .compare-section { padding: 64px 0; border-bottom: 1px solid var(--rule); }
+  .compare-section h2 { margin-bottom: 8px; }
+  .compare-sub { font-size: 1rem; color: var(--muted); margin-bottom: 28px; max-width: 540px; }
+
+  .compare-wrap {
+    position: relative;
+    width: 100%;
+    height: 720px;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    background: #fff;
+    user-select: none;
+    touch-action: pan-y;
+  }
+
+  .compare-after,
+  .compare-before {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .compare-after { z-index: 1; }
+  .compare-before { z-index: 2; clip-path: inset(0 50% 0 0); }
+
+  .compare-label {
+    position: absolute;
+    z-index: 4;
+    top: 14px;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    pointer-events: none;
+  }
+  .compare-label-before { left: 14px; }
+  .compare-label-after { right: 14px; background: rgba(44, 74, 62, 0.92); color: #fff; border-color: var(--accent); }
+
+  .compare-divider {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: var(--warm);
+    z-index: 3;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .compare-handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--warm);
+    border: 3px solid #fff;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.18);
+    color: #fff;
+    cursor: ew-resize;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1;
+    padding: 0;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .compare-handle:hover { transform: translate(-50%, -50%) scale(1.06); }
+  .compare-handle:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+
+  /* Word-doc styling for "before" */
+  .word-doc {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 11pt;
+    line-height: 1.18;
+    color: #000;
+    background: #fff;
+    padding: 40px 44px;
+    height: 100%;
+    overflow: hidden;
+  }
+  .word-name { font-size: 18pt; font-weight: 700; text-align: center; margin-bottom: 2pt; }
+  .word-contact { text-align: center; font-size: 11pt; margin-bottom: 12pt; }
+  .word-h1 { font-size: 14pt; font-weight: 700; margin-top: 8pt; margin-bottom: 4pt; }
+  .word-h2 { font-size: 12pt; font-weight: 700; margin-top: 8pt; }
+  .word-p { margin: 0; text-align: justify; }
+  .word-list { margin: 2pt 0 6pt 28pt; padding: 0; list-style: disc; }
+  .word-list li { margin-bottom: 2pt; text-align: justify; }
+
+  /* Beacon-styled "after" */
+  .beacon-doc {
+    font-family: 'Source Sans 3', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    padding: 36px 44px;
+    height: 100%;
+    overflow: hidden;
+    line-height: 1.6;
+  }
+  .beacon-name { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.7rem; line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); }
+  .beacon-subtitle { color: var(--accent); font-size: 0.95rem; margin-top: 4px; margin-bottom: 18px; font-style: italic; }
+  .beacon-h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-top: 22px;
+    margin-bottom: 12px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .beacon-summary { font-size: 0.9rem; line-height: 1.7; color: var(--ink); }
+  .beacon-job { margin-bottom: 18px; }
+  .beacon-job:last-child { margin-bottom: 0; }
+  .beacon-job-title { font-weight: 600; font-size: 0.95rem; line-height: 1.3; color: var(--ink); }
+  .beacon-job-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-top: 3px; }
+  .beacon-job-org { font-size: 0.84rem; color: var(--muted); font-style: italic; }
+  .beacon-job-date { font-size: 0.82rem; color: var(--accent); font-weight: 500; white-space: nowrap; }
+  .beacon-bullets { list-style: none; margin: 8px 0 0; padding-left: 14px; }
+  .beacon-bullets li { position: relative; padding-left: 14px; margin-bottom: 5px; font-size: 0.86rem; line-height: 1.55; }
+  .beacon-bullets li::before { content: ''; position: absolute; left: 0; top: 9px; width: 4px; height: 4px; background: var(--accent); border-radius: 50%; }
+
+  .compare-cta { margin-top: 28px; text-align: center; }
+
+  /* Below ~640px the slider is awkward — stack vertically with explicit labels */
+  @media (max-width: 640px) {
+    .compare-wrap { height: auto; display: flex; flex-direction: column; touch-action: auto; }
+    .compare-after, .compare-before { position: relative; inset: auto; clip-path: none !important; }
+    .compare-divider, .compare-handle { display: none; }
+    .compare-label { position: relative; top: auto; left: auto !important; right: auto !important; display: block; margin: 0; border-radius: 0; text-align: center; }
+    .compare-label-before { background: #f3f3f3; color: #000; border-bottom: 1px solid #ccc; }
+    .compare-label-after { background: var(--accent); color: #fff; border-bottom: none; }
+    .compare-before .word-doc, .compare-after .beacon-doc { height: auto; padding: 24px 20px; }
+  }
+
   /* ── Responsive ── */
   @media (max-width: 768px) {
     .package-grid, .compare-grid, .cred-grid, .portfolio-grid { grid-template-columns: 1fr; }
@@ -750,6 +897,108 @@
   <div class="hero-cta-row reveal d3">
     <a href="start.html" class="btn-primary">Send Me Your CV →</a>
     <a href="#examples" class="btn-secondary">See Examples</a>
+  </div>
+</section>
+
+<!-- ══════ Before / After Slider ══════ -->
+<section class="compare-section">
+  <h2>See the difference.</h2>
+  <p class="compare-sub">David Starnes' resume, before and after. Drag to compare.</p>
+
+  <div class="compare-wrap" id="compareWrap" role="region" aria-label="Before and after CV comparison">
+    <span class="compare-label compare-label-before">Before</span>
+    <span class="compare-label compare-label-after">After</span>
+
+    <!-- AFTER: Beacon-styled (full background layer) -->
+    <div class="compare-after" aria-label="Beacon-styled CV">
+      <div class="beacon-doc">
+        <div class="beacon-name">David L. Starnes</div>
+        <div class="beacon-subtitle">Correctional Law Enforcement Executive &amp; Expert Witness</div>
+
+        <div class="beacon-h2">Professional Summary</div>
+        <p class="beacon-summary">Public safety executive with more than 35 years of law enforcement service and over 25 years of investigative leadership in correctional and forensic mental health environments. Extensive experience leading large public safety organizations, directing internal affairs investigations, managing statewide hiring programs, and implementing policy and operational reforms across complex government systems. Recognized subject matter expert in correctional operations, internal affairs investigations, and risk assessment with experience providing expert testimony in state and federal courts.</p>
+
+        <div class="beacon-h2">Professional Experience</div>
+
+        <div class="beacon-job">
+          <div class="beacon-job-title">Chief, Allegation Investigation Unit</div>
+          <div class="beacon-job-meta">
+            <span class="beacon-job-org">Office of Internal Affairs, CDCR</span>
+            <span class="beacon-job-date">June 2024 – Present</span>
+          </div>
+          <ul class="beacon-bullets">
+            <li>Provides statewide executive leadership for the Allegation Investigation Unit responsible for administrative investigations involving allegations of staff misconduct toward incarcerated persons.</li>
+            <li>Directs regional investigative teams composed of associate wardens, captains, investigators, and analysts responsible for hundreds of active investigations.</li>
+            <li>Leads investigative reforms addressing backlog reduction while maintaining investigative integrity and statutory timelines.</li>
+            <li>Designed the Central Intake Triage Team (CITT) concept to improve intake screening, early video preservation, and case triage.</li>
+          </ul>
+        </div>
+
+        <div class="beacon-job">
+          <div class="beacon-job-title">Chief of Law Enforcement / Deputy Director, Office of Protective Services</div>
+          <div class="beacon-job-meta">
+            <span class="beacon-job-org">California Department of State Hospitals</span>
+            <span class="beacon-job-date">November 2019 – January 2022</span>
+          </div>
+          <ul class="beacon-bullets">
+            <li>Provided executive leadership for statewide law enforcement and fire service operations across multiple forensic mental health hospitals.</li>
+            <li>Directed confidential criminal and administrative investigations involving staff and patient incidents.</li>
+            <li>Developed consistent law enforcement and fire service practices across multiple facilities.</li>
+            <li>Collaborated with executive leadership, control agencies, and local law enforcement partners on safety and policy matters.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEFORE: Word-doc styled (clipped overlay) -->
+    <div class="compare-before" id="compareBefore" aria-label="Original Word-style resume">
+      <div class="word-doc">
+        <div class="word-name">DAVID L. STARNES</div>
+        <div class="word-contact">Sacramento, California | (916) 719-9334 | dstarnes14@comcast.net</div>
+
+        <div class="word-h1">Professional Summary</div>
+        <p class="word-p">Public safety executive with more than 35 years of law enforcement service and over 25 years of investigative leadership in correctional and forensic mental health environments. Extensive experience leading large public safety organizations, directing internal affairs investigations, managing statewide hiring programs, and implementing policy and operational reforms across complex government systems. Recognized subject matter expert in correctional operations, internal affairs investigations, and risk assessment with experience providing expert testimony in state and federal courts.</p>
+
+        <div class="word-h1">Professional Experience</div>
+
+        <div class="word-h2">Chief, Allegation Investigation Unit (AIU)</div>
+        <p class="word-p">Office of Internal Affairs &ndash; California Department of Corrections and Rehabilitation</p>
+        <p class="word-p">June 2024 &ndash; Present</p>
+        <ul class="word-list">
+          <li>Provide statewide executive leadership for the Allegation Investigation Unit responsible for administrative investigations involving allegations of staff misconduct toward incarcerated persons.</li>
+          <li>Direct regional investigative teams composed of associate wardens, captains, investigators, and analysts responsible for hundreds of active investigations.</li>
+          <li>Lead implementation of investigative reforms addressing backlog reduction while maintaining investigative integrity and statutory timelines.</li>
+          <li>Developed structured case prioritization models aligning investigative resources with allegation severity and statute of limitations risk.</li>
+          <li>Designed Central Intake Triage Team (CITT) concept to improve investigative intake screening, early video preservation, and case triage.</li>
+          <li>Coordinate investigative practices with the Office of the Inspector General, Hiring Authorities, and EAPT attorneys.</li>
+        </ul>
+
+        <div class="word-h2">Chief of Law Enforcement / Deputy Director &ndash; Office of Protective Services</div>
+        <p class="word-p">California Department of State Hospitals</p>
+        <p class="word-p">November 2019 &ndash; January 2022</p>
+        <ul class="word-list">
+          <li>Provided executive leadership for statewide law enforcement and fire service operations across multiple forensic mental health hospitals.</li>
+          <li>Directed confidential criminal and administrative investigations involving staff and patient incidents.</li>
+          <li>Developed consistent law enforcement and fire service practices across multiple facilities.</li>
+          <li>Collaborated with executive leadership, control agencies, and local law enforcement partners on safety and policy matters.</li>
+          <li>Implemented training and staff development programs supporting law enforcement and fire service personnel.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="compare-divider" id="compareDivider"></div>
+    <button type="button"
+            class="compare-handle"
+            id="compareHandle"
+            role="slider"
+            aria-label="Drag to reveal more of the before or after CV"
+            aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+      &#8249;&#8250;
+    </button>
+  </div>
+
+  <div class="compare-cta">
+    <a href="david-starnes-cv.html" class="btn-primary">See the full transformation &rarr;</a>
   </div>
 </section>
 
@@ -987,6 +1236,89 @@
     <a href="start.html" class="btn-primary">Start Your Project →</a>
   </div>
 </div>
+
+<script>
+// Before/after comparison slider
+(function () {
+  var wrap = document.getElementById('compareWrap');
+  if (!wrap) return;
+  var before = document.getElementById('compareBefore');
+  var divider = document.getElementById('compareDivider');
+  var handle = document.getElementById('compareHandle');
+  if (!before || !divider || !handle) return;
+
+  // Skip the JS slider on narrow screens — CSS handles the stacked fallback.
+  function isStacked() { return window.matchMedia('(max-width: 640px)').matches; }
+
+  var dragging = false;
+
+  function setPos(pct) {
+    pct = Math.max(0, Math.min(100, pct));
+    before.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+    divider.style.left = pct + '%';
+    handle.style.left = pct + '%';
+    handle.setAttribute('aria-valuenow', Math.round(pct));
+  }
+
+  function clientXFrom(e) {
+    if (e.touches && e.touches.length) return e.touches[0].clientX;
+    return e.clientX;
+  }
+
+  function moveTo(e) {
+    if (isStacked()) return;
+    var rect = wrap.getBoundingClientRect();
+    var x = clientXFrom(e) - rect.left;
+    setPos((x / rect.width) * 100);
+  }
+
+  function onDown(e) {
+    if (isStacked()) return;
+    dragging = true;
+    handle.focus();
+    moveTo(e);
+    if (e.cancelable) e.preventDefault();
+  }
+  function onMove(e) {
+    if (!dragging) return;
+    moveTo(e);
+    if (e.cancelable) e.preventDefault();
+  }
+  function onUp() { dragging = false; }
+
+  // Mouse + touch on the wrap and on the handle
+  wrap.addEventListener('mousedown', onDown);
+  wrap.addEventListener('touchstart', onDown, { passive: false });
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('touchmove', onMove, { passive: false });
+  document.addEventListener('mouseup', onUp);
+  document.addEventListener('touchend', onUp);
+
+  // Keyboard accessibility
+  handle.addEventListener('keydown', function (e) {
+    if (isStacked()) return;
+    var current = parseFloat(handle.getAttribute('aria-valuenow')) || 50;
+    var step = e.shiftKey ? 10 : 5;
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { setPos(current - step); e.preventDefault(); }
+    else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { setPos(current + step); e.preventDefault(); }
+    else if (e.key === 'Home') { setPos(0); e.preventDefault(); }
+    else if (e.key === 'End') { setPos(100); e.preventDefault(); }
+  });
+
+  // Reset to 50% if the viewport crosses the breakpoint
+  window.addEventListener('resize', function () {
+    if (isStacked()) {
+      before.style.clipPath = '';
+      divider.style.left = '50%';
+      handle.style.left = '50%';
+    } else {
+      setPos(parseFloat(handle.getAttribute('aria-valuenow')) || 50);
+    }
+  });
+
+  setPos(50);
+})();
+</script>
 
 </body>
 </html>
