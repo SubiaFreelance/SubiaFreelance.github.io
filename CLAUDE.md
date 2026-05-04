@@ -21,10 +21,11 @@ Deployment is automatic: pushing to the default branch publishes to GitHub Pages
 Pages fall into three groups, all at the repo root:
 
 - **Marketing pages** — `index.html` (landing), `about.html`, `start.html` (combined intake/contact form), `thank-you.html`.
-- **Example/client CV pages** — `tony-subia.html`, `marenco-cv.html`, `rjsubia-cv.html`. Each has a paired downloadable PDF (`Tony_Subia_CV.pdf`, `marenco-cv.pdf`, `Richard_Subia_CV.pdf`) linked from the page's `.dl-bar` button.
+- **Public portfolio CV pages (anonymized)** — `tony-subia.html` (the founder, kept as-is), `healthcare-it-leader-cv.html`, `corrections-executive-cv.html`, `corrections-law-enforcement-cv.html`. These are linked from the `#examples` portfolio grid on `index.html` and listed in `sitemap.xml`. Names are pseudonymized (first name + last initial), contact info is redacted, JSON-LD `Person` blocks are dropped, and there is no PDF download button.
+- **Private client deliverables (real names)** — `marenco-cv.html`, `rjsubia-cv.html`, `david-starnes-cv.html`. Each carries `<meta name="robots" content="noindex, nofollow">` so search engines don't surface them. They are NOT in `sitemap.xml` and are NOT linked from any public page. Clients share these URLs directly with whoever they choose. Each has a paired downloadable PDF (`Tony_Subia_CV.pdf`, `marenco-cv.pdf`, `Richard_Subia_CV.pdf`) linked via `.dl-bar`.
 - **SEO/infra** — `sitemap.xml`, `robots.txt`, `CNAME`, `favicon.svg`.
 
-When adding a new client CV page, also: (1) add the PDF, (2) add the page to `sitemap.xml`, (3) link it from the `#examples` portfolio grid in `index.html`. The portfolio in `index.html` may reference pages that don't yet exist (e.g. `starnes-cv.html`) — verify before assuming a link is broken.
+When adding a new client, build TWO files: (1) the real-name private deliverable (with full contact, PDF, `noindex, nofollow`, NOT in sitemap, NOT linked from public pages); (2) the pseudonymized public portfolio version (first-name + last-initial, redacted contact, no JSON-LD, no PDF, in sitemap, linked from `index.html`'s portfolio grid). The two pages drift over time — keep them roughly in sync when major content changes.
 
 ## Conventions that span multiple files
 
@@ -45,7 +46,7 @@ Client CV pages implement a click-to-filter "competencies" feature that's easy t
 4. The shared CSS rules driving the visual state are `body.filtering .hl`, `body.filtering .hl.lit`, and `body.filtering .dim`. Toggling `body.filtering` is the master switch.
 5. Print stylesheet (`@media print`) intentionally neutralises the filter: chips render as inline " · "-separated text and `.hl`/`.dim` styling is reset so the printed CV looks clean regardless of filter state.
 
-When adding bullets, set `data-tags` to match the chips you want them to light up under. When adding a new chip, ensure at least one `.hl` element references the new key.
+When adding bullets, set `data-comp` to match the chip you want them to light up under. When adding a new chip, ensure at least one `.hl` element references the new key.
 
 ## Forms
 
