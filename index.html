@@ -782,6 +782,7 @@
     box-shadow: 0 3px 14px rgba(0,0,0,0.18);
     color: #fff;
     cursor: ew-resize;
+    touch-action: none;
     z-index: 5;
     display: flex;
     align-items: center;
@@ -858,15 +859,31 @@
 
   .compare-cta { margin-top: 28px; text-align: center; }
 
-  /* Below ~640px the slider is awkward — stack vertically with explicit labels */
+  /* Mobile: keep the slider, just tighten things up so content fits */
   @media (max-width: 640px) {
-    .compare-wrap { height: auto; display: flex; flex-direction: column; touch-action: auto; }
-    .compare-after, .compare-before { position: relative; inset: auto; clip-path: none !important; }
-    .compare-divider, .compare-handle { display: none; }
-    .compare-label { position: relative; top: auto; left: auto !important; right: auto !important; display: block; margin: 0; border-radius: 0; text-align: center; }
-    .compare-label-before { background: #f3f3f3; color: #000; border-bottom: 1px solid #ccc; }
-    .compare-label-after { background: var(--accent); color: #fff; border-bottom: none; }
-    .compare-before .word-doc, .compare-after .starnes-doc { height: auto; padding: 24px 20px; }
+    .compare-wrap { height: 620px; }
+    .word-doc { padding: 22px 20px; font-size: 9.5pt; line-height: 1.18; }
+    .word-name { font-size: 14pt; }
+    .word-contact { font-size: 9pt; margin-bottom: 8pt; }
+    .word-h1 { font-size: 11.5pt; }
+    .word-h2 { font-size: 10.5pt; }
+    .word-list { margin-left: 18pt; }
+    .starnes-doc { padding: 24px 20px; line-height: 1.5; }
+    .starnes-name { font-size: 1.4rem; letter-spacing: 0.04em; }
+    .starnes-rule { width: 50px; }
+    .starnes-subtitle { font-size: 0.78rem; }
+    .starnes-contact { font-size: 0.72rem; }
+    .starnes-contact .sep { margin: 0 5px; }
+    .starnes-h2 { font-size: 0.74rem; margin-top: 14px; }
+    .starnes-summary { font-size: 0.82rem; line-height: 1.55; }
+    .starnes-job-title { font-size: 0.84rem; }
+    .starnes-job-date { font-size: 0.76rem; }
+    .starnes-job-org { font-size: 0.78rem; }
+    .starnes-bullets li { font-size: 0.78rem; line-height: 1.5; }
+    .compare-handle { width: 50px; height: 50px; font-size: 1.15rem; }
+    .compare-label { font-size: 0.6rem; padding: 4px 9px; top: 10px; }
+    .compare-label-before { left: 10px; }
+    .compare-label-after { right: 10px; }
   }
 
   /* ── Responsive ── */
@@ -1259,9 +1276,6 @@
   var handle = document.getElementById('compareHandle');
   if (!before || !divider || !handle) return;
 
-  // Skip the JS slider on narrow screens — CSS handles the stacked fallback.
-  function isStacked() { return window.matchMedia('(max-width: 640px)').matches; }
-
   var dragging = false;
 
   function setPos(pct) {
@@ -1278,14 +1292,12 @@
   }
 
   function moveTo(e) {
-    if (isStacked()) return;
     var rect = wrap.getBoundingClientRect();
     var x = clientXFrom(e) - rect.left;
     setPos((x / rect.width) * 100);
   }
 
   function onDown(e) {
-    if (isStacked()) return;
     dragging = true;
     handle.focus();
     moveTo(e);
@@ -1298,9 +1310,13 @@
   }
   function onUp() { dragging = false; }
 
-  // Mouse + touch on the wrap and on the handle
+  // Desktop: mouse anywhere in the wrap starts a drag.
   wrap.addEventListener('mousedown', onDown);
-  wrap.addEventListener('touchstart', onDown, { passive: false });
+  // Mobile: only the handle starts a drag (so vertical scrolling through the
+  // section isn't hijacked by an accidental divider grab).
+  handle.addEventListener('touchstart', onDown, { passive: false });
+  // Document-level move/up so the drag continues even if the cursor leaves
+  // the slider container.
   document.addEventListener('mousemove', onMove);
   document.addEventListener('touchmove', onMove, { passive: false });
   document.addEventListener('mouseup', onUp);
@@ -1308,24 +1324,12 @@
 
   // Keyboard accessibility
   handle.addEventListener('keydown', function (e) {
-    if (isStacked()) return;
     var current = parseFloat(handle.getAttribute('aria-valuenow')) || 50;
     var step = e.shiftKey ? 10 : 5;
     if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { setPos(current - step); e.preventDefault(); }
     else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { setPos(current + step); e.preventDefault(); }
     else if (e.key === 'Home') { setPos(0); e.preventDefault(); }
     else if (e.key === 'End') { setPos(100); e.preventDefault(); }
-  });
-
-  // Reset to 50% if the viewport crosses the breakpoint
-  window.addEventListener('resize', function () {
-    if (isStacked()) {
-      before.style.clipPath = '';
-      divider.style.left = '50%';
-      handle.style.left = '50%';
-    } else {
-      setPos(parseFloat(handle.getAttribute('aria-valuenow')) || 50);
-    }
   });
 
   setPos(50);
