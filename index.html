@@ -501,6 +501,87 @@
 
   .testimonial .attr-role { font-weight: 400; color: var(--muted); }
 
+  /* ── Testimonial carousel (scaffold — see testimonials data array in <script>) ── */
+  .testimonial-carousel {
+    position: relative;
+    max-width: 580px;
+  }
+  .carousel-viewport {
+    position: relative;
+    min-height: 230px;
+  }
+  .carousel-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .carousel-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+  }
+  .carousel-slide .testimonial {
+    margin: 0;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  .carousel-controls {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  .carousel-arrow {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--rule);
+    background: var(--card);
+    color: var(--accent);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .carousel-arrow:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .carousel-arrow:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .carousel-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .carousel-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: none;
+    background: var(--rule);
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.2s ease;
+  }
+  .carousel-dot:hover { background: var(--muted); }
+  .carousel-dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .carousel-dot.active { background: var(--accent); transform: scale(1.25); }
+
+  .carousel-test-warning {
+    background: #fff4e6;
+    border-left: 3px solid var(--warm);
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-size: 0.78rem;
+    color: var(--ink);
+  }
+  .carousel-test-warning strong { color: var(--warm); }
+
   /* ── Credibility ── */
   .cred-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
@@ -1133,17 +1214,24 @@
   </p>
 </section>
 
-<!-- ══════ Testimonial ══════ -->
+<!-- ══════ Testimonial Carousel (SCAFFOLD WITH TEST DATA) ══════ -->
 <section>
   <h2>What clients say.</h2>
-  <div class="testimonial">
-    <blockquote>Tony completely restructured how I present 35 years of law enforcement experience. He saw things I'd overlooked and reframed my consulting work in a way that speaks directly to the attorneys I'm trying to reach. The web page he built is exactly the professional presence I needed.</blockquote>
-    <div class="attribution">
-      David S.
-      <span class="attr-role"> · Corrections Executive &amp; Expert Witness, 35+ years</span>
+
+  <div class="carousel-test-warning">
+    <strong>Scaffold preview:</strong> the testimonials below are sample content for testing the carousel UI. Real testimonials will replace them once collected. Do not deploy as-is.
+  </div>
+
+  <div class="testimonial-carousel" id="testimonialCarousel" role="region" aria-label="Client testimonials" aria-roledescription="carousel">
+    <div class="carousel-viewport" id="carouselViewport" aria-live="polite">
+      <!-- Slides rendered by JS from the testimonials[] array near the bottom of this file -->
+    </div>
+    <div class="carousel-controls">
+      <button type="button" class="carousel-arrow" id="carouselPrev" aria-label="Previous testimonial">&#8249;</button>
+      <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Choose a testimonial"></div>
+      <button type="button" class="carousel-arrow" id="carouselNext" aria-label="Next testimonial">&#8250;</button>
     </div>
   </div>
-  <p style="font-size: 0.76rem; color: var(--muted); margin-top: 14px; font-style: italic;">* Placeholder — will be updated with David's actual words after project completion.</p>
 </section>
 
 <!-- ══════ Who This Is For ══════ -->
@@ -1333,6 +1421,150 @@
   });
 
   setPos(50);
+})();
+</script>
+
+<script>
+// ─── Testimonial carousel ───────────────────────────────────────────────────
+// To add a real testimonial: append one entry to the testimonials array below.
+// Each entry: { quote, name, role }. Carousel handles everything else.
+//
+// Current entries are TEST DATA — clearly labeled "Sample Client …" so they
+// can't accidentally ship as real social proof. Remove the warning banner
+// (.carousel-test-warning in the markup) and replace this array when real
+// testimonials are ready.
+(function () {
+  const testimonials = [
+    {
+      quote: "Tony rebuilt my CV around the work that actually mattered, not the job titles I happened to hold. The result reads like the career I've actually had — not a chronological list of rooms I sat in. The web page he built is the most professional thing I've ever pointed someone to.",
+      name: "Sample Client A",
+      role: "Public-sector executive, mid-career transition · TEST DATA",
+    },
+    {
+      quote: "I'd been told my resume was 'fine' for years. Tony was the first person to look at it and ask what I actually wanted the next role to be. Then he restructured everything around that answer. I had three interviews within a month.",
+      name: "Sample Client B",
+      role: "Director of Operations, healthcare · TEST DATA",
+    },
+    {
+      quote: "I didn't have a CV. I had thirty years of work, scattered across job descriptions and old reviews. Tony pulled the story out and put it on paper in a way I couldn't have done myself. Worth every dollar.",
+      name: "Sample Client C",
+      role: "Independent consultant · TEST DATA",
+    },
+    {
+      quote: "Most people who write resumes have never sat on a hiring panel. Tony has — and it shows. He cut content I'd been carrying around for fifteen years and added context I never thought to include. The new version actually sounds like me.",
+      name: "Sample Client D",
+      role: "Law enforcement leadership · TEST DATA",
+    },
+    {
+      quote: "Beacon delivered exactly what was promised: a CV that gets read, and a webpage I own forever. The whole thing took less than a week. The webpage is hosted free with no subscription. I cannot believe more people don't do this.",
+      name: "Sample Client E",
+      role: "Senior IT director · TEST DATA",
+    },
+  ];
+
+  const viewport = document.getElementById('carouselViewport');
+  const dotsContainer = document.getElementById('carouselDots');
+  const prevBtn = document.getElementById('carouselPrev');
+  const nextBtn = document.getElementById('carouselNext');
+  const root = document.getElementById('testimonialCarousel');
+  if (!viewport || !dotsContainer || !prevBtn || !nextBtn || !root) return;
+  if (!testimonials.length) return;
+
+  let index = 0;
+  let timer = null;
+  const AUTO_MS = 7000;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function escapeHTML(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+  }
+
+  // Render slides
+  testimonials.forEach((t, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'carousel-slide' + (i === 0 ? ' active' : '');
+    slide.setAttribute('role', 'group');
+    slide.setAttribute('aria-roledescription', 'slide');
+    slide.setAttribute('aria-label', (i + 1) + ' of ' + testimonials.length);
+    slide.innerHTML =
+      '<div class="testimonial">' +
+        '<blockquote>' + escapeHTML(t.quote) + '</blockquote>' +
+        '<div class="attribution">' + escapeHTML(t.name) +
+          '<span class="attr-role"> &middot; ' + escapeHTML(t.role) + '</span>' +
+        '</div>' +
+      '</div>';
+    viewport.appendChild(slide);
+  });
+
+  // Render dots
+  testimonials.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('aria-label', 'Go to testimonial ' + (i + 1));
+    dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  function goTo(i) {
+    index = (i + testimonials.length) % testimonials.length;
+    const slides = viewport.querySelectorAll('.carousel-slide');
+    const dots = dotsContainer.querySelectorAll('.carousel-dot');
+    slides.forEach((s, n) => s.classList.toggle('active', n === index));
+    dots.forEach((d, n) => {
+      d.classList.toggle('active', n === index);
+      d.setAttribute('aria-selected', n === index ? 'true' : 'false');
+    });
+  }
+
+  function next() { goTo(index + 1); }
+  function prev() { goTo(index - 1); }
+
+  prevBtn.addEventListener('click', () => { prev(); restartTimer(); });
+  nextBtn.addEventListener('click', () => { next(); restartTimer(); });
+
+  // Auto-cycle (skipped if user prefers reduced motion)
+  function startTimer() {
+    if (reduceMotion) return;
+    stopTimer();
+    timer = setInterval(next, AUTO_MS);
+  }
+  function stopTimer() {
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+  function restartTimer() { stopTimer(); startTimer(); }
+
+  root.addEventListener('mouseenter', stopTimer);
+  root.addEventListener('mouseleave', startTimer);
+  root.addEventListener('focusin', stopTimer);
+  root.addEventListener('focusout', startTimer);
+
+  // Keyboard navigation when carousel has focus
+  root.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { prev(); restartTimer(); e.preventDefault(); }
+    else if (e.key === 'ArrowRight') { next(); restartTimer(); e.preventDefault(); }
+  });
+
+  // Touch swipe
+  let touchStartX = null;
+  viewport.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  viewport.addEventListener('touchend', (e) => {
+    if (touchStartX === null) return;
+    const dx = (e.changedTouches[0].clientX) - touchStartX;
+    touchStartX = null;
+    if (Math.abs(dx) > 40) {
+      if (dx < 0) next(); else prev();
+      restartTimer();
+    }
+  });
+
+  startTimer();
 })();
 </script>
 
