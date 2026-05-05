@@ -501,31 +501,61 @@
 
   .testimonial .attr-role { font-weight: 400; color: var(--muted); }
 
-  /* ── Testimonial carousel (scaffold — see testimonials data array in <script>) ── */
+  /* ── Testimonial carousel: centered slide with faded side peeks ── */
   .testimonial-carousel {
     position: relative;
-    max-width: 580px;
+    max-width: 760px;
   }
   .carousel-viewport {
     position: relative;
-    min-height: 230px;
+    overflow: hidden;
+  }
+  .carousel-track {
+    display: flex;
+    align-items: stretch;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
   }
   .carousel-slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
+    flex: 0 0 80%;
+    padding: 0 12px;
+    box-sizing: border-box;
+    opacity: 0.22;
+    transform: scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
   .carousel-slide.active {
     opacity: 1;
-    pointer-events: auto;
-    position: relative;
+    transform: scale(1);
   }
   .carousel-slide .testimonial {
     margin: 0;
     height: 100%;
     box-sizing: border-box;
+  }
+  /* Soft fade gradient over the side peeks so they read as "more behind" */
+  .carousel-viewport::before,
+  .carousel-viewport::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 56px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .carousel-viewport::before {
+    left: 0;
+    background: linear-gradient(to right, var(--paper) 0%, rgba(250,249,247,0) 100%);
+  }
+  .carousel-viewport::after {
+    right: 0;
+    background: linear-gradient(to left, var(--paper) 0%, rgba(250,249,247,0) 100%);
+  }
+  /* Mobile: drop side peeks; one slide fills the viewport */
+  @media (max-width: 640px) {
+    .carousel-slide { flex-basis: 100%; padding: 0 4px; }
+    .carousel-viewport::before,
+    .carousel-viewport::after { display: none; }
   }
   .carousel-controls {
     margin-top: 18px;
@@ -1224,7 +1254,9 @@
 
   <div class="testimonial-carousel" id="testimonialCarousel" role="region" aria-label="Client testimonials" aria-roledescription="carousel">
     <div class="carousel-viewport" id="carouselViewport" aria-live="polite">
-      <!-- Slides rendered by JS from the testimonials[] array near the bottom of this file -->
+      <div class="carousel-track" id="carouselTrack">
+        <!-- Slides rendered by JS from the testimonials[] array near the bottom of this file -->
+      </div>
     </div>
     <div class="carousel-controls">
       <button type="button" class="carousel-arrow" id="carouselPrev" aria-label="Previous testimonial">&#8249;</button>
@@ -1463,11 +1495,12 @@
   ];
 
   const viewport = document.getElementById('carouselViewport');
+  const track = document.getElementById('carouselTrack');
   const dotsContainer = document.getElementById('carouselDots');
   const prevBtn = document.getElementById('carouselPrev');
   const nextBtn = document.getElementById('carouselNext');
   const root = document.getElementById('testimonialCarousel');
-  if (!viewport || !dotsContainer || !prevBtn || !nextBtn || !root) return;
+  if (!viewport || !track || !dotsContainer || !prevBtn || !nextBtn || !root) return;
   if (!testimonials.length) return;
 
   let index = 0;
@@ -1481,7 +1514,7 @@
     }[c]));
   }
 
-  // Render slides
+  // Render slides into the track
   testimonials.forEach((t, i) => {
     const slide = document.createElement('div');
     slide.className = 'carousel-slide' + (i === 0 ? ' active' : '');
@@ -1495,7 +1528,7 @@
           '<span class="attr-role"> &middot; ' + escapeHTML(t.role) + '</span>' +
         '</div>' +
       '</div>';
-    viewport.appendChild(slide);
+    track.appendChild(slide);
   });
 
   // Render dots
@@ -1510,16 +1543,49 @@
     dotsContainer.appendChild(dot);
   });
 
+  function positionTrack() {
+    const slides = track.querySelectorAll('.carousel-slide');
+    if (!slides.length) return;
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    const viewportWidth = viewport.getBoundingClientRect().width;
+    // Center the active slide inside the viewport
+    const offset = (viewportWidth / 2) - (slideWidth / 2) - (index * slideWidth);
+    track.style.transform = 'translateX(' + offset + 'px)';
+  }
+
   function goTo(i) {
     index = (i + testimonials.length) % testimonials.length;
-    const slides = viewport.querySelectorAll('.carousel-slide');
+    const slides = track.querySelectorAll('.carousel-slide');
     const dots = dotsContainer.querySelectorAll('.carousel-dot');
     slides.forEach((s, n) => s.classList.toggle('active', n === index));
     dots.forEach((d, n) => {
       d.classList.toggle('active', n === index);
       d.setAttribute('aria-selected', n === index ? 'true' : 'false');
     });
+    positionTrack();
   }
+
+  // Recompute centering when the viewport size changes
+  let resizeRaf = null;
+  window.addEventListener('resize', () => {
+    if (resizeRaf) cancelAnimationFrame(resizeRaf);
+    resizeRaf = requestAnimationFrame(() => {
+      // Disable transition during resize so it doesn't animate the recenter
+      const prev = track.style.transition;
+      track.style.transition = 'none';
+      positionTrack();
+      // Restore transition on next frame
+      requestAnimationFrame(() => { track.style.transition = prev; });
+    });
+  });
+
+  // Initial positioning after render (next frame so layout has settled)
+  requestAnimationFrame(() => {
+    const prev = track.style.transition;
+    track.style.transition = 'none';
+    positionTrack();
+    requestAnimationFrame(() => { track.style.transition = prev; });
+  });
 
   function next() { goTo(index + 1); }
   function prev() { goTo(index - 1); }
@@ -1562,6 +1628,15 @@
       if (dx < 0) next(); else prev();
       restartTimer();
     }
+  });
+
+  // Click a side-peek slide to bring it to center
+  track.addEventListener('click', (e) => {
+    const slide = e.target.closest('.carousel-slide');
+    if (!slide) return;
+    const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+    const i = slides.indexOf(slide);
+    if (i !== -1 && i !== index) { goTo(i); restartTimer(); }
   });
 
   startTimer();
