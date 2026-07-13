@@ -35,6 +35,7 @@ These patterns recur across pages and are worth preserving when editing:
 - **Fonts via Google Fonts `<link>`** at the top of `<head>`. Common pairings: `DM Serif Display` + `Source Sans 3` (Beacon brand, Tony's CV), `Playfair Display` + `Lato` or `Source Sans 3` (other CVs).
 - **Reveal-on-load animation.** Elements get class `reveal d1`/`d2`/… which fades them in via the shared `@keyframes fadeUp` rule and staggered `animation-delay`s.
 - **SEO blocks** on each page: `<title>`, `<meta name="description">`, Open Graph + Twitter card meta, `<link rel="canonical" href="https://beaconcv.net/…">`, and a `<script type="application/ld+json">` JSON-LD block (`ProfessionalService` for the brand, `Person` for CVs). Keep these in sync when copying/editing pages.
+- **Cloudflare Web Analytics snippet** just before `</body>` on every page (cookieless, no consent banner needed). When creating a new page, copy the `<!-- Cloudflare Web Analytics -->` script block from any existing page.
 
 ## Interactive competency filter (CV pages)
 

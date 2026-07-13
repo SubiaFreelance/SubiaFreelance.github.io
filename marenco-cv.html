@@ -314,5 +314,7 @@ function toggleComp(tag){const comp=tag.dataset.comp;const counter=document.getE
 function clearAll(){activeComp=null;document.body.classList.remove('filtering');document.querySelectorAll('.comp-tag.active').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.hl.lit').forEach(el=>el.classList.remove('lit'));document.querySelectorAll('.dim').forEach(el=>el.classList.remove('dim'));document.getElementById('compCounter').classList.remove('visible');document.getElementById('compHint').style.opacity='1'}
 document.addEventListener('click',function(e){if(!e.target.closest('.comp-tag')&&!e.target.closest('.hl')&&activeComp)clearAll()});
 </script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "fca645f66e384cc8ac4c4f154be60cf5"}'></script><!-- End Cloudflare Web Analytics -->
+
 </body>
 </html>
